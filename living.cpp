@@ -1,15 +1,15 @@
 #include <iostream>
 #include <cstring>
 
-#include "classes.hpp"
+#include "living.hpp"
 
 using namespace std;
 
-Living::Living(string n, int l, int h){
+Living::Living(string n){
     cout << "A New Living has been created! " << endl;
     name = n;
-    level = l;
-    healthPower = h;
+    level = 0;
+    healthPower = 10;
 }
 
 Living::~Living(){
@@ -17,6 +17,7 @@ Living::~Living(){
     cout << "name: " << name << " level: " << level << " healthPower: " << healthPower << endl; 
 }
 
+// faint
 // void Living::changeHelthPower(int number){
 //     if(healthPower == 0)
 // }
@@ -34,15 +35,15 @@ int Living::getHelthPower()const{
 }
 
 
-Hero::Hero(string n, int l, int h, int mp, int s, int d, int a, int mo, int e)
-: Living(n, l, h){
+Hero::Hero(string n, int s, int d, int a)
+: Living(n){
     cout << "A New Hero has been created! " << endl;
-    magicPower = mp;
+    magicPower = 10;
     strenght = s;
     dexterity = d;
     agility = a;
-    money = mo;
-    experience = e;
+    money = 50;
+    experience = 0;
 }
 
 Hero::~Hero(){
@@ -65,9 +66,17 @@ int Hero::getAgility()const{
     return agility;
 }
 
+int Hero::getMoney()const{
+    return money;
+}
 
-Warrior::Warrior(string n, int l, int h, int m, int s, int d, int a)
-: Hero(mn, l, h, m, s, d, a){
+int Hero::getExperience()const{
+    return experience;
+}
+
+
+Warrior::Warrior(string n)
+: Hero(n, 8, 5, 7){
     cout << "A New Warrior has been created! " << endl;
 }
 
@@ -76,8 +85,8 @@ Warrior::~Warrior(){
 }
 
 
-Sorcerer::Sorcerer(int m, int s, int d, int a)
-: Hero(mn, l, h, m, s, d, a){
+Sorcerer::Sorcerer(string n)
+: Hero(n, 4, 7, 8){
     cout << "A New Sorcerer has been created! " << endl;
 }
 
@@ -86,8 +95,8 @@ Sorcerer::~Sorcerer(){
 }
 
 
-Paladin::Paladin(int m, int s, int d, int a)
-: Hero(mn, l, h, m, s, d, a){
+Paladin::Paladin(string n)
+: Hero(n, 7, 9, 3){
     cout << "A New Paladin has been created! " << endl;
 }
 
@@ -97,11 +106,12 @@ Paladin::~Paladin(){
 
 
 
-Monster::Monster(string n, int l, int h, int da, int de)
-: Living(n, h, l){
+Monster::Monster(string n, int da, int de, int a)
+: Living(n){
     cout << "A New Monster has been created! " << endl;
     damage = da;
     defence = de;
+    attack = a;
 }
 
 Monster::~Monster(){
@@ -116,9 +126,13 @@ int Monster::getDefence()const{
     return defence;
 }
 
+int Monster::getAttack()const{
+    return attack;
+}
 
-Dragon::Dragon(string n, int l, int h, int da, int de) 
-: Monster(n, l, h, da, de){
+
+Dragon::Dragon(string n) 
+: Monster(n, 9, 5, 5){
     cout << "A New Dragon has been created! " << endl;
 }
 
@@ -127,8 +141,8 @@ Dragon::~Dragon(){
 }
 
 
-Exoskeleton::Exoskeleton(string n, int l, int h, int da, int de) 
-: Monster(n, l, h, da, de){
+Exoskeleton::Exoskeleton(string n) 
+: Monster(n, 5, 9, 5){
     cout << "A New Exoskeleton has been created! " << endl;
 }
 
@@ -137,8 +151,8 @@ Exoskeleton::~Exoskeleton(){
 }
 
 
-Spirit::Spirit(string n, int l, int h, int da, int de) 
-: Monster(n, l, h, da, de){
+Spirit::Spirit(string n) 
+: Monster(n, 5, 5, 9){
     cout << "A New Spirit has been created! " << endl;
 }
 

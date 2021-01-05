@@ -33,10 +33,10 @@ class Living{
         int healthPower;
         
     public:
-        Living(string, int, int);
+        Living(string);
         ~Living();
 
-        void helthCheck();
+        // void helthCheck();
         // void changeHelthPower(int);
 
         string getName()const;
@@ -57,87 +57,72 @@ class Hero : public Living{
         int experience;
         
     public:
-        Hero(string, int, int, int, int, int, int, int, int);
+        Hero(string, int, int, int);
         ~Hero();
 
         int getMagicPower()const;
         int getStrenght()const;
         int getDexterity()const;
         int getAgility()const;
-
+        int getMoney()const;
+        int getExperience()const;
 };
 
 
-class Warrior : public Hero{
-    private:
-        
-        
+class Warrior : public Hero{ 
     public:
-        Warrior(int, int, int, int);
+        Warrior(string);
         ~Warrior();
 };
 
 
 class Sorcerer : public Hero{
-    private:
-        
-        
     public:
-        Sorcerer(int, int, int, int);
+        Sorcerer(string);
         ~Sorcerer();
 };
 
 
 class Paladin : public Hero{
-    private:
-        
-        
     public:
-        Paladin(int, int, int, int);
+        Paladin(string);
         ~Paladin();
-
 };
 
 
 class Monster : public Living{
     private:
-        int damage;
-        int defence;
+     
+        int damage;     // damage it causes
+        int defence;    // defense it has
+        int attack;     // avoid attack
 
     public:
-        Monster(string, int, int, int, int);
+        Monster(string, int, int, int);
         ~Monster();
 
         int getDamage()const;
         int getDefence()const;
+        int getAttack()const;
 };
 
 
 class Dragon : public Monster{
-    private:
-        
-
     public:
-        Dragon(string, int, int, int, int);
+        Dragon(string);
         ~Dragon();
 };
 
 
 class Exoskeleton : public Monster{
-    private:
-
-
     public:
-        Exoskeleton(string, int, int, int, int);
+        Exoskeleton(string);
         ~Exoskeleton();
 };
 
 
 class Spirit : public Monster{
-    private:
-
-
     public:
-        Spirit(string, int, int, int, int);
+        Spirit(string);
         ~Spirit();
 };
