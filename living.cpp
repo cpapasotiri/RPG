@@ -110,7 +110,7 @@ Monster::Monster(string n, int da, int de, int a)
 : Living(n){
     cout << "A New Monster has been created! " << endl;
     damage = da;
-    defence = de;
+    defense = de;
     attack = a;
 }
 
@@ -122,8 +122,8 @@ int Monster::getDamage()const{
     return damage;
 }
 
-int Monster::getDefence()const{
-    return defence;
+int Monster::getDefense()const{
+    return defense;
 }
 
 int Monster::getAttack()const{

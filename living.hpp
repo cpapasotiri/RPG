@@ -1,19 +1,10 @@
 #include <iostream>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 
 // classes definitions
-class Item;
-class Weapons;
-class Armor;
-class Potion;
-
-class Spell;
-class IceSpell;
-class FireSpell;
-class LightSpell;
-
 class Living;
 class Hero;
 class Warrior;
@@ -36,14 +27,11 @@ class Living{
         Living(string);
         ~Living();
 
-        // void helthCheck();
-        // void changeHelthPower(int);
+        // void helthCheck(); // void changeHelthPower(int);
 
         string getName()const;
         int getLevel()const;
         int getHelthPower()const;
-
-
 };
 
 
@@ -55,6 +43,9 @@ class Hero : public Living{
         int agility;
         int money;
         int experience;
+        // vector<Weapon> weapon;
+        // vector<Armor> armor;
+        // vector<Potion> potion;
         
     public:
         Hero(string, int, int, int);
@@ -94,7 +85,7 @@ class Monster : public Living{
     private:
      
         int damage;     // damage it causes
-        int defence;    // defense it has
+        int defense;    // defense it has
         int attack;     // avoid attack
 
     public:
@@ -102,7 +93,7 @@ class Monster : public Living{
         ~Monster();
 
         int getDamage()const;
-        int getDefence()const;
+        int getDefense()const;
         int getAttack()const;
 };
 
