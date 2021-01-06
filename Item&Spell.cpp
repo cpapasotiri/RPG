@@ -3,20 +3,6 @@
 
 using namespace std;
 
-class Item {
-    protected:
-    string name;
-    int price;
-    int leastlevel;
-
-    public:
-    Item(string name,int price, int leastlevel);
-    ~Item();
-    string getName()const;
-    int getPrice()const;
-    int getLeastlevel()const;
-    virtual void Print()=0;
-};
 
 Item::Item(string name,int price,int leastlevel){
     this->name=name;
@@ -41,18 +27,6 @@ int Item::getLeastlevel()const{
     return leastlevel;
 }
 
-class Weapon: public Item{
-    private:
-    int damage;
-    int hands;                       //when hands=1 one hand is needed , when hands=2 two hands are needed to use the weapon
-
-    public:
-    Weapon(string,int,int,int,int);
-    ~Weapon();
-    int getDamage()const;
-    int getHands()const;
-    void Print();
-};
 
 Weapon::Weapon(string name,int price,int leastlevel,int dmg,int i):
 Item(name,price,leastlevel)
@@ -82,15 +56,6 @@ void Weapon::Print(){
     cout << "Hands: " << hands << endl;
 }
 
-class Armor: public Item{
-    int defence;             //number of enemy's damage that the armor reduce
-    public:
-    Armor(string,int,int,int);
-    ~Armor();
-    int getDefence()const;
-    void Print();
-
-};
 
 Armor::Armor(string name,int price, int leastlevel,int defence):
 Item(name,price,leastlevel)
@@ -114,17 +79,6 @@ void Armor::Print(){
     cout << "Defemce: " << defence << endl;
 }
 
-class Potion: public Item {
-    string ability;        //the ability of the hero that the potion increase
-    int amount;            // the amount of the raise
-
-    public:
-    Potion(string,int,int,string,int);
-    ~Potion();
-    string getAbility()const;
-    int getAmount()const;
-    void Print();
-};
 
 Potion::Potion(string name,int price,int leastlevel,string abil,int amount):
 Item(name,price,leastlevel)
@@ -153,24 +107,6 @@ void Potion::Print(){
     cout << "Ability: The " << ability << " is increased by " << amount << endl;
 }
 
-class Spell: public Item {
-    protected:
-    int energy;                // energy needed to use the spell
-    int maxdamage;
-    int mindamage;
-    int reduction;            //reduction of enemy's skill
-    int rounds;                // the reduction last several rounds
-
-    public:
-    Spell(string,int,int,int,int,int,int,int);
-    ~Spell();
-    int getEnergy()const;
-    int getMax()const;
-    int getMin()const;
-    int getReduction()const;
-    int getRounds()const;
-    virtual void Print();
-};
 
 Spell::Spell(string name,int price,int leastlevel,int en,int min,int max,int a,int b):
 Item(name,price,leastlevel)
@@ -216,15 +152,6 @@ void Spell::Print(){
     
 }
 
-class Icespell: public Spell {
-  
-
-    public:
-    Icespell(string,int,int,int,int,int,int,int);
-    ~Icespell();
-    void Print();
-   
-};
 
 Icespell::Icespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
 Spell(name,price,leastlevel,energy,min,max,a,b)
@@ -243,15 +170,6 @@ void Icespell::Print(){
     cout << "Spell effect: " << "It reduces enemy's damage by " << reduction << " for " << rounds << " rounds" << endl;
 }
 
-class Lightingspell: public Spell {
-  
-
-    public:
-    Lightingspell(string,int,int,int,int,int,int,int);
-    ~Lightingspell();
-    void Print();
-   
-};
 
 Lightingspell::Lightingspell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
 Spell(name,price,leastlevel,energy,min,max,a,b)
@@ -271,20 +189,9 @@ void Lightingspell::Print(){
 }
 
 
-class Firespell: public Spell {
-  
-
-    public:
-    Firespell(string,int,int,int,int,int,int,int);
-    ~Firespell();
-    void Print();
-   
-};
-
 Firespell::Firespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
 Spell(name,price,leastlevel,energy,min,max,a,b)
 {
-   
     cout << "A new icespell has been created" << endl;
 }
 
