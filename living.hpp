@@ -164,9 +164,9 @@ class Hero : public Living{
         int agility;
         int money;
         int experience;
-        vector<Weapon> weapon;
-        vector<Armor> armor;
-        vector<Potion> potion;
+        vector<Weapon*> weapon;
+        vector<Armor*> armor;
+        vector<Potion*> potion;
         vector<Spell*> spell;
       //  Weapon* w1;
        // Weapon* w2;
