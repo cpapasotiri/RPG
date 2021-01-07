@@ -164,9 +164,13 @@ class Hero : public Living{
         int agility;
         int money;
         int experience;
-        // vector<Weapon> weapon;
-        // vector<Armor> armor;
-        // vector<Potion> potion;
+        vector<Weapon> weapon;
+        vector<Armor> armor;
+        vector<Potion> potion;
+        vector<Spell*> spell;
+      //  Weapon* w1;
+       // Weapon* w2;
+       // Armor* arm;
         
     public:
         Hero(string, int, int, int);
@@ -180,6 +184,18 @@ class Hero : public Living{
         int getAgility()const;
         int getMoney()const;
         int getExperience()const;
+      /*void buy(Weapon* a);     
+        void buy(Armor* a);
+        void buy(Potion* a);
+        void buy(Spell* a);
+        void checkInventory()const;
+        void sell(Spell* a);
+        void sell(Weapon* a);
+        void sell(Armor* a);
+        void sell(Potion* a);
+        void use(Potion* a);
+        */
+    
 };
 
 
@@ -243,24 +259,17 @@ class Spirit : public Monster{
 
 
 
-class Team{
+class Team {                          //αν διαφωνείς με κατι πες
     private:
-        Hero* hero1;
-        Hero* hero2;
-        Hero* hero3;        
+    Hero** heroes;
+    int counter;
 
     public:
-        Team(Hero*, Hero*, Hero*);
-        ~Team();
-
-        void print();
-
-        Hero* getHero1()const;
-        Hero* getHero2()const;
-        Hero* getHero3()const;
+    Team(int num);
+    ~Team();
+    void joinTeam(Hero* a);
+    void displayStats()const;
 };
-
-
 
 class Grid{
     private:
