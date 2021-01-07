@@ -44,6 +44,9 @@ Hero::Hero(string n, int s, int d, int a)
     agility = a;
     money = 50;
     experience = 0;
+    //w1=NULL;
+    //w2=NULL;
+    //arm=NULL;
 }
 
 Hero::~Hero(){
@@ -203,3 +206,123 @@ Hero* Team::getHero2()const{
 Hero* Team::getHero3()const{
     return hero3;
 }
+
+/*
+void Hero::use(Potion* a){
+    if(a->getAbility()=="magicPower"){
+        magicPower=magicPower + (a->getAmount());
+    }
+    if(a->getAbility()=="strength"){
+        strenght=strenght + (a->getAmount());
+    }
+    if(a->getAbility()=="dexterity"){
+        dexterity=dexterity + (a->getAmount());
+    }
+    if(a->getAbility()=="agility"){
+        agility=agility + (a->getAmount());
+    }
+    int j=0;
+    for(j=0; j<potion.size(); j++){
+            if(potion.at(j)==a) break;
+    }
+    potion.erase(potion.begin()+j);
+
+}
+
+void Hero::sell(Potion* a){
+    int j=0;
+    for(j=0; j<potion.size(); j++){
+            if(potion.at(j)==a) break;
+    }
+   potion.erase(potion.begin()+j);
+    money=money + (a->getPrice()/2);        //poleite sti misi timi
+}
+
+void Hero::sell(Armor* a){
+    int j=0;
+    for(j=0; j<armor.size(); j++){
+            if(armor.at(j)==a) break;
+    }
+    armor.erase(armor.begin()+j);
+    money=money + (a->getPrice()/2);        //poleite sti misi timi
+}
+
+void Hero::sell(Weapon* a){
+    int j=0;
+    for(j=0; j<weapon.size(); j++){
+            if(weapon.at(j)==a) break;
+    }
+    weapon.erase(weapon.begin()+j);
+    money=money + (a->getPrice()/2);        //poleite sti misi timi
+}
+
+
+void Hero::sell(Spell* a){
+    int j=0;
+    for(j=0; j<spell.size(); j++){
+            if(spell.at(j)==a) break;
+    }
+    spell.erase(spell.begin()+j);
+    money=money + (a->getPrice()/2);        //poleite sti misi timi
+}
+
+void Hero::checkInventory()const{
+    int counter=0;
+    cout << name << "'s Items are: " << endl;
+    for(int j=0; j<weapon.size(); j++){
+        counter++;
+        cout << "Item " << counter << ":" << endl;
+        weapon.at(j)->Print();
+    }
+    for(int j=0; j<armor.size(); j++){
+         counter++;
+        cout << "Item " << counter << ":" << endl;
+        armor.at(j)->Print();
+    }
+    for(int j=0; j<potion.size(); j++){
+         counter++;
+        cout << "Item " << counter << ":" << endl;
+        potion.at(j)->Print();
+    }
+    for(int j=0; j<spell.size(); j++){
+        counter++;
+        cout << "Item " << counter << ":" << endl ;
+        spell.at(j)->Print();
+    }
+    
+}
+
+void Hero::buy(Weapon* a){
+    if(money<(a->getPrice())) return;
+     weapon.push_back(a);
+     money=money - (a->getPrice());
+}
+
+void Hero::buy(Armor* a){
+    if(money<(a->getPrice())) return;
+    armor.push_back(a);
+     money=money - (a->getPrice());
+}
+
+void Hero::buy(Potion* a){
+     if(money<(a->getPrice())) return;
+    potion.push_back(a);
+     money=money - (a->getPrice());
+}
+
+void Hero::buy(Spell* a){
+    if(money<(a->getPrice())) return;
+    spell.push_back(a);
+    money=money - (a->getPrice());
+}
+
+void Hero::equip(Weapon* a,Weapon* b, Armor* c){
+	w1=a;
+	if(w1->getHands()==2 && b!=NULL){
+		cout << "Hero can hold only one weapon which requires two hands" << endl;
+		b=NULL;
+	}
+	if(b->getHands()==1) w2=b;
+	arm=c;
+}
+*/
