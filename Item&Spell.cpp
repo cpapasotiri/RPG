@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstring>
 
+#include "living.hpp"
+
 using namespace std;
 
 
@@ -156,7 +158,6 @@ void Spell::Print(){
 Icespell::Icespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
 Spell(name,price,leastlevel,energy,min,max,a,b)
 {
-   
     cout << "A new icespell has been created" << endl;
 }
 

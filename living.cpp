@@ -50,6 +50,19 @@ Hero::~Hero(){
     cout << "A Hero to be destroyed! " << endl;
 }
 
+
+void Hero::print()const{
+    cout << "Hero " << Living::getName() << endl
+         << "level = " << Living::getLevel() << endl
+         << "healthPower = " << Living::getHelthPower() << endl
+         << "magicPower = " << magicPower << endl 
+         << "strenght = " << strenght << endl
+         << "dexterity = " << dexterity << endl
+         << "agility = " << agility << endl
+         << "money = " << money << endl
+         << "experience = " << experience << endl;
+}
+
 int Hero::getMagicPower()const{
     return magicPower;
 }
@@ -143,19 +156,50 @@ Dragon::~Dragon(){
 
 Exoskeleton::Exoskeleton(string n) 
 : Monster(n, 5, 9, 5){
-    cout << "A New Exoskeleton has been created! " << endl;
+    cout << "A New Exoskeleton has been created!" << endl;
 }
 
 Exoskeleton::~Exoskeleton(){
-    cout << "A Exoskeleton to be destroyed! " << endl;
+    cout << "A Exoskeleton to be destroyed!" << endl;
 }
 
 
 Spirit::Spirit(string n) 
 : Monster(n, 5, 5, 9){
-    cout << "A New Spirit has been created! " << endl;
+    cout << "A New Spirit has been created!" << endl;
 }
 
 Spirit::~Spirit(){
-    cout << "A Spirit to be destroyed! " << endl;
+    cout << "A Spirit to be destroyed!" << endl;
+}
+
+
+
+Team::Team(Hero* h1, Hero* h2, Hero* h3){
+    cout << "A New Team has been created!" << endl;
+    hero1 = h1;
+    hero2 = h2;
+    hero3 = h3;
+}
+
+Team::~Team(){
+    cout << "A Team to be destroyed!" << endl;
+}
+
+void Team::print(){
+    hero1->print();
+    hero2->print();
+    hero3->print();
+}
+
+Hero* Team::getHero1()const{
+    return hero1;
+}
+
+Hero* Team::getHero2()const{
+    return hero2;
+}
+
+Hero* Team::getHero3()const{
+    return hero3;
 }

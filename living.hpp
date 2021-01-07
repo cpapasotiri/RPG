@@ -5,15 +5,17 @@
 using namespace std;
 
 // classes definitions
+// item_spell.cpp
 class Item;
-class Weapons;	
+class Weapon;	
 class Armor;	
-class Potion;	
+class Potion;	 
 class Spell;	
 class IceSpell;	
 class FireSpell;	
 class LightSpell;
 
+// livings.cpp
 class Living;
 class Hero;
 class Warrior;
@@ -23,6 +25,15 @@ class Monster;
 class Dragon;
 class Exoskeleton;
 class Spirit;
+
+class Team;
+
+// grid.cpp
+class Grid;
+class Square;
+class NonAccessible;
+class Market;
+class Common;
 
 
 class Item {
@@ -108,19 +119,19 @@ class Icespell: public Spell {
 };
 
 
-class Lightingspell: public Spell {
+class Firespell: public Spell {
     public:
-    Lightingspell(string,int,int,int,int,int,int,int);
-    ~Lightingspell();
+    Firespell(string,int,int,int,int,int,int,int);
+    ~Firespell();
     void Print();
    
 };
 
 
-class Firespell: public Spell {
+class Lightingspell: public Spell {
     public:
-    Firespell(string,int,int,int,int,int,int,int);
-    ~Firespell();
+    Lightingspell(string,int,int,int,int,int,int,int);
+    ~Lightingspell();
     void Print();
    
 };
@@ -160,6 +171,8 @@ class Hero : public Living{
     public:
         Hero(string, int, int, int);
         ~Hero();
+
+        void print()const;
 
         int getMagicPower()const;
         int getStrenght()const;
@@ -227,3 +240,102 @@ class Spirit : public Monster{
         Spirit(string);
         ~Spirit();
 };
+
+
+
+class Team{
+    private:
+        Hero* hero1;
+        Hero* hero2;
+        Hero* hero3;        
+
+    public:
+        Team(Hero*, Hero*, Hero*);
+        ~Team();
+
+        void print();
+
+        Hero* getHero1()const;
+        Hero* getHero2()const;
+        Hero* getHero3()const;
+};
+
+
+
+class Grid{
+    private:
+        Square* grid [8][8];   // ή κατι τετοιο
+
+    public:
+        Grid();
+        ~Grid();
+
+        void displayMap();
+};
+
+
+class Square{
+    private:
+        int type;
+
+    public:
+    Square(int);
+    ~Square();
+
+    virtual void print()const=0;
+
+    int getType()const;
+};
+
+
+class NonAccessible : public Square{
+    public:
+        NonAccessible();
+        ~NonAccessible();
+
+        void print()const;
+};
+
+
+class Market : public Square{
+    private:
+        vector<Weapon> weapons;
+        vector<Armor> armors;
+        vector<Potion> potions;
+        vector<Spell> spells;
+        Team* team;
+
+    public:
+        Market(vector<Weapon> w, vector<Armor> a, vector<Potion> p, vector<Spell> s);
+        ~Market();
+
+        void printMenu();
+        void print()const;
+
+        void enterTeam(Team*);
+        void exitTeam();
+
+        vector<Weapon> getWeapons()const;
+        vector<Armor> getArmors()const;
+        vector<Potion> getPotions()const;
+        vector<Spell> getSpells()const;
+        Team* getTeam()const;
+};
+
+
+class Common : public Square{
+    private:
+        Team* team;
+
+    public:
+        Common();
+        ~Common();
+
+        void print()const;
+
+        void enterTeam(Team*);
+        void exitTeam();
+
+        Team* getTeam()const;
+};
+
