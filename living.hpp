@@ -25,7 +25,6 @@ class Monster;
 class Dragon;
 class Exoskeleton;
 class Spirit;
-
 class Team;
 
 // grid.cpp
@@ -39,6 +38,7 @@ class Common;
 class Game;
 
 
+// item_spell.cpp
 class Item {
     protected:
     string name;
@@ -143,6 +143,7 @@ class Lightingspell: public Spell {
 
 
 
+// livings.cpp
 class Living{
     private:
         string name;
@@ -282,6 +283,10 @@ class Team {                          //αν διαφωνείς με κατι π
     void displayStats()const;
 };
 
+
+
+
+// grid.cpp
 class Grid{
     private:
         Square* grid [8][8];   // ή κατι τετοιο
@@ -360,6 +365,8 @@ class Common : public Square{
 };
 
 
+
+// game.cpp
 class Game{
     private:
 
