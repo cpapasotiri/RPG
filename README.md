@@ -7,8 +7,25 @@
 
 
 ## ΠΕΡΙΓΡΑΦΗ ΥΛΟΠΟΙΗΣΕΩΝ:
-- Χριστίνα: Living(Hero, Monster)
+- Χριστίνα: 
+    Living
+    Hero
+    Monster
+    Team
+    Square
+    Grid
 
-- Γιώργος:
+
+- Γιώργος: 
+    Item
+    Spell
+    Hero functions{
+        checkInventory
+        buy
+        use
+        equip
+    }
+    Team
+
 
 

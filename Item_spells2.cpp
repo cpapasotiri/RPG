@@ -1,3 +1,10 @@
+// ΔΕΝ ΧΡΕΙΑΖΕΤΕ ΑΥΤΟ ΤΟ ΑΡΧΕΙΟ ΤΑ ΕΧΩ ΕΝΣΩΜΑΤΩΣΕΙ ΟΛΑ ΟΠΩς ΠΡΕΠΕΙ ΣΤΟ ITEM_SPELL.CPP
+
+
+
+
+
+
 Item::Item(string name,int price,int leastlevel){
     this->name=name;
     this->price=price;

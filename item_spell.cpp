@@ -87,6 +87,7 @@ Item(name,price,leastlevel)
 {
     ability=abil;
     this->amount=amount;
+    flag=0;
     cout << "A new Potion has been created" << endl ;
 }
 
@@ -100,6 +101,10 @@ string Potion::getAbility()const{
 
 int Potion::getAmount()const{
     return amount;
+}
+
+int Potion::getFlag()const{
+    return flag;
 }
 
 void Potion::Print(){
@@ -172,24 +177,6 @@ void Icespell::Print(){
 }
 
 
-Lightingspell::Lightingspell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
-Spell(name,price,leastlevel,energy,min,max,a,b)
-{
-   
-    cout << "A new Lightingspell has been created" << endl;
-}
-
-Lightingspell::~Lightingspell(){
-    cout << "An Lightingspell to be destroyed" << endl;
-}
-
-void Lightingspell::Print(){
-    Spell::Print();
-    cout << "Category: Lighting spell "<< endl;
-    cout << "Spell effect: " << "It reduces the chance of the opponent avoiding an attack by " << reduction << "% for " << rounds << " rounds" << endl;
-}
-
-
 Firespell::Firespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
 Spell(name,price,leastlevel,energy,min,max,a,b)
 {
@@ -204,4 +191,21 @@ void Firespell::Print(){
     Spell::Print();
     cout << "Category: Fire spell "<< endl;
     cout << "Spell effect: " << "It reduces enemy's defence by " << reduction << " for " << rounds << " rounds" << endl;
+}
+
+
+Lightingspell::Lightingspell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
+Spell(name,price,leastlevel,energy,min,max,a,b)
+{
+    cout << "A new Lightingspell has been created" << endl;
+}
+
+Lightingspell::~Lightingspell(){
+    cout << "An Lightingspell to be destroyed" << endl;
+}
+
+void Lightingspell::Print(){
+    Spell::Print();
+    cout << "Category: Lighting spell "<< endl;
+    cout << "Spell effect: " << "It reduces the chance of the opponent avoiding an attack by " << reduction << "% for " << rounds << " rounds" << endl;
 }

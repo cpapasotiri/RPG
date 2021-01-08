@@ -68,35 +68,37 @@ class Weapon: public Item{
 
 class Armor: public Item{
     int defence;             //number of enemy's damage that the armor reduce
+    
     public:
     Armor(string,int,int,int);
     ~Armor();
     int getDefence()const;
     void Print();
-
 };
 
 
 class Potion: public Item {
-    string ability;        //the ability of the hero that the potion increase
-    int amount;            // the amount of the raise
+    string ability; //the ability of the hero that the potion increase
+    int amount;     // the amount of the raise
+    int flag;       //flag=0 not used , flag=1 used
 
     public:
     Potion(string,int,int,string,int);
     ~Potion();
     string getAbility()const;
     int getAmount()const;
+    int getFlag()const;
     void Print();
 };
 
 
 class Spell: public Item {
     protected:
-    int energy;                // energy needed to use the spell
+    int energy;      // energy needed to use the spell
     int maxdamage;
     int mindamage;
-    int reduction;            //reduction of enemy's skill
-    int rounds;                // the reduction last several rounds
+    int reduction;  //reduction of enemy's skill
+    int rounds;     // the reduction last several rounds
 
     public:
     Spell(string,int,int,int,int,int,int,int);
@@ -164,13 +166,13 @@ class Hero : public Living{
         int agility;
         int money;
         int experience;
-        vector<Weapon*> weapon;
-        vector<Armor*> armor;
-        vector<Potion*> potion;
-        vector<Spell*> spell;
-      //  Weapon* w1;
-       // Weapon* w2;
-       // Armor* arm;
+        // vector<Weapon*> weapon;     // ??? τι κανουμε με αυτα ???
+        // vector<Armor*> armor;       // ??? τι κανουμε με αυτα ???
+        // vector<Potion*> potion;     // ??? τι κανουμε με αυτα ???
+        // vector<Spell*> spell;       // ??? τι κανουμε με αυτα ???
+        Weapon* w1;
+        Weapon* w2;
+        Armor* arm;
         
     public:
         Hero(string, int, int, int);
@@ -184,18 +186,18 @@ class Hero : public Living{
         int getAgility()const;
         int getMoney()const;
         int getExperience()const;
-      /*void buy(Weapon* a);     
-        void buy(Armor* a);
-        void buy(Potion* a);
-        void buy(Spell* a);
+        
         void checkInventory()const;
-        void sell(Spell* a);
-        void sell(Weapon* a);
-        void sell(Armor* a);
-        void sell(Potion* a);
-        void use(Potion* a);
-        */
-    
+        void buy(Weapon*);     
+        void buy(Armor*);
+        void buy(Potion*);
+        void buy(Spell*);
+        void sell(Weapon*);
+        void sell(Armor*);
+        void sell(Potion*);
+        void sell(Spell*);
+        void use(Potion*);  
+        void equip(Weapon*, Weapon*, Armor*);  
 };
 
 
@@ -222,7 +224,6 @@ class Paladin : public Hero{
 
 class Monster : public Living{
     private:
-     
         int damage;     // damage it causes
         int defense;    // defense it has
         int attack;     // avoid attack
@@ -265,8 +266,13 @@ class Team {                          //αν διαφωνείς με κατι π
     int counter;
 
     public:
-    Team(int num);
+    Team(Hero*, Hero*, Hero*);
     ~Team();
+
+    Hero* getHero1()const;
+    Hero* getHero2()const;
+    Hero* getHero3()const;
+
     void joinTeam(Hero* a);
     void displayStats()const;
 };
@@ -315,7 +321,7 @@ class Market : public Square{
         Team* team;
 
     public:
-        Market(vector<Weapon> w, vector<Armor> a, vector<Potion> p, vector<Spell> s);
+        Market(vector<Weapon>, vector<Armor>, vector<Potion>, vector<Spell>);
         ~Market();
 
         void printMenu();
