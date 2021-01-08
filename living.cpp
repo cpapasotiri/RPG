@@ -30,6 +30,10 @@ int Living::getHelthPower()const{
     return healthPower;
 }
 
+bool Living::getFaint()const{
+    return faint;
+}
+
 bool Living::checkHealth(int number){
     if(healthPower == 0){
         faint = true;
@@ -53,7 +57,7 @@ Hero::Hero(string n, int s, int d, int a)
     dexterity = d;
     agility = a;
     money = 50;
-    experience = 0;
+    experience = 0;  
     w1=NULL;
     w2=NULL;
     arm=NULL;
@@ -98,6 +102,34 @@ int Hero::getMoney()const{
 
 int Hero::getExperience()const{
     return experience;
+}
+
+vector<Weapon*> Hero::getWeapons()const{
+    return weapon;
+}
+
+vector<Armor*>Hero:: getArmors()const{
+    return armor;
+}
+
+vector<Potion*> Hero::getPotions()const{
+    return potion;
+}
+
+vector<Spell*>Hero:: getSpells()const{
+    return spell;
+}
+
+Weapon* Hero::getWeapon1()const{
+    return W1;
+}
+
+Weapon* Hero::getWeapon2()const{
+    return w2;
+}
+
+ArmorHero::* getArmor()const{
+    return arm;
 }
 
 void Hero::checkInventory()const{

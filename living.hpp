@@ -158,8 +158,9 @@ class Living{
         string getName()const;
         int getLevel()const;
         int getHelthPower()const;
+        bool getFaint()const;
 
-        bool checkHealth();
+        bool checkHealth();     // if health=0: true, else: false  
         void changeHealth(int);
 };
 
@@ -192,6 +193,13 @@ class Hero : public Living{
         int getAgility()const;
         int getMoney()const;
         int getExperience()const;
+        vector<Weapon*> getWeapons()const;
+        vector<Armor*> getArmors()const;
+        vector<Potion*> getPotions()const;
+        vector<Spell*> getSpells()const;
+        Weapon* getWeapon1()const;
+        Weapon* getWeapon2()const;
+        Armor* getArmor()const;
         
         void checkInventory()const;
         void buy(Weapon*);     
@@ -336,8 +344,8 @@ class Market : public Square{
         Market(vector<Weapon>, vector<Armor>, vector<Potion>, vector<Spell>);
         ~Market();
 
-        void printMenu();
         void print()const;
+        void printMenu();
 
         void enterTeam(Team*);
         void exitTeam();

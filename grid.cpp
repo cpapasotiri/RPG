@@ -64,12 +64,12 @@ Market::~Market(){
     }
 }
 
-void Market::printMenu(){
-
-}
-
 void Market::print()const{
     cout << "A Market square!" << endl;
+}
+
+void Market::printMenu(){
+    
 }
 
 void Market::enterTeam(Team* t){
