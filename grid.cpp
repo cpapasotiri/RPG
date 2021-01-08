@@ -43,7 +43,7 @@ NonAccessible::~NonAccessible(){
 }
 
 void NonAccessible::print()const{
-
+    cout << "A Non Accessible square!" << endl;
 }
 
 
@@ -59,6 +59,9 @@ Market::Market(vector<Weapon> w, vector<Armor> a, vector<Potion> p, vector<Spell
 
 Market::~Market(){
     cout << "A Market to be destroyed!" << endl;
+    if(team != NULL){
+        team->print();
+    }
 }
 
 void Market::printMenu(){
@@ -66,7 +69,7 @@ void Market::printMenu(){
 }
 
 void Market::print()const{
-
+    cout << "A Market square!" << endl;
 }
 
 void Market::enterTeam(Team* t){
@@ -108,7 +111,10 @@ Common::~Common(){
 }
 
 void Common::print()const{
-
+    cout << "A Common square!" << endl;
+    if(team != NULL){
+        team->print();
+    }
 }
 
 void Common::enterTeam(Team* t){

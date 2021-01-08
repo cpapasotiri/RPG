@@ -272,10 +272,12 @@ class Team {                          //αν διαφωνείς με κατι π
     Team(Hero*, Hero*, Hero*);
     ~Team();
 
-    // Hero* getHero1()const;
-    // Hero* getHero2()const;
-    // Hero* getHero3()const;
     void print();
+    
+    Hero* getHero1()const;
+    Hero* getHero2()const;
+    Hero* getHero3()const;
+
     void joinTeam(Hero* a);
     void displayStats()const;
 };
