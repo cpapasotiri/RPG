@@ -15,7 +15,7 @@ Grid::~Grid(){
 }
 
 void Grid::displayMap(){
-        cout << "A Grid to be destroyed!" << endl;
+    cout << "A Grid to be destroyed!" << endl;
 }
 
 
@@ -69,7 +69,7 @@ void Market::print()const{
 }
 
 void Market::printMenu(){
-    
+
 }
 
 void Market::enterTeam(Team* t){

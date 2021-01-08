@@ -288,6 +288,7 @@ class Team {                          //αν διαφωνείς με κατι π
     Hero* getHero1()const;
     Hero* getHero2()const;
     Hero* getHero3()const;
+    int getCounter()const;
 
     void joinTeam(Hero*);
     void displayStats()const;

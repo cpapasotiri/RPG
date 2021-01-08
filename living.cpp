@@ -366,3 +366,7 @@ Hero* Team::getHero2()const{
 Hero* Team::getHero3()const{
     return heroes[2];
 }
+
+int Team::getCounter()const{
+    return counter;
+}
