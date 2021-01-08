@@ -273,12 +273,12 @@ class Team {                          //αν διαφωνείς με κατι π
     ~Team();
 
     void print();
-    
+
     Hero* getHero1()const;
     Hero* getHero2()const;
     Hero* getHero3()const;
 
-    void joinTeam(Hero* a);
+    void joinTeam(Hero*);
     void displayStats()const;
 };
 
