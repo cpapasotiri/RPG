@@ -10,7 +10,7 @@ Grid::Grid(){
 }
 
 Grid::~Grid(){
-        cout << "A Grid to be destroyed!" << endl;
+    cout << "A Grid to be destroyed!" << endl;
 }
 
 void Grid::displayMap(){
