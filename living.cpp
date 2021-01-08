@@ -336,37 +336,24 @@ Spirit::~Spirit(){
 
 
 
-Team::Team(Hero* h1, Hero* h2, Hero* h3){
-    cout << "A New Team has been created!" << endl;
-    Hero* heroes = new Hero[3];
-    heroes[0] = h1;
-    heroes[1] = h2;
-    heroes[2] = h3;
+void Team::displayStats()const{
+    for(int j=0; j<counter; j++){
+        cout << "Hero " << j+1 << ":" << endl;
+        heroes[j]->Print();
+    }
+}
+
+Team::Team(int num){
+    heroes=new Hero*[num];
+    counter=0;
+    cout << "A new team has been created" << endl;
 }
 
 Team::~Team(){
-    cout << "A Team to be destroyed!" << endl;
-    delete[] heroes; 
+    delete[] heroes;
+    cout << "A Team to be destroyed" << endl;
 }
 
-void Team::print(){
-    heroes[0]->print();
-    heroes[1]->print();
-    heroes[2]->print();
-}
-
-Hero* Team::getHero1()const{
-    return heroes[0];
-}
-
-Hero* Team::getHero2()const{
-    return heroes[1];
-}
-
-Hero* Team::getHero3()const{
-    return heroes[2];
-}
-
-int Team::getCounter()const{
-    return counter;
+void Team::joinTeam(Hero* a){
+    heroes[counter++]=a;
 }
