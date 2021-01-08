@@ -306,7 +306,6 @@ Team::~Team(){
 }
 
 void Team::print(){
-    cout << "EMPTY" << endl;
     // hero1->print();
     // hero2->print();
     // hero3->print();

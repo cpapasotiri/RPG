@@ -272,7 +272,7 @@ class Team {                          //αν διαφωνείς με κατι π
     // Hero* getHero1()const;
     // Hero* getHero2()const;
     // Hero* getHero3()const;
-
+    void print();
     void joinTeam(Hero* a);
     void displayStats()const;
 };
