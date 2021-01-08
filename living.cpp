@@ -92,7 +92,7 @@ int Hero::getExperience()const{
 
 void Hero::checkInventory()const{
     int counter=0;
-    cout << name << "'s Items are: " << endl;
+    cout << Living::getName() << "'s Items are: " << endl;
     for(int j=0; j<weapon.size(); j++){
         counter++;
         cout << "Item " << counter << ":" << endl;
@@ -296,9 +296,9 @@ Spirit::~Spirit(){
 
 Team::Team(Hero* h1, Hero* h2, Hero* h3){
     cout << "A New Team has been created!" << endl;
-    hero1 = h1;
-    hero2 = h2;
-    hero3 = h3;
+    // hero1 = h1;
+    // hero2 = h2;
+    // hero3 = h3;
 }
 
 Team::~Team(){
@@ -306,19 +306,20 @@ Team::~Team(){
 }
 
 void Team::print(){
-    hero1->print();
-    hero2->print();
-    hero3->print();
+    cout << "EMPTY" << endl;
+    // hero1->print();
+    // hero2->print();
+    // hero3->print();
 }
 
-Hero* Team::getHero1()const{
-    return hero1;
-}
+// Hero* Team::getHero1()const{
+//     return hero1;
+// }
 
-Hero* Team::getHero2()const{
-    return hero2;
-}
+// Hero* Team::getHero2()const{
+//     return hero2;
+// }
 
-Hero* Team::getHero3()const{
-    return hero3;
-}
+// Hero* Team::getHero3()const{
+//     return hero3;
+// }

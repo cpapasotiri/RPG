@@ -166,10 +166,10 @@ class Hero : public Living{
         int agility;
         int money;
         int experience;
-        // vector<Weapon*> weapon;     // ??? τι κανουμε με αυτα ???
-        // vector<Armor*> armor;       // ??? τι κανουμε με αυτα ???
-        // vector<Potion*> potion;     // ??? τι κανουμε με αυτα ???
-        // vector<Spell*> spell;       // ??? τι κανουμε με αυτα ???
+        vector<Weapon*> weapon;
+        vector<Armor*> armor;
+        vector<Potion*> potion;
+        vector<Spell*> spell;
         Weapon* w1;
         Weapon* w2;
         Armor* arm;
@@ -269,9 +269,9 @@ class Team {                          //αν διαφωνείς με κατι π
     Team(Hero*, Hero*, Hero*);
     ~Team();
 
-    Hero* getHero1()const;
-    Hero* getHero2()const;
-    Hero* getHero3()const;
+    // Hero* getHero1()const;
+    // Hero* getHero2()const;
+    // Hero* getHero3()const;
 
     void joinTeam(Hero* a);
     void displayStats()const;
