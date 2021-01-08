@@ -35,6 +35,9 @@ class NonAccessible;
 class Market;
 class Common;
 
+// game.cpp
+class Game;
+
 
 class Item {
     protected:
@@ -354,3 +357,16 @@ class Common : public Square{
         Team* getTeam()const;
 };
 
+
+class Game{
+    private:
+
+
+    protected:
+
+
+    public:
+        Game();
+        ~Game();
+
+};

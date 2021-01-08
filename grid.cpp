@@ -6,7 +6,7 @@
 using namespace std;
 
 Grid::Grid(){
-
+    cout << "A New Grid has been created!" << endl;
 }
 
 Grid::~Grid(){
@@ -14,7 +14,7 @@ Grid::~Grid(){
 }
 
 void Grid::displayMap(){
-
+        cout << "A Grid to be destroyed!" << endl;
 }
 
 
