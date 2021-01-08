@@ -149,16 +149,18 @@ class Living{
         string name;
         int level;
         int healthPower;
+        bool faint;     // if health=0: true, else: false
         
     public:
         Living(string);
         ~Living();
 
-        // void helthCheck(); // void changeHelthPower(int);
-
         string getName()const;
         int getLevel()const;
         int getHelthPower()const;
+
+        bool checkHealth();
+        void changeHealth(int);
 };
 
 

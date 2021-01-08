@@ -9,18 +9,14 @@ Living::Living(string n){
     cout << "A New Living has been created! " << endl;
     name = n;
     level = 0;
-    healthPower = 10;
+    healthPower = 100;
+    faint = false;
 }
 
 Living::~Living(){
     cout << "A Living to be destroyed! " << endl;
     cout << "name: " << name << " level: " << level << " healthPower: " << healthPower << endl; 
 }
-
-// faint
-// void Living::changeHelthPower(int number){
-//     if(healthPower == 0)
-// }
 
 string Living::getName()const{
     return name;
@@ -32,6 +28,20 @@ int Living::getLevel()const{
 
 int Living::getHelthPower()const{
     return healthPower;
+}
+
+bool Living::checkHealth(int number){
+    if(healthPower == 0){
+        faint = true;
+    }
+    else{
+        faint = false;
+    }
+    return faint;
+}
+
+void Living::changeHealth(int x){
+    healthPower += x;
 }
 
 
