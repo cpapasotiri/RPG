@@ -274,7 +274,7 @@ class Spirit : public Monster{
 
 
 
-class Team {                          //αν διαφωνείς με κατι πες
+class Team {        // Team with 1-3 heroes 
     private:
     Hero** heroes;
     int counter;
