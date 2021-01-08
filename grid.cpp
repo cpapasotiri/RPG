@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <vector> 
 
 #include "living.hpp"
 
@@ -39,6 +40,10 @@ NonAccessible::NonAccessible()
 
 NonAccessible::~NonAccessible(){
     cout << "A NonAccessible to be destroyed!" << endl;
+}
+
+void NonAccessible::print()const{
+
 }
 
 
