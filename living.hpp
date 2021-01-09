@@ -279,14 +279,12 @@ class Team {        // Team with 1-3 heroes
     int counter;
 
     public:
-    Team(Hero*, Hero*, Hero*);
+    Team(int);
     ~Team();
 
     void print();
 
-    Hero* getHero1()const;
-    Hero* getHero2()const;
-    Hero* getHero3()const;
+    Hero** getHeroes()const;
     int getCounter()const;
 
     void joinTeam(Hero*);
@@ -299,7 +297,12 @@ class Team {        // Team with 1-3 heroes
 // grid.cpp
 class Grid{
     private:
-        Square* grid [8][8];   // ή κατι τετοιο
+        vector<Living*> living;
+        vector<Weapon*> weapon;
+        vector<Armor*> armors;
+        vector<Potion*> potion;
+        vector<Spell*> spell;
+        // Square* grid [8][8];   // ή κατι τετοιο
 
     public:
         Grid();
@@ -317,7 +320,7 @@ class Square{
     Square(int);
     ~Square();
 
-    // virtual void print()const=0;
+    virtual void print()const=0;
 
     int getType()const;
 };
@@ -345,7 +348,7 @@ class Market : public Square{
         ~Market();
 
         void print();
-        void printMenu();
+        void menu();
 
         void enterTeam(Team*);
         void exitTeam();
@@ -379,12 +382,15 @@ class Common : public Square{
 // game.cpp
 class Game{
     private:
-
+        vector<Weapon*> weapon;
+        vector<Armor*> armors;
+        vector<Potion*> potion;
+        vector<Spell*> spell;
 
     protected:
 
 
     public:
-        Game();
+        Game(vector<string>, vector<string>, vector<string>, vector<string>, vector<string>);
         ~Game();
 };

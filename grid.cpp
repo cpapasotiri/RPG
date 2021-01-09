@@ -67,11 +67,13 @@ Market::~Market(){
 
 void Market::print(){
     cout << "A Market square!" << endl;
-    cout << "To select an item, please give the number that corresponding to this object." << endl;
-    printMenu();
+    if(team != NULL){
+        team->print();
+    }
 }
 
-void Market::printMenu(){
+void Market::menu(){
+    cout << "To select an item, please give the number that corresponding to this object." << endl;
     // πρεπει να προσθεσω και πως θα διαλεγει για ποιο μελος της ομαδας επιλεγει καθε φορα
     int item = 0;
     cout << endl <<"Weapons are: " << endl;

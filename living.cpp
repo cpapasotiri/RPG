@@ -34,7 +34,7 @@ bool Living::getFaint()const{
     return faint;
 }
 
-bool Living::checkHealth(int number){
+bool Living::checkHealth(){
     if(healthPower == 0){
         faint = true;
     }
@@ -125,7 +125,7 @@ vector<Spell*>Hero:: getSpells()const{
 }
 
 Weapon* Hero::getWeapon1()const{
-    return W1;
+    return w1;
 }
 
 Weapon* Hero::getWeapon2()const{
@@ -351,6 +351,21 @@ Team::~Team(){
     cout << "A Team to be destroyed" << endl;
 }
 
+void Team::print(){
+    for(int i = 0; i < counter; i++){
+        cout << "Hero " << i+1 << ":" << endl;
+        heroes[i]->print();
+    }
+}
+
+Hero** Team::getHeroes()const{
+    return heroes;
+}
+
+int Team::getCounter()const{
+    return counter;
+}
+
 void Team::joinTeam(Hero* a){
     heroes[counter++]=a;
 }
@@ -358,6 +373,6 @@ void Team::joinTeam(Hero* a){
 void Team::displayStats()const{
     for(int j=0; j<counter; j++){
         cout << "Hero " << j+1 << ":" << endl;
-        heroes[j]->Print();
+        heroes[j]->print();
     }
 }

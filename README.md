@@ -34,8 +34,8 @@ g++ -o game living.o item_spell.o grid.o game.o main.o
 
 ## .txts
 names.txt -> 96 livings (6*16) -> Hero(Warrior, Sorcerer, Paladin), Monster(Dragon, Exoskeleton, Spirit)
-weapons.txt -> 120 weapons (5*24) -> 5/level
-armors.txt -> 80 shields (4*20) -> 4/level
+weapons.txt -> 120 weapons (2*60) -> 2/level:
+armors.txt -> 80 shields (1*80) -> 1/level
 potions.txt -> 66 elixirs (3*22) -> 3/level
 spells.txt -> 30 spells (3*10) -> Ice, Fire, Light 1/level
 
