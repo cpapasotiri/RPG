@@ -151,7 +151,7 @@ int Spell::getRounds()const{
 }
 
 void Spell::Print(){
-     cout << "Name: " << name <<endl;
+    cout << "Name: " << name <<endl;
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
     cout << "Energy needed: " << energy << endl;

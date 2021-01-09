@@ -65,6 +65,10 @@ Hero::Hero(string n, int s, int d, int a)
 
 Hero::~Hero(){
     cout << "A Hero to be destroyed! " << endl;
+    weapon.clear();
+    armor.clear();
+    potion.clear();
+    spell.clear();
 }
 
 
@@ -128,7 +132,7 @@ Weapon* Hero::getWeapon2()const{
     return w2;
 }
 
-ArmorHero::* getArmor()const{
+Armor* Hero::getArmor()const{
     return arm;
 }
 
@@ -336,17 +340,10 @@ Spirit::~Spirit(){
 
 
 
-void Team::displayStats()const{
-    for(int j=0; j<counter; j++){
-        cout << "Hero " << j+1 << ":" << endl;
-        heroes[j]->Print();
-    }
-}
-
 Team::Team(int num){
     heroes=new Hero*[num];
     counter=0;
-    cout << "A new team has been created" << endl;
+    cout << "A New team has been created" << endl;
 }
 
 Team::~Team(){
@@ -356,4 +353,11 @@ Team::~Team(){
 
 void Team::joinTeam(Hero* a){
     heroes[counter++]=a;
+}
+
+void Team::displayStats()const{
+    for(int j=0; j<counter; j++){
+        cout << "Hero " << j+1 << ":" << endl;
+        heroes[j]->Print();
+    }
 }

@@ -11,7 +11,7 @@ g++ -c game.cpp
 g++ -o game living.o item_spell.o grid.o game.o main.o
 ./game 
 
-## ΠΕΡΙΓΡΑΦΗ ΥΛΟΠΟΙΗΣΕΩΝ:
+## ΠΕΡΙΓΡΑΦΗ ΥΛΟΠΟΙΗΣΕΩΝ: (Role Playing Game)
 - Χριστίνα: 
     Living
     Hero
@@ -32,5 +32,12 @@ g++ -o game living.o item_spell.o grid.o game.o main.o
     }
     Team
 
+## .txts
+names.txt -> 96 livings (6*16) -> Hero(Warrior, Sorcerer, Paladin), Monster(Dragon, Exoskeleton, Spirit)
+weapons.txt -> 120 weapons (5*24) -> 5/level
+armors.txt -> 80 shields (4*20) -> 4/level
+potions.txt -> 66 elixirs (3*22) -> 3/level
+spells.txt -> 30 spells (3*10) -> Ice, Fire, Light 1/level
 
 
+Κατα την αναγνωση των αρχειων names.txt & spells ή και γενικοτερα πρεπει να φτιαχνω και να αποθηκευω ξεχωριστα τους ηρωες απο τα τερατα και αντιστοιχα τα είδη των spells;?

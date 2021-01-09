@@ -117,3 +117,4 @@ Rune Rod
 Enchanted Rod
 Rod of Striking
 Spiked Rod
+Morning Star

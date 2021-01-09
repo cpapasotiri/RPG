@@ -138,7 +138,6 @@ class Lightingspell: public Spell {
     Lightingspell(string,int,int,int,int,int,int,int);
     ~Lightingspell();
     void Print();
-   
 };
 
 
@@ -161,7 +160,7 @@ class Living{
         bool getFaint()const;
 
         bool checkHealth();     // if health=0: true, else: false  
-        void changeHealth(int);
+        void changeHealth(int); // give positive or negative number    
 };
 
 
@@ -318,7 +317,7 @@ class Square{
     Square(int);
     ~Square();
 
-    virtual void print()const=0;
+    // virtual void print()const=0;
 
     int getType()const;
 };
@@ -335,26 +334,26 @@ class NonAccessible : public Square{
 
 class Market : public Square{
     private:
-        vector<Weapon> weapons;
-        vector<Armor> armors;
-        vector<Potion> potions;
-        vector<Spell> spells;
+        vector<Weapon*> weapons;
+        vector<Armor*> armors;
+        vector<Potion*> potions;
+        vector<Spell*> spells;
         Team* team;
 
     public:
-        Market(vector<Weapon>, vector<Armor>, vector<Potion>, vector<Spell>);
+        Market(vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>);
         ~Market();
 
-        void print()const;
+        void print();
         void printMenu();
 
         void enterTeam(Team*);
         void exitTeam();
 
-        vector<Weapon> getWeapons()const;
-        vector<Armor> getArmors()const;
-        vector<Potion> getPotions()const;
-        vector<Spell> getSpells()const;
+        vector<Weapon*> getWeapons()const;
+        vector<Armor*> getArmors()const;
+        vector<Potion*> getPotions()const;
+        vector<Spell*> getSpells()const;
         Team* getTeam()const;
 };
 
@@ -388,5 +387,4 @@ class Game{
     public:
         Game();
         ~Game();
-
 };

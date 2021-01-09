@@ -94,5 +94,3 @@ Squerrik
 Surtr
 Thrym
 Vhaeraun
-Yurtrus
-Zinzerena
