@@ -144,7 +144,7 @@ class Lightingspell: public Spell {
 
 // livings.cpp
 class Living{
-    private:
+    protected:
         string name;
         int level;
         int healthPower;
@@ -165,7 +165,7 @@ class Living{
 
 
 class Hero : public Living{
-    private:
+    protected:
         int magicPower;
         int strenght;
         int dexterity;
