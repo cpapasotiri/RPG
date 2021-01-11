@@ -252,6 +252,15 @@ void Hero::equip(Weapon* a, Weapon* b, Armor* c){
 	arm=c;
 }
 
+void Hero::regen(){
+	if(healthPower>0){
+	healthPower=healthPower + 5;
+	magicPower=magicPower + 5;
+	if(magicPower>50) magicPower=50;        
+	if(healthPower>100) healthPower=100;
+}
+}
+
 
 Warrior::Warrior(string n)
 : Hero(n, 8, 5, 7){
