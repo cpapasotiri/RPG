@@ -46,6 +46,8 @@ bool Living::checkHealth(){
 
 void Living::changeHealth(int x){
     healthPower += x;
+	if(healthPower<0) healthPower=0;    //nomizo prepei na tsekaroume kai afto edo
+	if(healthPower>100) healthPower=100;  // kai afto
 }
 
 
@@ -296,6 +298,14 @@ void Hero::defend(int damage){
 		if(arm!=NULL) temp=arm->getDefence();
 		healthPower= healthPower - (damage - temp);
 	}
+}
+
+void Hero::attack(Monster* a){
+	int dmg=strenght;
+	if(w1!=NULL) dmg=dmg + w1->getDamage();
+	if(w2!=NULL) dmg=dmg + w2 ->getDamage();
+	a->changeHealth(-(dmg-a->getDefense()));
+	
 }
 
 Warrior::Warrior(string n)
