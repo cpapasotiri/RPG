@@ -211,6 +211,10 @@ class Hero : public Living{
         void sell(Spell*);
         void use(Potion*);  
         void equip(Weapon*, Weapon*, Armor*);  
+        // void attack(Monster* a);
+        //void defend(int damage);
+        void regen();
+        //void levelUp();
 };
 
 
