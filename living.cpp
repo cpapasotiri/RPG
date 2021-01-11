@@ -52,7 +52,7 @@ void Living::changeHealth(int x){
 Hero::Hero(string n, int s, int d, int a)
 : Living(n){
     cout << "A New Hero has been created! " << endl;
-    magicPower = 10;
+    magicPower = 50;
     strenght = s;
     dexterity = d;
     agility = a;
@@ -72,17 +72,6 @@ Hero::~Hero(){
 }
 
 
-void Hero::print()const{
-    cout << "Hero " << Living::getName() << endl
-         << "level = " << Living::getLevel() << endl
-         << "healthPower = " << Living::getHelthPower() << endl
-         << "magicPower = " << magicPower << endl 
-         << "strenght = " << strenght << endl
-         << "dexterity = " << dexterity << endl
-         << "agility = " << agility << endl
-         << "money = " << money << endl
-         << "experience = " << experience << endl;
-}
 
 int Hero::getMagicPower()const{
     return magicPower;
@@ -252,6 +241,15 @@ void Hero::equip(Weapon* a, Weapon* b, Armor* c){
 	arm=c;
 }
 
+void Hero::regen(){
+	if(healthPower>0){
+	healthPower=healthPower + 5;
+	magicPower=magicPower + 5;
+	if(magicPower>50) magicPower=50;        
+	if(healthPower>100) healthPower=100;
+}
+}
+
 
 Warrior::Warrior(string n)
 : Hero(n, 8, 5, 7){
@@ -282,7 +280,44 @@ Paladin::~Paladin(){
     cout << "A Paladin to be destroyed! " << endl;
 }
 
+void Warrior::print(){
+	cout << "Category= Warrior" << endl;
+	cout << "Name= " << name << endl
+         << "level = " << level << endl
+         << "healthPower = " << Living::getHelthPower() << endl
+         << "magicPower = " << magicPower << endl 
+         << "strenght = " << strenght << endl
+         << "dexterity = " << dexterity << endl
+         << "agility = " << agility << endl
+         << "money = " << money << endl
+         << "experience = " << experience << endl;
+} 
 
+void Sorcerer::print(){
+	cout << "Category=Sorcerer" << endl;
+	cout 	<< "Name= " << Living::getName() << endl
+         << "level = " << Living::getLevel() << endl
+         << "healthPower = " << Living::getHelthPower() << endl
+         << "magicPower = " << magicPower << endl 
+         << "strenght = " << strenght << endl
+         << "dexterity = " << dexterity << endl
+         << "agility = " << agility << endl
+         << "money = " << money << endl
+         << "experience = " << experience << endl;
+}
+
+void Paladin::print(){
+	cout << "Category: Paladin" << endl;
+	cout	<< "Name= " << Living::getName() << endl
+         << "level = " << Living::getLevel() << endl
+         << "healthPower = " << Living::getHelthPower() << endl
+         << "magicPower = " << magicPower << endl 
+         << "strenght = " << strenght << endl
+         << "dexterity = " << dexterity << endl
+         << "agility = " << agility << endl
+         << "money = " << money << endl
+         << "experience = " << experience << endl;
+}
 
 Monster::Monster(string n, int da, int de, int a)
 : Living(n){

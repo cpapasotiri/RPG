@@ -144,7 +144,7 @@ class Lightingspell: public Spell {
 
 // livings.cpp
 class Living{
-    private:
+    protected:
         string name;
         int level;
         int healthPower;
@@ -165,7 +165,7 @@ class Living{
 
 
 class Hero : public Living{
-    private:
+    protected:
         int magicPower;
         int strenght;
         int dexterity;
@@ -184,7 +184,7 @@ class Hero : public Living{
         Hero(string, int, int, int);
         ~Hero();
 
-        void print()const;
+        virtual void print()=0;
 
         int getMagicPower()const;
         int getStrenght()const;
@@ -211,6 +211,10 @@ class Hero : public Living{
         void sell(Spell*);
         void use(Potion*);  
         void equip(Weapon*, Weapon*, Armor*);  
+        // void attack(Monster* a);
+        //void defend(int damage);
+        void regen();
+        //void levelUp();
 };
 
 
@@ -218,6 +222,7 @@ class Warrior : public Hero{
     public:
         Warrior(string);
         ~Warrior();
+        void print();
 };
 
 
@@ -225,6 +230,7 @@ class Sorcerer : public Hero{
     public:
         Sorcerer(string);
         ~Sorcerer();
+        void print();
 };
 
 
@@ -232,6 +238,7 @@ class Paladin : public Hero{
     public:
         Paladin(string);
         ~Paladin();
+        void print();
 };
 
 
@@ -403,4 +410,5 @@ class Game{
         void buy();         // αγορα item & αοποθηκευση του στο vector του ηρωα
         void sell();        // πωληση αντικειμένου που εχει αγοράσει ήδη ο ηρωας 
         void help();        // συνάρτηση εκτυπωσης συντομη ςπεριγραφήςε καθε εντολής που μπορει να δωσει ο παικτης
+        void startGame();
 };
