@@ -176,5 +176,19 @@ void Game::sell(){
 void Game::help(){
 
 }
-
+void Game::startGame(){
+	cout<< "How many heroes do you want ? (1-3)" << endl;
+	int num;
+	cin >> num ;
+	team=new Team(num);
+	int k;
+	this->printHeroes();
+	for(int j=0; j<(num-1); j++){
+		cout << "Choose Hero number" << j+1 << endl;
+		cin >> k;
+		team->joinTeam(heroes.at(k-1));
+	}
+	cout <<"Your team is ready" << endl;
+	team->displayStats();
+}
 
