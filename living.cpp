@@ -250,6 +250,41 @@ void Hero::regen(){
 }
 }
 
+void Hero::equipArmor(Armor* a){
+	arm=a;
+}
+
+void Hero::equipWeapon(Weapon* a){
+	if(w2!=NULL){
+		if(a->getHands()==2){
+			w2=NULL;
+			w1=a;
+		}
+		else {
+			w1=a;
+		}
+	}
+	else {
+		w1=a;
+	}
+}
+
+void Hero::equipSecondaryWeapon(Weapon* a){
+	if(a->getHands()==1 ){
+		if(w1!=NULL){
+			if(w1->getHands()==2) {
+				cout << "Cannot equip this weapon" << endl;
+			}
+			else{
+				w2=a;
+			}
+		}
+	}
+	else {
+		cout << "Cannot equip this weapon" << endl;
+	}
+}
+
 
 Warrior::Warrior(string n)
 : Hero(n, 8, 5, 7){
