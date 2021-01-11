@@ -8,7 +8,7 @@ using namespace std;
 Living::Living(string n){
     cout << "A New Living has been created! " << endl;
     name = n;
-    level = 0;
+    level = 1;
     healthPower = 100;
     faint = false;
 }

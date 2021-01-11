@@ -51,7 +51,7 @@ int Weapon::getHands()const{
 }
 
 void Weapon::Print(){
-    cout << "Name: " << name <<endl;
+    cout << "Weapon: " << name <<endl;
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
     cout << "Damage: " << damage << endl;
@@ -75,7 +75,7 @@ int Armor::getDefence()const{
 }
 
 void Armor::Print(){
-    cout << "Name: " << name <<endl;
+    cout << "Armor: " << name <<endl;
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
     cout << "Defemce: " << defence << endl;
@@ -108,7 +108,7 @@ int Potion::getFlag()const{
 }
 
 void Potion::Print(){
-    cout << "Name: " << name <<endl;
+    cout << "Potion: " << name <<endl;
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
     cout << "Ability: The " << ability << " is increased by " << amount << endl;
@@ -151,7 +151,7 @@ int Spell::getRounds()const{
 }
 
 void Spell::Print(){
-    cout << "Name: " << name <<endl;
+    cout << "Spell: " << name <<endl;
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
     cout << "Energy needed: " << energy << endl;

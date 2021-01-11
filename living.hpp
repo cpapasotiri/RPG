@@ -11,11 +11,11 @@ class Weapon;
 class Armor;	
 class Potion;	 
 class Spell;	
-class IceSpell;	
-class FireSpell;	
-class LightSpell;
+class Icespell;	
+class Firespell;	
+class Lightingspell;
 
-// livings.cpp
+// living.cpp
 class Living;
 class Hero;
 class Warrior;
@@ -277,6 +277,7 @@ class Team {        // Team with 1-3 heroes
     private:
     Hero** heroes;
     int counter;
+    // Square* location;   // θα δειχνει σε μια θεση προκαθορισμενη μεσα στον κόσμο
 
     public:
     Team(int);
@@ -286,6 +287,8 @@ class Team {        // Team with 1-3 heroes
 
     Hero** getHeroes()const;
     int getCounter()const;
+    // Square* setLocation()const;
+    // Square* getLocation()const;
 
     void joinTeam(Hero*);
     void displayStats()const;
@@ -337,14 +340,11 @@ class NonAccessible : public Square{
 
 class Market : public Square{
     private:
-        vector<Weapon*> weapons;
-        vector<Armor*> armors;
-        vector<Potion*> potions;
-        vector<Spell*> spells;
+        vector<Item*> items; 
         Team* team;
 
     public:
-        Market(vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>);
+        Market(vector<Item*>);
         ~Market();
 
         void print();
@@ -353,10 +353,7 @@ class Market : public Square{
         void enterTeam(Team*);
         void exitTeam();
 
-        vector<Weapon*> getWeapons()const;
-        vector<Armor*> getArmors()const;
-        vector<Potion*> getPotions()const;
-        vector<Spell*> getSpells()const;
+        vector<Item*> getItem()const;
         Team* getTeam()const;
 };
 
@@ -382,15 +379,21 @@ class Common : public Square{
 // game.cpp
 class Game{
     private:
-        vector<Weapon*> weapon;
-        vector<Armor*> armors;
-        vector<Potion*> potion;
-        vector<Spell*> spell;
-
-    protected:
-
+        vector<Hero*> heroes;
+        vector<Monster*> monsters;
+        vector<Item*> items;
 
     public:
         Game(vector<string>, vector<string>, vector<string>, vector<string>, vector<string>);
         ~Game();
+
+        vector<Hero*> getHeroes()const;
+        vector<Monster*> getMonsters()const;
+        vector<Item*> getItems()const;
+
+        void play();        // κυρια συναρτηση λειτουργιας του παιχνιδιου
+        void move();        // συνάρτηση κινησης 
+        void buy();         // αγορα item & αοποθηκευση του στο vector του ηρωα
+        void sell();        // πωληση αντικειμένου που εχει αγοράσει ήδη ο ηρωας 
+        void help();        // συνάρτηση εκτυπωσης συντομη ςπεριγραφήςε καθε εντολής που μπορει να δωσει ο παικτης
 };

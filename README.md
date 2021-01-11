@@ -33,11 +33,10 @@ g++ -o game living.o item_spell.o grid.o game.o main.o
     Team
 
 ## .txts
-names.txt -> 96 livings (6*16) -> Hero(Warrior, Sorcerer, Paladin), Monster(Dragon, Exoskeleton, Spirit)
+names.txt -> 27 livings 
+    9 -> (3*3) -> Hero(Warrior, Sorcerer, Paladin),
+    18 -> (3*6) ->  Monster(Dragon, Exoskeleton, Spirit)
 weapons.txt -> 120 weapons (2*60) -> 2/level:
 armors.txt -> 80 shields (1*80) -> 1/level
 potions.txt -> 66 elixirs (3*22) -> 3/level
 spells.txt -> 30 spells (3*10) -> Ice, Fire, Light 1/level
-
-
-Κατα την αναγνωση των αρχειων names.txt & spells ή και γενικοτερα πρεπει να φτιαχνω και να αποθηκευω ξεχωριστα τους ηρωες απο τα τερατα και αντιστοιχα τα είδη των spells;?

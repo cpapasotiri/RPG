@@ -53,35 +53,6 @@ int main(int argc, char* argv[]){
 
     Game* game = new Game(livingNames, weaponNames, armorNames, potionNames, spellNames);
 
-    // cout << "Living names: " << endl;
-    // vector <string> :: iterator i;
-    // for (i = livingNames.begin(); i != livingNames.end(); i++) {
-    //     cout << (*i) << endl;
-    // }
-
-    // cout << "Weapons names: " << endl;
-    // vector <string> :: iterator i;
-    // for (i = weaponNames.begin(); i != weaponNames.end(); i++) {
-    //     cout << (*i) << endl;
-    // }
-
-    // cout << "Armor names: " << endl;
-    // vector <string> :: iterator i;
-    // for (i = armorNames.begin(); i != armorNames.end(); i++) {
-    //     cout << (*i) << endl;
-    // }
-
-    // cout << "Potion names: " << endl;
-    // vector <string> :: iterator i;
-    // for (i = potionNames.begin(); i != potionNames.end(); i++) {
-    //     cout << (*i) << endl;
-    // }
-
-    // cout << "Spell names: " << endl;
-    // vector <string> :: iterator i;
-    // for (i = spellNames.begin(); i != spellNames.end(); i++) {
-    //     cout << (*i) << endl;
-    // }
 
     return 0;
 }
