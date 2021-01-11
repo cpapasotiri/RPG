@@ -184,7 +184,7 @@ class Hero : public Living{
         Hero(string, int, int, int);
         ~Hero();
 
-        void print()const;
+        virtual void print()=0;
 
         int getMagicPower()const;
         int getStrenght()const;
@@ -222,6 +222,7 @@ class Warrior : public Hero{
     public:
         Warrior(string);
         ~Warrior();
+        void print();
 };
 
 
@@ -229,6 +230,7 @@ class Sorcerer : public Hero{
     public:
         Sorcerer(string);
         ~Sorcerer();
+        void print();
 };
 
 
@@ -236,6 +238,7 @@ class Paladin : public Hero{
     public:
         Paladin(string);
         ~Paladin();
+        void print();
 };
 
 
