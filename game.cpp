@@ -12,32 +12,31 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
 
     // create livings(heroes & monsters)
     int j = 0;
-    string name;
     vector<string> :: iterator i;
     for(i = livingNames.begin(); i != livingNames.end(); i++){
         j++;
         if(j <= 3){
-            Warrior* warrior = new Warrior(name);
+            Warrior* warrior = new Warrior(*i);
             heroes.push_back(warrior);
         }
         else if(j <= 6){
-            Sorcerer* sorcerer = new Sorcerer(name);
+            Sorcerer* sorcerer = new Sorcerer(*i);
             heroes.push_back(sorcerer);
         }
         else if(j <= 9){
-            Paladin* paladin = new Paladin(name);
+            Paladin* paladin = new Paladin(*i);
             heroes.push_back(paladin);
         }
         else if(j <= 15){
-            Dragon* dragon = new Dragon(name);
+            Dragon* dragon = new Dragon(*i);
             monsters.push_back(dragon);
         }
         else if(j <= 21){
-            Exoskeleton* exoskeleton = new Exoskeleton(name);
+            Exoskeleton* exoskeleton = new Exoskeleton(*i);
             monsters.push_back(exoskeleton);
         }
         else if(j <= 27){
-            Spirit* spirit = new Spirit(name);
+            Spirit* spirit = new Spirit(*i);
             monsters.push_back(spirit);
         }
     }
@@ -51,7 +50,7 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
     // create weapons
     for(i = weaponNames.begin(); i != weaponNames.end(); i++){
         Weapon* weapon = new Weapon((*i), price, level, damage, hands);
-        items.push_back(weapon);
+        weapons.push_back(weapon);
         j++;
         if(j%2 == 0){
             hands = 2;
@@ -70,7 +69,7 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
     int defence = 4;
     for(i = armorNames.begin(); i != armorNames.end(); i++){
         Armor* armor = new Armor((*i), price, level, defence);
-        items.push_back(armor);
+        armors.push_back(armor);
         price += 20;
         level++;
         defence += 11;
@@ -89,7 +88,7 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
         j++;
         int a = rand() % 3;     // 0-2
         Potion* potion = new Potion((*i), price, level, ability[a], amount);
-        items.push_back(potion);
+        potions.push_back(potion);
         price += 20;
         if(j%3 == 0){
             level++;
@@ -110,15 +109,15 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
         j++;
         if(j <= 10){
             Icespell* ispell = new Icespell((*i), price, level, energy, min, max, a, b);
-            items.push_back(ispell);    
+            spells.push_back(ispell);    
         }
         else if(j <= 20){
             Firespell* fspell = new Firespell((*i), price, level, energy, min, max, a, b);
-            items.push_back(fspell);
+            spells.push_back(fspell);
         }
         else{
             Lightingspell* lspell = new Lightingspell((*i), price, level, energy, min, max, a, b);
-            items.push_back(lspell); 
+            spells.push_back(lspell); 
         }
         level++;
         energy += 6;
@@ -139,10 +138,12 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
 
 Game::~Game(){
     cout << "A Grid to be destroyed!" << endl;
-
     heroes.clear();
     monsters.clear();
-    items.clear();
+    weapons.clear();
+    armors.clear();
+    potions.clear();
+    spells.clear(); 
 }
 
 vector<Hero*> Game::getHeroes()const{
@@ -153,8 +154,20 @@ vector<Monster*> Game::getMonsters()const{
     return monsters;
 }
 
-vector<Item*> Game::getItems()const{
-    return items;
+vector<Weapon*> Game::getWeapons()const{
+    return weapons;
+}
+
+vector<Armor*>Game:: getArmors()const{
+    return armors;
+}
+
+vector<Potion*> Game::getPotions()const{
+    return potions;
+}
+
+vector<Spell*>Game:: getSpells()const{
+    return spells;
 }
 
 void Game::play(){

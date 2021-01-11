@@ -6,12 +6,24 @@
 
 using namespace std;
 
-Grid::Grid(){
+Grid::Grid(vector<Hero*> h, vector<Monster*> m, vector<Weapon*> w, vector<Armor*> a, vector<Potion*> p, vector<Spell*> s){
     cout << "A New Grid has been created!" << endl;
+    heroes = h;
+    monsters = m;
+    weapons = w;
+    armors = a;
+    potions = p;
+    spells = s;
 }
 
 Grid::~Grid(){
     cout << "A Grid to be destroyed!" << endl;
+    heroes.clear();
+    monsters.clear();
+    weapons.clear();
+    armors.clear();
+    potions.clear();
+    spells.clear(); 
 }
 
 void Grid::displayMap(){

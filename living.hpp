@@ -300,15 +300,16 @@ class Team {        // Team with 1-3 heroes
 // grid.cpp
 class Grid{
     private:
-        vector<Living*> living;
-        vector<Weapon*> weapon;
+        vector<Hero*> heroes;
+        vector<Monster*> monsters;
+        vector<Weapon*> weapons;
         vector<Armor*> armors;
-        vector<Potion*> potion;
-        vector<Spell*> spell;
+        vector<Potion*> potions;
+        vector<Spell*> spells;
         // Square* grid [8][8];   // ή κατι τετοιο
 
     public:
-        Grid();
+        Grid(vector<Hero*>, vector<Monster*>, vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>);
         ~Grid();
 
         void displayMap();
@@ -320,12 +321,12 @@ class Square{
         int type;
 
     public:
-    Square(int);
-    ~Square();
+        Square(int);
+        ~Square();
 
-    virtual void print()const=0;
+        virtual void print()const=0;
 
-    int getType()const;
+        int getType()const;
 };
 
 
@@ -381,7 +382,10 @@ class Game{
     private:
         vector<Hero*> heroes;
         vector<Monster*> monsters;
-        vector<Item*> items;
+        vector<Weapon*> weapons;
+        vector<Armor*> armors;
+        vector<Potion*> potions;
+        vector<Spell*> spells; 
 
     public:
         Game(vector<string>, vector<string>, vector<string>, vector<string>, vector<string>);
@@ -389,7 +393,10 @@ class Game{
 
         vector<Hero*> getHeroes()const;
         vector<Monster*> getMonsters()const;
-        vector<Item*> getItems()const;
+        vector<Weapon*> getWeapons()const;
+        vector<Armor*> getArmors()const;
+        vector<Potion*> getPotions()const;
+        vector<Spell*> getSpells()const;
 
         void play();        // κυρια συναρτηση λειτουργιας του παιχνιδιου
         void move();        // συνάρτηση κινησης 
