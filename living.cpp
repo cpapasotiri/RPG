@@ -285,6 +285,18 @@ void Hero::equipSecondaryWeapon(Weapon* a){
 	}
 }
 
+void Hero::defend(int damage){
+	int v1;
+	v1=rand() % 100  ;   // 0-99
+	if(v1<agility){                              //analoga me to agility borei na apofigei kapoia epithesi
+		cout << "Hero " << name << " avoided the attack" << endl;
+	}
+	else {
+		int temp=0;
+		if(arm!=NULL) temp=arm->getDefence();
+		healthPower= healthPower - (damage - temp);
+	}
+}
 
 Warrior::Warrior(string n)
 : Hero(n, 8, 5, 7){
