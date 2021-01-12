@@ -89,6 +89,7 @@ class Spell: public Item {
     int getReduction()const;
     int getRounds()const;
     virtual void print();
+    virtual void cast(int,Monster*);
 };
 
 
@@ -97,6 +98,7 @@ class Icespell: public Spell {
     Icespell(string,int,int,int,int,int,int,int);
     ~Icespell();
     void print();
+    void cast(int,Monster*);
    
 };
 
@@ -106,6 +108,7 @@ class Firespell: public Spell {
     Firespell(string,int,int,int,int,int,int,int);
     ~Firespell();
     void print();
+    void cast(int,Monster*);
    
 };
 
@@ -115,4 +118,5 @@ class Lightingspell: public Spell {
     Lightingspell(string,int,int,int,int,int,int,int);
     ~Lightingspell();
     void print();
+    void cast(int,Monster*);
 };
