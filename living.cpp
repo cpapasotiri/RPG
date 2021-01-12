@@ -71,8 +71,6 @@ Hero::~Hero(){
     spell.clear();
 }
 
-
-
 int Hero::getMagicPower()const{
     return magicPower;
 }
@@ -131,22 +129,22 @@ void Hero::checkInventory()const{
     for(int j=0; j<weapon.size(); j++){
         counter++;
         cout << "Item " << counter << ":" << endl;
-        weapon.at(j)->Print();
+        weapon.at(j)->print();
     }
     for(int j=0; j<armor.size(); j++){
          counter++;
         cout << "Item " << counter << ":" << endl;
-        armor.at(j)->Print();
+        armor.at(j)->print();
     }
     for(int j=0; j<potion.size(); j++){
          counter++;
         cout << "Item " << counter << ":" << endl;
-        potion.at(j)->Print();
+        potion.at(j)->print();
     }
     for(int j=0; j<spell.size(); j++){
         counter++;
         cout << "Item " << counter << ":" << endl ;
-        spell.at(j)->Print();
+        spell.at(j)->print();
     } 
 }
 
@@ -260,6 +258,19 @@ Warrior::~Warrior(){
     cout << "A Warrior to be destroyed! " << endl;
 }
 
+void Warrior::print(){
+	cout << "Category: Warrior" << endl;
+	cout << "Name= " << Living::name << endl
+         << "level = " << Living::level << endl
+         << "healthPower = " << Living::getHelthPower() << endl
+         << "magicPower = " << magicPower << endl 
+         << "strenght = " << strenght << endl
+         << "dexterity = " << dexterity << endl
+         << "agility = " << agility << endl
+         << "money = " << money << endl
+         << "experience = " << experience << endl;
+} 
+
 
 Sorcerer::Sorcerer(string n)
 : Hero(n, 4, 7, 8){
@@ -268,6 +279,19 @@ Sorcerer::Sorcerer(string n)
 
 Sorcerer::~Sorcerer(){
     cout << "A Sorcerer to be destroyed! " << endl;
+}
+
+void Sorcerer::print(){
+	cout << "Category: Sorcerer" << endl;
+	cout << "Name= " << Living::getName() << endl
+         << "level = " << Living::getLevel() << endl
+         << "healthPower = " << Living::getHelthPower() << endl
+         << "magicPower = " << magicPower << endl 
+         << "strenght = " << strenght << endl
+         << "dexterity = " << dexterity << endl
+         << "agility = " << agility << endl
+         << "money = " << money << endl
+         << "experience = " << experience << endl;
 }
 
 
@@ -280,35 +304,9 @@ Paladin::~Paladin(){
     cout << "A Paladin to be destroyed! " << endl;
 }
 
-void Warrior::print(){
-	cout << "Category= Warrior" << endl;
-	cout << "Name= " << name << endl
-         << "level = " << level << endl
-         << "healthPower = " << Living::getHelthPower() << endl
-         << "magicPower = " << magicPower << endl 
-         << "strenght = " << strenght << endl
-         << "dexterity = " << dexterity << endl
-         << "agility = " << agility << endl
-         << "money = " << money << endl
-         << "experience = " << experience << endl;
-} 
-
-void Sorcerer::print(){
-	cout << "Category=Sorcerer" << endl;
-	cout 	<< "Name= " << Living::getName() << endl
-         << "level = " << Living::getLevel() << endl
-         << "healthPower = " << Living::getHelthPower() << endl
-         << "magicPower = " << magicPower << endl 
-         << "strenght = " << strenght << endl
-         << "dexterity = " << dexterity << endl
-         << "agility = " << agility << endl
-         << "money = " << money << endl
-         << "experience = " << experience << endl;
-}
-
 void Paladin::print(){
 	cout << "Category: Paladin" << endl;
-	cout	<< "Name= " << Living::getName() << endl
+	cout << "Name= " << Living::getName() << endl
          << "level = " << Living::getLevel() << endl
          << "healthPower = " << Living::getHelthPower() << endl
          << "magicPower = " << magicPower << endl 
@@ -318,6 +316,7 @@ void Paladin::print(){
          << "money = " << money << endl
          << "experience = " << experience << endl;
 }
+
 
 Monster::Monster(string n, int da, int de, int a)
 : Living(n){
@@ -387,6 +386,7 @@ Team::~Team(){
 }
 
 void Team::print(){
+    cout << "Team:" << endl;
     for(int i = 0; i < counter; i++){
         cout << "Hero " << i+1 << ":" << endl;
         heroes[i]->print();

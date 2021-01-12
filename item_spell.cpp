@@ -50,7 +50,7 @@ int Weapon::getHands()const{
     return hands;
 }
 
-void Weapon::Print(){
+void Weapon::print(){
     cout << "Weapon: " << name <<endl;
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
@@ -74,7 +74,7 @@ int Armor::getDefence()const{
     return defence;
 }
 
-void Armor::Print(){
+void Armor::print(){
     cout << "Armor: " << name <<endl;
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
@@ -107,7 +107,7 @@ int Potion::getFlag()const{
     return flag;
 }
 
-void Potion::Print(){
+void Potion::print(){
     cout << "Potion: " << name <<endl;
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
@@ -150,7 +150,7 @@ int Spell::getRounds()const{
     return rounds;
 }
 
-void Spell::Print(){
+void Spell::print(){
     cout << "Spell: " << name <<endl;
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
@@ -170,8 +170,8 @@ Icespell::~Icespell(){
     cout << "An icespell to be destroyed" << endl;
 }
 
-void Icespell::Print(){
-    Spell::Print();
+void Icespell::print(){
+    Spell::print();
     cout << "Category: Ice spell "<< endl;
     cout << "Spell effect: " << "It reduces enemy's damage by " << reduction << " for " << rounds << " rounds" << endl;
 }
@@ -187,8 +187,8 @@ Firespell::~Firespell(){
     cout << "An icespell to be destroyed" << endl;
 }
 
-void Firespell::Print(){
-    Spell::Print();
+void Firespell::print(){
+    Spell::print();
     cout << "Category: Fire spell "<< endl;
     cout << "Spell effect: " << "It reduces enemy's defence by " << reduction << " for " << rounds << " rounds" << endl;
 }
@@ -204,8 +204,8 @@ Lightingspell::~Lightingspell(){
     cout << "An Lightingspell to be destroyed" << endl;
 }
 
-void Lightingspell::Print(){
-    Spell::Print();
+void Lightingspell::print(){
+    Spell::print();
     cout << "Category: Lighting spell "<< endl;
     cout << "Spell effect: " << "It reduces the chance of the opponent avoiding an attack by " << reduction << "% for " << rounds << " rounds" << endl;
 }

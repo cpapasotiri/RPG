@@ -51,7 +51,7 @@ class Item {
     string getName()const;
     int getPrice()const;
     int getLeastlevel()const;
-    virtual void Print()=0;
+    virtual void print()=0;
 };
 
 
@@ -65,7 +65,7 @@ class Weapon: public Item{
     ~Weapon();
     int getDamage()const;
     int getHands()const;
-    void Print();
+    void print();
 };
 
 
@@ -76,7 +76,7 @@ class Armor: public Item{
     Armor(string,int,int,int);
     ~Armor();
     int getDefence()const;
-    void Print();
+    void print();
 };
 
 
@@ -91,7 +91,7 @@ class Potion: public Item {
     string getAbility()const;
     int getAmount()const;
     int getFlag()const;
-    void Print();
+    void print();
 };
 
 
@@ -111,7 +111,7 @@ class Spell: public Item {
     int getMin()const;
     int getReduction()const;
     int getRounds()const;
-    virtual void Print();
+    virtual void print();
 };
 
 
@@ -119,7 +119,7 @@ class Icespell: public Spell {
     public:
     Icespell(string,int,int,int,int,int,int,int);
     ~Icespell();
-    void Print();
+    void print();
    
 };
 
@@ -128,7 +128,7 @@ class Firespell: public Spell {
     public:
     Firespell(string,int,int,int,int,int,int,int);
     ~Firespell();
-    void Print();
+    void print();
    
 };
 
@@ -137,7 +137,7 @@ class Lightingspell: public Spell {
     public:
     Lightingspell(string,int,int,int,int,int,int,int);
     ~Lightingspell();
-    void Print();
+    void print();
 };
 
 
@@ -201,14 +201,14 @@ class Hero : public Living{
         Armor* getArmor()const;
         
         void checkInventory()const;
-        void buy(Weapon*);     
-        void buy(Armor*);
-        void buy(Potion*);
-        void buy(Spell*);
-        void sell(Weapon*);
-        void sell(Armor*);
-        void sell(Potion*);
-        void sell(Spell*);
+        void buy(Weapon*);  // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool  
+        void buy(Armor*);   // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
+        void buy(Potion*);  // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
+        void buy(Spell*);   // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
+        void sell(Weapon*); // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
+        void sell(Armor*);  // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
+        void sell(Potion*); // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
+        void sell(Spell*);  // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
         void use(Potion*);  
         void equip(Weapon*, Weapon*, Armor*);  
         // void attack(Monster* a);
@@ -309,10 +309,6 @@ class Grid{
     private:
         vector<Hero*> heroes;
         vector<Monster*> monsters;
-        vector<Weapon*> weapons;
-        vector<Armor*> armors;
-        vector<Potion*> potions;
-        vector<Spell*> spells;
         // Square* grid [8][8];   // ή κατι τετοιο
 
     public:
@@ -320,6 +316,9 @@ class Grid{
         ~Grid();
 
         void displayMap();
+
+        vector<Hero*> getHeroes()const;
+        vector<Monster*> getMonsters()const;
 };
 
 
@@ -348,21 +347,33 @@ class NonAccessible : public Square{
 
 class Market : public Square{
     private:
-        vector<Item*> items; 
+        vector<Weapon*> weapons;
+        vector<Armor*> armors;
+        vector<Potion*> potions;
+        vector<Spell*> spells;
         Team* team;
+        int items;
 
     public:
-        Market(vector<Item*>);
+        Market(vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>);
         ~Market();
 
         void print();
         void menu();
+        void buy(Hero*, int);
+        void sell(Hero*, int);
+        Hero* selectHero();
+        void help();
 
         void enterTeam(Team*);
         void exitTeam();
 
-        vector<Item*> getItem()const;
+        vector<Weapon*> getWeapons()const;
+        vector<Armor*> getArmors()const;
+        vector<Potion*> getPotions()const;
+        vector<Spell*> getSpells()const;
         Team* getTeam()const;
+        int getItems()const;
 };
 
 
@@ -393,6 +404,7 @@ class Game{
         vector<Armor*> armors;
         vector<Potion*> potions;
         vector<Spell*> spells; 
+        Grid* grid;
 
     public:
         Game(vector<string>, vector<string>, vector<string>, vector<string>, vector<string>);
@@ -404,6 +416,7 @@ class Game{
         vector<Armor*> getArmors()const;
         vector<Potion*> getPotions()const;
         vector<Spell*> getSpells()const;
+        Grid* getGrid()const;
 
         void play();        // κυρια συναρτηση λειτουργιας του παιχνιδιου
         void move();        // συνάρτηση κινησης 

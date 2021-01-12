@@ -134,6 +134,8 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
             b = 0;      // ??? ???      
         }
     }
+
+    grid = new Grid();
 }
 
 Game::~Game(){
@@ -158,7 +160,7 @@ vector<Weapon*> Game::getWeapons()const{
     return weapons;
 }
 
-vector<Armor*>Game:: getArmors()const{
+vector<Armor*>Game::getArmors()const{
     return armors;
 }
 
@@ -170,6 +172,10 @@ vector<Spell*>Game:: getSpells()const{
     return spells;
 }
 
+Grid* Game::getGrid()const{
+    return grid;
+}
+
 void Game::play(){
 
 }
@@ -179,7 +185,7 @@ void Game::move(){
 }
 
 void Game::buy(){
-
+    
 }
 
 void Game::sell(){
@@ -187,16 +193,17 @@ void Game::sell(){
 }
 
 void Game::help(){
-
+    
 }
+
 void Game::startGame(){
 	cout<< "How many heroes do you want ? (1-3)" << endl;
-	int num;
-	cin >> num ;
+	int num = 0;
+	cin >> num;
 	team=new Team(num);
 	int k;
 	this->printHeroes();
-	for(int j=0; j<(num-1); j++){
+	for(int j=0; j<(num-1); j++){       // j<num πρεπει να ειναι ???
 		cout << "Choose Hero number" << j+1 << endl;
 		cin >> k;
 		team->joinTeam(heroes.at(k-1));
