@@ -147,7 +147,31 @@ void Hero::checkInventory()const{
         counter++;
         cout << "Item " << counter << ":" << endl ;
         spell.at(j)->print();
-    } 
+    }
+	cout << "The Hero is wearing: " << endl;
+    cout << "Armor: " ;
+	if(arm!=NULL){
+		cout << arm->getName() << endl;
+	}
+	else{
+		cout << "None" << endl;
+	}
+    cout << "Primary Weapon: " ;
+	if(w1!=NULL){
+		cout << w1->getName() << endl;
+	}
+	else{
+		cout << "None" << endl;
+	}
+    cout << "Secondary Weapon: " ;
+	if(w2!=NULL){
+		cout << w2->getName() << endl;
+	}
+	else{
+		cout << "None" << endl;
+	}
+
+
 }
 
 void Hero::buy(Weapon* a){
@@ -244,15 +268,6 @@ void Hero::use(Potion* a){
 
 }
 
-void Hero::equip(Weapon* a, Weapon* b, Armor* c){
-	w1=a;
-	if(w1->getHands()==2 && b!=NULL){
-		cout << "Hero can hold only one weapon which requires two hands" << endl;
-		b=NULL;
-	}
-	if(b->getHands()==1) w2=b;
-	arm=c;
-}
 
 void Hero::regen(){
 	if(healthPower>0){
@@ -298,7 +313,7 @@ void Hero::equipSecondaryWeapon(Weapon* a){
 	}
 }
 
-void Hero::defend(int damage){
+void Hero::defend(int damage){                 //otan dexetai epithsei apo teras
 	int v1;
 	v1=rand() % 100  ;   // 0-99
 	if(v1<agility){                              //analoga me to agility borei na apofigei kapoia epithesi
@@ -311,12 +326,31 @@ void Hero::defend(int damage){
 	}
 }
 
-void Hero::attack(Monster* a){
+void Hero::attack(Monster* a){              //kanoniki epithesi se teras
 	int dmg=strenght;
 	if(w1!=NULL) dmg=dmg + w1->getDamage();
 	if(w2!=NULL) dmg=dmg + w2 ->getDamage();
 	a->changeHealth(-(dmg-a->getDefense()));
 	
+}
+
+void Hero::castSpell(Monster* a){
+	cout << "Printing hero's spells.." << endl;
+	for(int j=0; j<spell.size(); j++){
+		cout << "Spell " << j+1 <<": " <<  endl;
+		spell.at(j)->Print();
+	}
+	cout << "Which spell do you want to use?(give its number)" << endl;
+	int w;
+	cin >> w;
+	Spell* ptr=spell[w-1];
+	if(ptr->getEnergy()<magicPower){
+		ptr->cast(dexterity,a);
+		
+	}
+	else {
+		cout << "Not enough magic power" << endl;    //prepei na doume ti tha kanoume se afti ti periptosi
+	}
 }
 
 Warrior::Warrior(string n)
