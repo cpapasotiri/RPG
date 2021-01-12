@@ -95,6 +95,7 @@ class Hero : public Living{
         void equipArmor(Armor* a);
         void equipWeapon(Weapon* a);
         void equipSecondaryWeapon(Weapon* a);
+        virtual void levelUp()=0;
 };
 
 
@@ -103,6 +104,7 @@ class Warrior : public Hero{
         Warrior(string);
         ~Warrior();
         void print();
+        void levelUp();
 };
 
 
@@ -111,6 +113,7 @@ class Sorcerer : public Hero{
         Sorcerer(string);
         ~Sorcerer();
         void print();
+        void levelUp();
 };
 
 
@@ -119,6 +122,7 @@ class Paladin : public Hero{
         Paladin(string);
         ~Paladin();
         void print();
+        void levelUp();
 };
 
 
