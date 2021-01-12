@@ -86,8 +86,7 @@ class Hero : public Living{
         void sell(Armor*);  // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
         void sell(Potion*); // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
         void sell(Spell*);  // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
-        void use(Potion*);  
-        void equip(Weapon*, Weapon*, Armor*);  
+        void use(Potion*); 
         void attack(Monster* a);
         void defend(int damage);
         void regen();
@@ -96,6 +95,7 @@ class Hero : public Living{
         void equipWeapon(Weapon* a);
         void equipSecondaryWeapon(Weapon* a);
         virtual void levelUp()=0;
+        void castSpell(Monster* a);
 };
 
 
