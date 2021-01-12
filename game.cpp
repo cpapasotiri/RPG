@@ -3,7 +3,7 @@
 #include <cstring>
 #include <time.h>
 
-#include "living.hpp"
+#include "game.hpp"
 
 using namespace std;
 
@@ -135,7 +135,7 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
         }
     }
 
-    grid = new Grid();
+    grid = new Grid(heroes, monsters, weapons, armors, potions, spells);
 }
 
 Game::~Game(){

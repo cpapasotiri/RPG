@@ -3,7 +3,7 @@
 #include <cstring>
 #include <vector>
 
-#include "living.hpp"
+#include "game.hpp"
 
 using namespace std;
 

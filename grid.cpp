@@ -2,7 +2,7 @@
 #include <cstring>
 #include <vector> 
 
-#include "living.hpp"
+#include "grid.hpp"
 
 using namespace std;
 
