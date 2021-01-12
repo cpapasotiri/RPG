@@ -177,37 +177,50 @@ void Hero::buy(Spell* a){
 void Hero::sell(Weapon* a){
     int j=0;
     for(j=0; j<weapon.size(); j++){
-            if(weapon.at(j)==a) break;
+            if(weapon.at(j)==a) {
+		 weapon.erase(weapon.begin()+j);
+   		 money=money + (a->getPrice()/2);        //poleite sti misi timi
+		 break;
+	    }
     }
-    weapon.erase(weapon.begin()+j);
-    money=money + (a->getPrice()/2);        //poleite sti misi timi
+   
 }
 
 void Hero::sell(Armor* a){
     int j=0;
     for(j=0; j<armor.size(); j++){
-            if(armor.at(j)==a) break;
+            if(armor.at(j)==a) {
+		armor.erase(armor.begin()+j);
+    		money=money + (a->getPrice()/2);        //poleite sti misi timi
+		break;
+	    }
+		 
     }
-    armor.erase(armor.begin()+j);
-    money=money + (a->getPrice()/2);        //poleite sti misi timi
+   
 }
 
 void Hero::sell(Potion* a){
     int j=0;
     for(j=0; j<potion.size(); j++){
-            if(potion.at(j)==a) break;
+            if(potion.at(j)==a) {
+		potion.erase(potion.begin()+j);
+    		money=money + (a->getPrice()/2);        //poleite sti misi timi
+		break;
+	    }
+	}
     }
-   potion.erase(potion.begin()+j);
-    money=money + (a->getPrice()/2);        //poleite sti misi timi
-}
+   
 
 void Hero::sell(Spell* a){
     int j=0;
     for(j=0; j<spell.size(); j++){
-            if(spell.at(j)==a) break;
+            if(spell.at(j)==a){
+		 spell.erase(spell.begin()+j);
+   		 money=money + (a->getPrice()/2);        //poleite sti misi timi
+		 break;
+	    }
     }
-    spell.erase(spell.begin()+j);
-    money=money + (a->getPrice()/2);        //poleite sti misi timi
+   
 }
 
 void Hero::use(Potion* a){
