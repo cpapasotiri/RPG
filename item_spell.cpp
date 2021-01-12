@@ -209,3 +209,24 @@ void Lightingspell::print(){
     cout << "Category: Lighting spell "<< endl;
     cout << "Spell effect: " << "It reduces the chance of the opponent avoiding an attack by " << reduction << "% for " << rounds << " rounds" << endl;
 }
+
+void Spell::cast(int dexterity,Monster* a){
+	int dmg=dexterity + mindamage;
+	if(dmg>maxdamage) dmg=maxdamage;
+	a->changeHealth(-dmg);
+}
+
+void Icespell::cast(int dexterity,Monster* a){
+	Spell::cast(dexterity,a);
+//	a->setMonster(a->getDamage()-amount,a->getDefense(),a->getAttack());       //borei kai na ginei allios to skeftomai akoma
+}
+
+void Firespell::cast(int dexterity,Monster* a){
+	Spell::cast(dexterity,a);
+//	a->setMonster(a->getDamage(),(a->getDefense()-amount),a->getAttack());		//borei kai na ginei allios to skeftomai akoma
+}
+
+void Lightingspell::cast(int dexterity,Monster* a){
+		Spell::cast(dexterity,a);
+		//a->setMonster(a->getDamage(),a->getDefense(),(a->getAttack()-amount));		//borei kai na ginei allios to skeftomai akoma
+}
