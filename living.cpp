@@ -46,6 +46,8 @@ bool Living::checkHealth(){
 
 void Living::changeHealth(int x){
     healthPower += x;
+	if(healthPower<0) healthPower=0;    //nomizo prepei na tsekaroume kai afto edo
+	if(healthPower>100) healthPower=100;  // kai afto
 }
 
 
@@ -248,6 +250,61 @@ void Hero::regen(){
 }
 }
 
+void Hero::equipArmor(Armor* a){
+	arm=a;
+}
+
+void Hero::equipWeapon(Weapon* a){
+	if(w2!=NULL){
+		if(a->getHands()==2){
+			w2=NULL;
+			w1=a;
+		}
+		else {
+			w1=a;
+		}
+	}
+	else {
+		w1=a;
+	}
+}
+
+void Hero::equipSecondaryWeapon(Weapon* a){
+	if(a->getHands()==1 ){
+		if(w1!=NULL){
+			if(w1->getHands()==2) {
+				cout << "Cannot equip this weapon" << endl;
+			}
+			else{
+				w2=a;
+			}
+		}
+	}
+	else {
+		cout << "Cannot equip this weapon" << endl;
+	}
+}
+
+void Hero::defend(int damage){
+	int v1;
+	v1=rand() % 100  ;   // 0-99
+	if(v1<agility){                              //analoga me to agility borei na apofigei kapoia epithesi
+		cout << "Hero " << name << " avoided the attack" << endl;
+	}
+	else {
+		int temp=0;
+		if(arm!=NULL) temp=arm->getDefence();
+		healthPower= healthPower - (damage - temp);
+	}
+}
+
+void Hero::attack(Monster* a){
+	int dmg=strenght;
+	if(w1!=NULL) dmg=dmg + w1->getDamage();
+	if(w2!=NULL) dmg=dmg + w2 ->getDamage();
+	a->changeHealth(-(dmg-a->getDefense()));
+	
+}
 
 Warrior::Warrior(string n)
 : Hero(n, 8, 5, 7){

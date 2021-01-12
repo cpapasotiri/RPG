@@ -215,6 +215,9 @@ class Hero : public Living{
         //void defend(int damage);
         void regen();
         //void levelUp();
+        void equipArmor(Armor* a);
+        void equipWeapon(Weapon* a);
+        void equipSecondaryWeapon(Weapon* a);
 };
 
 
