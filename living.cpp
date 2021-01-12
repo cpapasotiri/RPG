@@ -387,6 +387,69 @@ void Paladin::print(){
          << "experience = " << experience << endl;
 }
 
+void Warrior::levelUp(){
+	if(level<10){
+		int temp=level*100;
+		if(experience>temp){
+			level++;
+			strenght=strenght + 3;
+			agility=agility + 2;
+			dexterity++;
+			experience=experience - temp;
+			healthPower=100;                     
+			magicPower=50;
+		}
+		else {
+			return;
+		}
+	}
+	else {
+		cout << "Hero " << name << " is at max level" << endl;
+	}
+}
+
+void Sorcerer::levelUp(){
+	if(level<10){
+		int temp=level*100;
+		if(experience>temp){
+			level++;
+			strenght=strenght + 1;
+			agility=agility + 2;
+			dexterity=dexterity + 3;
+			experience=experience - temp;
+			healthPower=100;                     
+			magicPower=50;
+		}
+		else {
+			return;
+		}
+	}
+	else {
+		cout << "Hero " << name << " is at max level" << endl;
+	}
+}
+
+void Paladin::levelUp(){
+	if(level<10){
+		int temp=level*100;
+		if(experience>temp){
+			level++;
+			strenght=strenght + 2;
+			agility=agility + 1;
+			dexterity=dexterity +3;
+			experience=experience - temp;
+			healthPower=100;                     
+			magicPower=50;
+		}
+		else {
+			return;
+		}
+	}
+	else {
+		cout << "Hero " << name << " is at max level" << endl;
+	}
+}
+
 
 Monster::Monster(string n, int da, int de, int a)
 : Living(n){
