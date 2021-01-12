@@ -475,6 +475,11 @@ int Monster::getAttack()const{
     return attack;
 }
 
+void Monster::setMonster(int a,int b,int c){
+	damage=a;
+	defense=b;
+	attack=c;
+}
 
 Dragon::Dragon(string n) 
 : Monster(n, 9, 5, 5){
