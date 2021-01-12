@@ -139,6 +139,7 @@ class Monster : public Living{
         int getDamage()const;
         int getDefense()const;
         int getAttack()const;
+        void setMonster();
 };
 
 
