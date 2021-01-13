@@ -301,3 +301,22 @@ void Common::exitTeam(){
 Team* Common::getTeam()const{
     return team;
 }
+
+void Common::afterBattle(vector<Monster*>monsters,int flag){              //flag=1 kerdisan oi iroes           //sto vector ipotithetai oti exo ta terata opou itan sth maxi
+	Hero** b=team->getHeroes();
+	
+		for(int j=0; j<team->getCounter(); j++){
+			if(flag==1){ 
+				b[j]->victory(monsters.size());
+			}
+			else{
+				b[j]->defeat();
+			}
+			b[j]->levelUp();                                  //osoi exoun arketa exp anevenoun level , tsekaroi gia aftous me 0 health na paei 50
+		}
+		for(int j=0; j<monsters.size(); j++){
+			monsters.at(j)->changeHealth(100);                        //epanaferete i zoi ton teraton pou itan sth maxi sto 100
+		}
+	
+	
+}
