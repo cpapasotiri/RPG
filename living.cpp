@@ -354,6 +354,27 @@ void Hero::castSpell(Monster* a){
 	}
 }
 
+void Hero::usePotion(){
+	cout << "eereerer" << endl;
+	for(int j=0; j<potion.size(); j++){
+		cout << "Potion " << j+1 << " :" << endl;
+		potion.at(j)->print();
+	}
+	cout << "Whice potion do you want to use?" << endl;
+	int number;
+	cin >> number;
+	this->use(potion.at(number-1));
+}
+
+void Hero::defeat(){
+	money=money/2;
+}
+
+void Hero::victory(int num){
+	money=money + (10*level*num);
+	experience=experience + (20*level*num);             //endeiktika noumera an thes allazoun
+}
+
 Warrior::Warrior(string n)
 : Hero(n, 8, 5, 7){
     // cout << "A New Warrior has been created! " << endl;
