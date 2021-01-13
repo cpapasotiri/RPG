@@ -196,13 +196,20 @@ void Game::help(){
     
 }
 
+void Game::printHeroes(){
+	for(int j=0; j<heroes.size(); j++){
+		cout << "Hero " << j+1 << ":" << endl;
+		heroes.at(j)->print();
+	}
+}
+
 void Game::startGame(){
 	cout<< "How many heroes do you want ? (1-3)" << endl;
 	int num = 0;
 	cin >> num;
 	Team* team = new Team(num);
 	int k;
-	team->print();
+	this->printHeroes();
 	for(int j=0; j<(num-1); j++){       // j<num πρεπει να ειναι ???
 		cout << "Choose Hero number" << j+1 << endl;
 		cin >> k;
