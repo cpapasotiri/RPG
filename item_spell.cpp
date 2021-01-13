@@ -183,7 +183,7 @@ void Icespell::print(){
 
 void Icespell::cast(int dexterity,Monster* a){
 	Spell::cast(dexterity,a);
-	a->setMonster(a->getDamage()-amount,a->getDefense(),a->getAttack());       //borei kai na ginei allios to skeftomai akoma
+	a->setMonster(a->getDamage()-reduction,a->getDefense(),a->getAttack());       //borei kai na ginei allios to skeftomai akoma
 }
 
 Firespell::Firespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
@@ -204,7 +204,7 @@ void Firespell::print(){
 
 void Firespell::cast(int dexterity,Monster* a){
 	Spell::cast(dexterity,a);
-	a->setMonster(a->getDamage(),(a->getDefense()-amount),a->getAttack());		//borei kai na ginei allios to skeftomai akoma
+	a->setMonster(a->getDamage(),(a->getDefense()-reduction),a->getAttack());		//borei kai na ginei allios to skeftomai akoma
 }
 
 Lightingspell::Lightingspell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
@@ -225,5 +225,5 @@ void Lightingspell::print(){
 
 void Lightingspell::cast(int dexterity,Monster* a){
 		Spell::cast(dexterity,a);
-		a->setMonster(a->getDamage(),a->getDefense(),(a->getAttack()-amount));		//borei kai na ginei allios to skeftomai akoma
+		a->setMonster(a->getDamage(),a->getDefense(),(a->getAttack()-reduction));		//borei kai na ginei allios to skeftomai akoma
 }
