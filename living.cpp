@@ -515,6 +515,16 @@ void Monster::setMonster(int a,int b,int c){
 	attack=c;
 }
 
+void Monster::regen(){
+	if(healthPower>0) healthPower=healthPower + 5;
+	if(healthPower>100) healthPower=100;
+}
+
+void Monster::print()
+{
+	cout <<"Printing monster...." << endl;
+}
+
 Dragon::Dragon(string n) 
 : Monster(n, 9, 5, 5){
     // cout << "A New Dragon has been created! " << endl;
@@ -524,6 +534,15 @@ Dragon::~Dragon(){
     cout << "A Dragon to be destroyed! " << endl;
 }
 
+void Dragon::print(){
+	cout << "Monster type: Dragon" << endl;
+	cout << "Name: " << name << endl;
+	cout << "Level: " << level << endl;
+	cout << "Health: " << healthPower << endl;
+	cout << "Damage: " << damage << endl;
+	cout << "Defense: " << defense << endl;
+	cout << "Agility: " <<attack << endl;
+}
 
 Exoskeleton::Exoskeleton(string n) 
 : Monster(n, 5, 9, 5){
@@ -534,6 +553,15 @@ Exoskeleton::~Exoskeleton(){
     cout << "A Exoskeleton to be destroyed!" << endl;
 }
 
+void Exoskeleton::print(){ 
+	cout << "Monster type: Exoskeleton" << endl;
+	cout << "Name: " << name<< endl;
+	cout << "Level: " << level << endl;
+	cout << "Health: " << healthPower << endl;
+	cout << "Damage: " << damage << endl;
+	cout << "Defense: " << defense << endl;
+	cout << "Agility: " <<attack << endl;
+}
 
 Spirit::Spirit(string n) 
 : Monster(n, 5, 5, 9){
@@ -544,6 +572,15 @@ Spirit::~Spirit(){
     cout << "A Spirit to be destroyed!" << endl;
 }
 
+void Spirit::print(){
+	cout << "Monster type: Spirit" << endl;
+	cout << "Name: " << name<< endl;
+	cout << "Level: " << level << endl;
+	cout << "Health: " << healthPower << endl;
+	cout << "Damage: " << damage << endl;
+	cout << "Defense: " << defense << endl;
+	cout << "Agility: " <<attack << endl;
+}
 
 
 Team::Team(int num){
