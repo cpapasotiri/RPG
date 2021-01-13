@@ -200,9 +200,9 @@ void Game::startGame(){
 	cout<< "How many heroes do you want ? (1-3)" << endl;
 	int num = 0;
 	cin >> num;
-	team=new Team(num);
+	Team* team = new Team(num);
 	int k;
-	this->printHeroes();
+	team->print();
 	for(int j=0; j<(num-1); j++){       // j<num πρεπει να ειναι ???
 		cout << "Choose Hero number" << j+1 << endl;
 		cin >> k;

@@ -4,7 +4,43 @@
 #include <vector>
 using namespace std;
 
+class Point{
+    private:
+        int x;
+        int y;
+
+    public:
+        Point(int a, int b){
+            cout << "Constructor" << endl;
+            x = a;
+            y = b;
+        }
+
+        ~Point(){
+            cout << "Destructor" << endl;
+        }
+
+        int getX()const{
+            return x;
+        }
+
+        int getY()const{
+            return y;
+        }
+};
+
+
 int main (int argc, char* argv[]){
+    // int row = 2;
+    // int col = 2;
+    // Point** point = new Point[row];
+    // for(int i = 0; i < row; i++){
+        // point[i][j].
+    // }
+
+
+
+
     // v1 = v2;
     // vector<int> foo;
     // foo.push_back(1);
@@ -42,18 +78,18 @@ int main (int argc, char* argv[]){
     // cin >> s;
     // cout << "You gave me:" << s << endl;
 
-    input many strings
-    string s = " ";
-    cout << "Give me a string: " << endl;
-    cin >> s;
-    while(s.compare("exit") != 0){
-        cout << "You gave me:" << s << endl;
-        if(s.compare("buy") != 0 && s.compare("sell") != 0){
-            cout << "Wrong input! Please give me buy/sell/exit" << endl;
-        }
-        cout << "Give me a string: " << endl;
-        cin >> s;
-    }
+    // input many strings
+    // string s = " ";
+    // cout << "Give me a string: " << endl;
+    // cin >> s;
+    // while(s.compare("exit") != 0){
+    //     cout << "You gave me:" << s << endl;
+    //     if(s.compare("buy") != 0 && s.compare("sell") != 0){
+    //         cout << "Wrong input! Please give me buy/sell/exit" << endl;
+    //     }
+    //     cout << "Give me a string: " << endl;
+    //     cin >> s;
+    // }
 
     return 0;
 }

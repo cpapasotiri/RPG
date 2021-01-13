@@ -14,7 +14,7 @@ g++ -o game living.o item_spell.o grid.o game.o main.o
 ## ΠΕΡΙΓΡΑΦΗ ΥΛΟΠΟΙΗΣΕΩΝ: (Role Playing Game)
 - Χριστίνα: 
 
-- Γιώργος: 
+- Γιώργος:
 
 
 ## .txts

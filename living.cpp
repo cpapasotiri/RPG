@@ -338,7 +338,7 @@ void Hero::castSpell(Monster* a){
 	cout << "Printing hero's spells.." << endl;
 	for(int j=0; j<spell.size(); j++){
 		cout << "Spell " << j+1 <<": " <<  endl;
-		spell.at(j)->Print();
+		spell.at(j)->print();
 	}
 	cout << "Which spell do you want to use?(give its number)" << endl;
 	int w;
@@ -375,6 +375,27 @@ void Warrior::print(){
          << "experience = " << experience << endl;
 } 
 
+void Warrior::levelUp(){
+	if(level<10){
+		int temp=level*100;
+		if(experience>temp){
+			level++;
+			strenght=strenght + 3;
+			agility=agility + 2;
+			dexterity++;
+			experience=experience - temp;
+			healthPower=100;                     
+			magicPower=50;
+		}
+		else {
+			return;
+		}
+	}
+	else {
+		cout << "Hero " << name << " is at max level" << endl;
+	}
+}
+
 
 Sorcerer::Sorcerer(string n)
 : Hero(n, 4, 7, 8){
@@ -398,6 +419,27 @@ void Sorcerer::print(){
          << "experience = " << experience << endl;
 }
 
+void Sorcerer::levelUp(){
+	if(level<10){
+		int temp=level*100;
+		if(experience>temp){
+			level++;
+			strenght=strenght + 1;
+			agility=agility + 2;
+			dexterity=dexterity + 3;
+			experience=experience - temp;
+			healthPower=100;                     
+			magicPower=50;
+		}
+		else {
+			return;
+		}
+	}
+	else {
+		cout << "Hero " << name << " is at max level" << endl;
+	}
+}
+
 
 Paladin::Paladin(string n)
 : Hero(n, 7, 9, 3){
@@ -419,48 +461,6 @@ void Paladin::print(){
          << "agility = " << agility << endl
          << "money = " << money << endl
          << "experience = " << experience << endl;
-}
-
-void Warrior::levelUp(){
-	if(level<10){
-		int temp=level*100;
-		if(experience>temp){
-			level++;
-			strenght=strenght + 3;
-			agility=agility + 2;
-			dexterity++;
-			experience=experience - temp;
-			healthPower=100;                     
-			magicPower=50;
-		}
-		else {
-			return;
-		}
-	}
-	else {
-		cout << "Hero " << name << " is at max level" << endl;
-	}
-}
-
-void Sorcerer::levelUp(){
-	if(level<10){
-		int temp=level*100;
-		if(experience>temp){
-			level++;
-			strenght=strenght + 1;
-			agility=agility + 2;
-			dexterity=dexterity + 3;
-			experience=experience - temp;
-			healthPower=100;                     
-			magicPower=50;
-		}
-		else {
-			return;
-		}
-	}
-	else {
-		cout << "Hero " << name << " is at max level" << endl;
-	}
 }
 
 void Paladin::levelUp(){

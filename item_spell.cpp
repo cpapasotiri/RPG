@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 
-#include "item_spell.hpp"
+#include "living.hpp"
 
 using namespace std;
 
@@ -159,6 +159,11 @@ void Spell::print(){
     
 }
 
+void Spell::cast(int dexterity,Monster* a){
+	int dmg=dexterity + mindamage;
+	if(dmg>maxdamage) dmg=maxdamage;
+	a->changeHealth(-dmg);
+}
 
 Icespell::Icespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
 Spell(name,price,leastlevel,energy,min,max,a,b)
@@ -176,6 +181,10 @@ void Icespell::print(){
     cout << "Spell effect: " << "It reduces enemy's damage by " << reduction << " for " << rounds << " rounds" << endl;
 }
 
+void Icespell::cast(int dexterity,Monster* a){
+	Spell::cast(dexterity,a);
+	a->setMonster(a->getDamage()-amount,a->getDefense(),a->getAttack());       //borei kai na ginei allios to skeftomai akoma
+}
 
 Firespell::Firespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
 Spell(name,price,leastlevel,energy,min,max,a,b)
@@ -193,6 +202,10 @@ void Firespell::print(){
     cout << "Spell effect: " << "It reduces enemy's defence by " << reduction << " for " << rounds << " rounds" << endl;
 }
 
+void Firespell::cast(int dexterity,Monster* a){
+	Spell::cast(dexterity,a);
+	a->setMonster(a->getDamage(),(a->getDefense()-amount),a->getAttack());		//borei kai na ginei allios to skeftomai akoma
+}
 
 Lightingspell::Lightingspell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
 Spell(name,price,leastlevel,energy,min,max,a,b)
@@ -210,23 +223,7 @@ void Lightingspell::print(){
     cout << "Spell effect: " << "It reduces the chance of the opponent avoiding an attack by " << reduction << "% for " << rounds << " rounds" << endl;
 }
 
-void Spell::cast(int dexterity,Monster* a){
-	int dmg=dexterity + mindamage;
-	if(dmg>maxdamage) dmg=maxdamage;
-	a->changeHealth(-dmg);
-}
-
-void Icespell::cast(int dexterity,Monster* a){
-	Spell::cast(dexterity,a);
-//	a->setMonster(a->getDamage()-amount,a->getDefense(),a->getAttack());       //borei kai na ginei allios to skeftomai akoma
-}
-
-void Firespell::cast(int dexterity,Monster* a){
-	Spell::cast(dexterity,a);
-//	a->setMonster(a->getDamage(),(a->getDefense()-amount),a->getAttack());		//borei kai na ginei allios to skeftomai akoma
-}
-
 void Lightingspell::cast(int dexterity,Monster* a){
 		Spell::cast(dexterity,a);
-		//a->setMonster(a->getDamage(),a->getDefense(),(a->getAttack()-amount));		//borei kai na ginei allios to skeftomai akoma
+		a->setMonster(a->getDamage(),a->getDefense(),(a->getAttack()-amount));		//borei kai na ginei allios to skeftomai akoma
 }
