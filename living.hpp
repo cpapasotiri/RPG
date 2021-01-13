@@ -103,6 +103,9 @@ class Hero : public Living{
         void equipSecondaryWeapon(Weapon* a);
         virtual void levelUp()=0;
         void castSpell(Monster* a);
+        void victory(int num);
+        void defeat();
+        void usePotion();
 };
 
 
