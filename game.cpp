@@ -210,7 +210,7 @@ void Game::startGame(){
 	Team* team = new Team(num);
 	int k;
 	this->printHeroes();
-	for(int j=0; j<(num-1); j++){       // j<num πρεπει να ειναι ???
+	for(int j=0; j<num; j++){       // j<num πρεπει να ειναι ???
 		cout << "Choose Hero number" << j+1 << endl;
 		cin >> k;
 		team->joinTeam(heroes.at(k-1));
