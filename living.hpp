@@ -147,6 +147,8 @@ class Monster : public Living{
         int getDefense()const;
         int getAttack()const;
         void setMonster(int, int, int);
+        virtual void print();
+        void regen();
 };
 
 
@@ -154,6 +156,7 @@ class Dragon : public Monster{
     public:
         Dragon(string);
         ~Dragon();
+        void print();
 };
 
 
@@ -161,6 +164,7 @@ class Exoskeleton : public Monster{
     public:
         Exoskeleton(string);
         ~Exoskeleton();
+        void print();
 };
 
 
@@ -168,6 +172,7 @@ class Spirit : public Monster{
     public:
         Spirit(string);
         ~Spirit();
+        void print();
 };
 
 
