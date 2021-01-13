@@ -48,6 +48,7 @@ void Living::changeHealth(int x){
     healthPower += x;
 	if(healthPower<0) healthPower=0;    //nomizo prepei na tsekaroume kai afto edo
 	if(healthPower>100) healthPower=100;  // kai afto
+	
 }
 
 
@@ -394,6 +395,7 @@ void Warrior::levelUp(){
 	else {
 		cout << "Hero " << name << " is at max level" << endl;
 	}
+	if(healthPower==0) healthPower=50;
 }
 
 
@@ -438,6 +440,7 @@ void Sorcerer::levelUp(){
 	else {
 		cout << "Hero " << name << " is at max level" << endl;
 	}
+	if(healthPower==0) healthPower=50;
 }
 
 
@@ -482,6 +485,7 @@ void Paladin::levelUp(){
 	else {
 		cout << "Hero " << name << " is at max level" << endl;
 	}
+	if(healthPower==0) healthPower=50;
 }
 
 
