@@ -105,7 +105,7 @@ class Hero : public Living{
         void castSpell(Monster* a);
         void victory(int num);
         void defeat();
-        void usePotion();
+        int usePotion();
 };
 
 
