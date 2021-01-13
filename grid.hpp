@@ -98,4 +98,5 @@ class Common : public Square{
         void exitTeam();
 
         Team* getTeam()const;
+        void afterBattle(vector<Monster*> monsters,int flag);
 };
