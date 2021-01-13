@@ -6,7 +6,7 @@
 using namespace std;
 
 Living::Living(string n){
-    cout << "A New Living has been created! " << endl;
+    // cout << "A New Living has been created! " << endl;
     name = n;
     level = 1;
     healthPower = 100;
@@ -53,7 +53,7 @@ void Living::changeHealth(int x){
 
 Hero::Hero(string n, int s, int d, int a)
 : Living(n){
-    cout << "A New Hero has been created! " << endl;
+    // cout << "A New Hero has been created! " << endl;
     magicPower = 50;
     strenght = s;
     dexterity = d;
@@ -355,7 +355,7 @@ void Hero::castSpell(Monster* a){
 
 Warrior::Warrior(string n)
 : Hero(n, 8, 5, 7){
-    cout << "A New Warrior has been created! " << endl;
+    // cout << "A New Warrior has been created! " << endl;
 }
 
 Warrior::~Warrior(){
@@ -399,7 +399,7 @@ void Warrior::levelUp(){
 
 Sorcerer::Sorcerer(string n)
 : Hero(n, 4, 7, 8){
-    cout << "A New Sorcerer has been created! " << endl;
+    // cout << "A New Sorcerer has been created! " << endl;
 }
 
 Sorcerer::~Sorcerer(){
@@ -443,7 +443,7 @@ void Sorcerer::levelUp(){
 
 Paladin::Paladin(string n)
 : Hero(n, 7, 9, 3){
-    cout << "A New Paladin has been created! " << endl;
+    // cout << "A New Paladin has been created! " << endl;
 }
 
 Paladin::~Paladin(){
@@ -487,7 +487,7 @@ void Paladin::levelUp(){
 
 Monster::Monster(string n, int da, int de, int a)
 : Living(n){
-    cout << "A New Monster has been created! " << endl;
+    // cout << "A New Monster has been created! " << endl;
     damage = da;
     defense = de;
     attack = a;
@@ -517,7 +517,7 @@ void Monster::setMonster(int a,int b,int c){
 
 Dragon::Dragon(string n) 
 : Monster(n, 9, 5, 5){
-    cout << "A New Dragon has been created! " << endl;
+    // cout << "A New Dragon has been created! " << endl;
 }
 
 Dragon::~Dragon(){
@@ -527,7 +527,7 @@ Dragon::~Dragon(){
 
 Exoskeleton::Exoskeleton(string n) 
 : Monster(n, 5, 9, 5){
-    cout << "A New Exoskeleton has been created!" << endl;
+    // cout << "A New Exoskeleton has been created!" << endl;
 }
 
 Exoskeleton::~Exoskeleton(){
@@ -537,7 +537,7 @@ Exoskeleton::~Exoskeleton(){
 
 Spirit::Spirit(string n) 
 : Monster(n, 5, 5, 9){
-    cout << "A New Spirit has been created!" << endl;
+    // cout << "A New Spirit has been created!" << endl;
 }
 
 Spirit::~Spirit(){
@@ -549,7 +549,7 @@ Spirit::~Spirit(){
 Team::Team(int num){
     heroes=new Hero*[num];
     counter=0;
-    cout << "A New team has been created" << endl;
+    // cout << "A New team has been created" << endl;
 }
 
 Team::~Team(){

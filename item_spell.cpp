@@ -10,7 +10,7 @@ Item::Item(string name,int price,int leastlevel){
     this->name=name;
     this->price=price;
     this->leastlevel=leastlevel;
-    cout << "A new Item has been created " << endl;
+    // cout << "A new Item has been created " << endl;
 }
 
 Item::~Item(){
@@ -35,7 +35,7 @@ Item(name,price,leastlevel)
 {
     damage=dmg;
     hands=i;
-    cout<< "A new Weapon has been created" << endl;
+    // cout<< "A new Weapon has been created" << endl;
 }
 
 Weapon::~Weapon(){
@@ -63,7 +63,7 @@ Armor::Armor(string name,int price, int leastlevel,int defence):
 Item(name,price,leastlevel)
 {   
     this->defence=defence;
-    cout << "A new armor has been created" << endl;
+    // cout << "A new armor has been created" << endl;
 }
 
 Armor::~Armor(){
@@ -88,7 +88,7 @@ Item(name,price,leastlevel)
     ability=abil;
     this->amount=amount;
     flag=0;
-    cout << "A new Potion has been created" << endl ;
+    // cout << "A new Potion has been created" << endl ;
 }
 
 Potion::~Potion(){
@@ -123,7 +123,7 @@ Item(name,price,leastlevel)
     mindamage=min;
     reduction=a;
     rounds=b;
-    cout << "A new Spell has been created" << endl;
+    // cout << "A new Spell has been created" << endl;
 }
 
 Spell::~Spell(){
@@ -168,7 +168,7 @@ void Spell::cast(int dexterity,Monster* a){
 Icespell::Icespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
 Spell(name,price,leastlevel,energy,min,max,a,b)
 {
-    cout << "A new icespell has been created" << endl;
+    // cout << "A new icespell has been created" << endl;
 }
 
 Icespell::~Icespell(){
@@ -189,7 +189,7 @@ void Icespell::cast(int dexterity,Monster* a){
 Firespell::Firespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
 Spell(name,price,leastlevel,energy,min,max,a,b)
 {
-    cout << "A new icespell has been created" << endl;
+    // cout << "A new icespell has been created" << endl;
 }
 
 Firespell::~Firespell(){
@@ -210,7 +210,7 @@ void Firespell::cast(int dexterity,Monster* a){
 Lightingspell::Lightingspell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
 Spell(name,price,leastlevel,energy,min,max,a,b)
 {
-    cout << "A new Lightingspell has been created" << endl;
+    // cout << "A new Lightingspell has been created" << endl;
 }
 
 Lightingspell::~Lightingspell(){

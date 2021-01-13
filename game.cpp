@@ -8,7 +8,7 @@
 using namespace std;
 
 Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string> armorNames, vector<string> potionNames, vector<string> spellNames){
-    cout << "A New Game has been created!" << endl;
+    // cout << "A New Game has been created!" << endl;
 
     // create livings(heroes & monsters)
     int j = 0;
@@ -196,13 +196,6 @@ void Game::help(){
     
 }
 
-void Game::printHeroes(){
-	for(int j=0; j<heroes.size(); j++){
-		cout << "Hero " << j+1 << ":" << endl;
-		heroes.at(j)->print();
-	}
-}
-
 void Game::startGame(){
 	cout<< "How many heroes do you want ? (1-3)" << endl;
 	int num = 0;
@@ -219,3 +212,9 @@ void Game::startGame(){
 	team->displayStats();
 }
 
+void Game::printHeroes(){
+	for(int j=0; j<heroes.size(); j++){
+		cout << "Hero " << j+1 << ":" << endl;
+		heroes.at(j)->print();
+	}
+}

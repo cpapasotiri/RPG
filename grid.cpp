@@ -7,7 +7,7 @@
 using namespace std;
 
 Grid::Grid(vector<Hero*> h, vector<Monster*> m, vector<Weapon*> w, vector<Armor*> a, vector<Potion*> p, vector<Spell*> s){
-    cout << "A New Grid has been created!" << endl;
+    // cout << "A New Grid has been created!" << endl;
     heroes = h;
     monsters = m;
     // Market(w, a, p, s);          // ετσι θα αρχικκοποιησω το Square*
@@ -21,7 +21,7 @@ Grid::~Grid(){
 }
 
 void Grid::displayMap(){
-    cout << "A Grid to be destroyed!" << endl;
+
 }
 
 vector<Hero*> Grid::getHeroes()const{
@@ -34,7 +34,7 @@ vector<Monster*> Grid::getMonsters()const{
 
 
 Square::Square(int t){
-    cout << "A New Square has been created!" << endl;
+    // cout << "A New Square has been created!" << endl;
     type = t;
 }
 
@@ -49,7 +49,7 @@ int Square::getType()const{
 
 NonAccessible::NonAccessible()
 : Square(0){
-    cout << "A New NonAccessible has been created!" << endl;
+    // cout << "A New NonAccessible has been created!" << endl;
 }
 
 NonAccessible::~NonAccessible(){
@@ -63,7 +63,7 @@ void NonAccessible::print()const{
 
 Market::Market(vector<Weapon*> w, vector<Armor*> a, vector<Potion*> p, vector<Spell*> s)
 : Square(1){
-    cout << "A New Market has been created!" << endl;
+    // cout << "A New Market has been created!" << endl;
     weapons = w;
     armors = a;
     potions = p;
@@ -276,7 +276,7 @@ int Market::getItems()const{
 
 Common::Common()
 : Square(2){
-    cout << "A New Common has been created!" << endl;
+    // cout << "A New Common has been created!" << endl;
 }
 
 Common::~Common(){
