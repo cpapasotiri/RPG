@@ -354,16 +354,20 @@ void Hero::castSpell(Monster* a){
 	}
 }
 
-void Hero::usePotion(){
-	cout << "eereerer" << endl;
+int Hero::usePotion(){                  //epistrefei 0 an o iroas den exei kanena potion sto inventory tou
+	if(potion.size()==0) {
+		cout << "No available potions to use!" << endl;
+		return 0;
+	}
 	for(int j=0; j<potion.size(); j++){
 		cout << "Potion " << j+1 << " :" << endl;
 		potion.at(j)->print();
 	}
-	cout << "Whice potion do you want to use?" << endl;
+	cout << "Whice potion do you want to use?(give number)" << endl;
 	int number;
 	cin >> number;
 	this->use(potion.at(number-1));
+	return 1;
 }
 
 void Hero::defeat(){
