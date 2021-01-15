@@ -568,9 +568,9 @@ void Dragon::print(){
 	cout << "Name: " << name << endl;
 	cout << "Level: " << level << endl;
 	cout << "Health: " << healthPower << endl;
-	cout << "Damage: " << damage << endl;
-	cout << "Defense: " << defense << endl;
-	cout << "Agility: " <<attack << endl;
+	cout << "Damage: " << Monster::getDamage() << endl;
+	cout << "Defense: " << Monster::getDefense() << endl;
+	cout << "Agility: " << Monster::getAttack() << endl;
 }
 
 Exoskeleton::Exoskeleton(string n) 
@@ -587,9 +587,9 @@ void Exoskeleton::print(){
 	cout << "Name: " << name<< endl;
 	cout << "Level: " << level << endl;
 	cout << "Health: " << healthPower << endl;
-	cout << "Damage: " << damage << endl;
-	cout << "Defense: " << defense << endl;
-	cout << "Agility: " <<attack << endl;
+	cout << "Damage: " << Monster::getDamage() << endl;
+	cout << "Defense: " << Monster::getDefense() << endl;
+	cout << "Agility: " << Monster::getAttack() << endl;
 }
 
 Spirit::Spirit(string n) 
@@ -606,9 +606,9 @@ void Spirit::print(){
 	cout << "Name: " << name<< endl;
 	cout << "Level: " << level << endl;
 	cout << "Health: " << healthPower << endl;
-	cout << "Damage: " << damage << endl;
-	cout << "Defense: " << defense << endl;
-	cout << "Agility: " <<attack << endl;
+	cout << "Damage: " << Monster::getDamage() << endl;
+	cout << "Defense: " << Monster::getDefense() << endl;
+	cout << "Agility: " << Monster::getAttack() << endl;
 }
 
 

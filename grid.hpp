@@ -14,9 +14,9 @@ class Common;
 
 class Grid{
     private:
+        Square* grid [8][8];
         vector<Hero*> heroes;
         vector<Monster*> monsters;
-        // Square* grid [8][8];   // ή κατι τετοιο
 
     public:
         Grid(vector<Hero*>, vector<Monster*>, vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>);
@@ -65,7 +65,7 @@ class Market : public Square{
         Market(vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>);
         ~Market();
 
-        void print();
+        void print()const;
         void menu();
         void buy(Hero*, int);
         void sell(Hero*, int);

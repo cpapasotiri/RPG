@@ -7,11 +7,33 @@
 using namespace std;
 
 Grid::Grid(vector<Hero*> h, vector<Monster*> m, vector<Weapon*> w, vector<Armor*> a, vector<Potion*> p, vector<Spell*> s){
-    // cout << "A New Grid has been created!" << endl;
+    cout << "A New Grid has been created!" << endl;
+    
+    for(int i = 0; i < 8; i++){
+        for(int j = 0; j < 8; j++){
+            if(i == 0 || i == 7){
+                grid[i][j] = new NonAccessible();    
+            }
+            else if(j == 0 || j == 7){
+                grid[i][j] = new NonAccessible();
+            }
+            else if((i == 2 && j == 2) || (i == 2 && j == 5)){
+                grid[i][j] = new Market(w, a, p, s);
+            }
+            else if((i == 3 && j == 3) || (i == 4 && j == 4)){
+                grid[i][j] = new Market(w, a, p, s);
+            }
+            else if((i == 5 && j == 2) || (i == 5 && j == 5)){
+                grid[i][j] = new Market(w, a, p, s);
+            }
+            else{
+                grid[i][j] = new Common(); 
+            }
+        }
+    }
+    
     heroes = h;
     monsters = m;
-    // Market(w, a, p, s);          // ετσι θα αρχικκοποιησω το Square*
-    // Common();                    // ετσι θα αρχικκοποιησω το Square*
 }
 
 Grid::~Grid(){
@@ -21,7 +43,20 @@ Grid::~Grid(){
 }
 
 void Grid::displayMap(){
-
+    // for(int i = 0; i < 8; i++){
+    //     for(int j = 0; j < 8; j++){
+    //         cout << "grid[" << i << "][" << j << "]" << " = "; 
+    //         grid[i][j]->print();
+    //     }
+    //     cout << endl;
+    // }
+    for(int i = 0; i < 8; i++){
+        for(int j = 0; j < 8; j++){
+            grid[i][j]->print();
+            cout << " ";
+        }
+        cout << endl;
+    }
 }
 
 vector<Hero*> Grid::getHeroes()const{
@@ -57,7 +92,8 @@ NonAccessible::~NonAccessible(){
 }
 
 void NonAccessible::print()const{
-    cout << "A Non Accessible square!" << endl;
+    // cout << "A Non Accessible square!" << endl;
+    cout << 0;
 }
 
 
@@ -80,8 +116,9 @@ Market::~Market(){
     spells.clear();
 }
 
-void Market::print(){
-    cout << "A Market square!" << endl;
+void Market::print()const{
+    // cout << "A Market square!" << endl;
+    cout << 1;
     if(team != NULL){
         team->print();
     }
@@ -277,6 +314,7 @@ int Market::getItems()const{
 Common::Common()
 : Square(2){
     // cout << "A New Common has been created!" << endl;
+    team = NULL;
 }
 
 Common::~Common(){
@@ -284,7 +322,8 @@ Common::~Common(){
 }
 
 void Common::print()const{
-    cout << "A Common square!" << endl;
+    // cout << "A Common square!" << endl;
+    cout << 2;
     if(team != NULL){
         team->print();
     }

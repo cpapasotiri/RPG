@@ -136,6 +136,7 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
     }
 
     grid = new Grid(heroes, monsters, weapons, armors, potions, spells);
+    grid->displayMap();
 }
 
 Game::~Game(){

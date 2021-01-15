@@ -31,6 +31,19 @@ class Point{
 
 
 int main (int argc, char* argv[]){
+    // grid example with integers
+    int arr[8][8];
+    for(int i = 0; i < 8; i++){
+        for(int j = 0; j < 8; j++){
+            arr[i][j] = i*j;
+        }
+    }
+
+    for(int i = 0; i < 8; i++){
+        for(int j = 0; j < 8; j++){
+            cout << "arr[" << i << "][" << j << "]" << " = " << arr[i][j] << endl;
+        }
+    }
     // int row = 2;
     // int col = 2;
     // Point** point = new Point[row];

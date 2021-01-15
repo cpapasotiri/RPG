@@ -11,6 +11,10 @@ g++ -c game.cpp
 g++ -o game living.o item_spell.o grid.o game.o main.o
 ./game 
 
+ή 
+
+γράφοντας στο terminal: make
+ 
 ## ΠΕΡΙΓΡΑΦΗ ΥΛΟΠΟΙΗΣΕΩΝ: (Role Playing Game)
 - Χριστίνα: 
 
