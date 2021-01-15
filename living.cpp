@@ -613,9 +613,10 @@ void Spirit::print(){
 
 
 Team::Team(int num){
-    heroes=new Hero*[num];
-    counter=0;
-    // cout << "A New team has been created" << endl;
+	// cout << "A New team has been created" << endl;
+    heroes = new Hero*[num];
+    counter = 0;
+    location = NULL;
 }
 
 Team::~Team(){
@@ -629,6 +630,14 @@ void Team::print(){
         cout << "Hero " << i+1 << ":" << endl;
         heroes[i]->print();
     }
+}
+
+void Team::move(Square* square)const{
+	location = square;
+}
+
+Square* Team::getLocation()const{
+	return location;
 }
 
 Hero** Team::getHeroes()const{

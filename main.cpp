@@ -54,5 +54,12 @@ int main(int argc, char* argv[]){
     Game* game = new Game(livingNames, weaponNames, armorNames, potionNames, spellNames);
 
 
+
+
+    livingNames.clear();
+    weaponNames.clear();
+    armorNames.clear();
+    potionNames.clear();
+    spellNames.clear();
     return 0;
 }

@@ -147,6 +147,7 @@ Game::~Game(){
     armors.clear();
     potions.clear();
     spells.clear(); 
+    delete grid;
 }
 
 vector<Hero*> Game::getHeroes()const{
@@ -181,8 +182,19 @@ void Game::play(){
 
 }
 
-void Game::move(){
+void Game::move(string m){
+    if(m.compare("up") != 0){
 
+    }
+    else if(m.compare("down") != 0){
+
+    }
+    else if(m.compare("right") != 0){
+
+    }
+    else if(m.compare("left") != 0){
+
+    }
 }
 
 void Game::buy(){
@@ -194,7 +206,14 @@ void Game::sell(){
 }
 
 void Game::help(){
+    cout << "If you want to move up, please give: up" << endl;
+    cout << "If you want to move down, please give: down" << endl;
+    cout << "If you want to move right, please give: right" << endl;
+    cout << "If you want to move left, please give: left" << endl;
+    // cout << "WARNING: You can't move out of world" << endl;
     
+    cout << "If you want to stop playing the game, please give: stop" << endl;
+
 }
 
 void Game::startGame(){
@@ -211,6 +230,27 @@ void Game::startGame(){
 	}
 	cout <<"Your team is ready" << endl;
 	team->displayStats();
+
+    string m;
+    cout << "Please select where you want to move between up/down/right/left" << endl;
+    cin >> m;
+    cout << "You selected:" << x << endl;
+    while(m.compare("stop") != 0){
+        if((m.compare("up") != 0) || (m.compare("down") != 0) || (m.compare("right") != 0) || (m.compare("left") != 0)){
+            move(m);
+        }
+        else{
+            help();
+        }
+        cout << "Please select where you want to move" << endl;
+        cin >> m;
+        cout << "You selected:" << x << endl;
+    }
+    stopGame();
+}
+
+void Game::stopGame(){
+
 }
 
 void Game::printHeroes(){

@@ -86,15 +86,15 @@ class Hero : public Living{
         Armor* getArmor()const;
         
         void checkInventory()const;
-        void buy(Weapon*);  // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool  
-        void buy(Armor*);   // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
-        void buy(Potion*);  // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
-        void buy(Spell*);   // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
-        void sell(Weapon*); // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
-        void sell(Armor*);  // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
-        void sell(Potion*); // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
-        void sell(Spell*);  // πρεπει να ελεγχουν και αν υπαρχει ήδη στο vector το αντικειμενο που παιρνουν ως ορισμα αρα πρεπει να επιστρεφουν και bool
-        void use(Potion*); 
+        void buy(Weapon*); 
+        void buy(Armor*); 
+        void buy(Potion*);
+        void buy(Spell*);
+        void sell(Weapon*);
+        void sell(Armor*);
+        void sell(Potion*);
+        void sell(Spell*);
+        void use(Potion*);
         void attack(Monster* a);
         void defend(int damage);
         void regen();
@@ -184,19 +184,19 @@ class Team {        // Team with 1-3 heroes
     private:
     Hero** heroes;
     int counter;
-    // Square* location;   // θα δειχνει σε μια θεση προκαθορισμενη μεσα στον κόσμο
+    Square* location;   // θα δειχνει σε μια θεση προκαθορισμενη μεσα στον κόσμο
 
     public:
     Team(int);
     ~Team();
 
     void print();
+    
+    void move(Square*);
+    Square* getLocation()const;
 
     Hero** getHeroes()const;
     int getCounter()const;
-    // Square* setLocation()const;
-    // Square* getLocation()const;
-
     void joinTeam(Hero*);
     void displayStats()const;
 };

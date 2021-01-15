@@ -14,7 +14,7 @@ class Common;
 
 class Grid{
     private:
-        Square* grid [8][8];
+        Square*** world;     // Square* world[8][8];
         vector<Hero*> heroes;
         vector<Monster*> monsters;
 
@@ -24,6 +24,7 @@ class Grid{
 
         void displayMap();
 
+        Square*** getWorld()const; 
         vector<Hero*> getHeroes()const;
         vector<Monster*> getMonsters()const;
 };
@@ -72,15 +73,15 @@ class Market : public Square{
         Hero* selectHero();
         void help();
 
-        void enterTeam(Team*);
+        void enterTeam(Team*);  // set function
         void exitTeam();
 
         vector<Weapon*> getWeapons()const;
         vector<Armor*> getArmors()const;
         vector<Potion*> getPotions()const;
         vector<Spell*> getSpells()const;
-        Team* getTeam()const;
         int getItems()const;
+        Team* getTeam()const;
 };
 
 

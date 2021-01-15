@@ -8,51 +8,51 @@ using namespace std;
 
 Grid::Grid(vector<Hero*> h, vector<Monster*> m, vector<Weapon*> w, vector<Armor*> a, vector<Potion*> p, vector<Spell*> s){
     cout << "A New Grid has been created!" << endl;
-    
+    world = new Square**[8];            // 
     for(int i = 0; i < 8; i++){
+        world[i] = new Square*[8];      // 
         for(int j = 0; j < 8; j++){
             if(i == 0 || i == 7){
-                grid[i][j] = new NonAccessible();    
+                world[i][j] = new NonAccessible();    
             }
             else if(j == 0 || j == 7){
-                grid[i][j] = new NonAccessible();
+                world[i][j] = new NonAccessible();
             }
             else if((i == 2 && j == 2) || (i == 2 && j == 5)){
-                grid[i][j] = new Market(w, a, p, s);
+                world[i][j] = new Market(w, a, p, s);
             }
             else if((i == 3 && j == 3) || (i == 4 && j == 4)){
-                grid[i][j] = new Market(w, a, p, s);
+                world[i][j] = new Market(w, a, p, s);
             }
             else if((i == 5 && j == 2) || (i == 5 && j == 5)){
-                grid[i][j] = new Market(w, a, p, s);
+                world[i][j] = new Market(w, a, p, s);
             }
             else{
-                grid[i][j] = new Common(); 
+                world[i][j] = new Common(); 
             }
         }
     }
-    
     heroes = h;
     monsters = m;
 }
 
 Grid::~Grid(){
     cout << "A Grid to be destroyed!" << endl;
+    for(int i = 0; i < 8; i++){
+        for(int j = 0; j < 8; j++){
+            delete world[i][j];
+        }
+        delete world[i];
+    }
+    delete world;
     heroes.clear();
     monsters.clear();
 }
 
 void Grid::displayMap(){
-    // for(int i = 0; i < 8; i++){
-    //     for(int j = 0; j < 8; j++){
-    //         cout << "grid[" << i << "][" << j << "]" << " = "; 
-    //         grid[i][j]->print();
-    //     }
-    //     cout << endl;
-    // }
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++){
-            grid[i][j]->print();
+            world[i][j]->print();
             cout << " ";
         }
         cout << endl;
@@ -67,6 +67,9 @@ vector<Monster*> Grid::getMonsters()const{
     return monsters;
 }
 
+Square*** Grid::getWorld()const{
+    return world;
+}
 
 Square::Square(int t){
     // cout << "A New Square has been created!" << endl;
@@ -269,13 +272,13 @@ Hero* Market::selectHero(){
 }
 
 void Market::help(){
-    cout << "If you want to buy an item please give: buy" << endl;
-    cout << "To buy an item please give its number" << endl;
-    cout << "If you want to stop buying items give: 0" << endl;
-    cout << "If you want to sell an item please give: sell" << endl;
-    cout << "To sell an item please give its number" << endl;
-    cout << "If you want to stop selling items give: 0" << endl;
-    cout << "If you want to exit from menu please give: exit" << endl;
+    cout << "If you want to buy an item, please give: buy" << endl;
+    cout << "To buy an item, please give its number" << endl;
+    cout << "If you want to stop buying items, please give: 0" << endl;
+    cout << "If you want to sell an item, please give: sell" << endl;
+    cout << "To sell an item, please give its number" << endl;
+    cout << "If you want to stop selling items, please give: 0" << endl;
+    cout << "If you want to exit from menu, please give: exit" << endl;
 }
 
 void Market::enterTeam(Team* t){
@@ -302,12 +305,12 @@ vector<Spell*> Market::getSpells()const{
     return spells;
 }
 
-Team* Market::getTeam()const{
-    return team;
-}
-
 int Market::getItems()const{
     return items;
+}
+
+Team* Market::getTeam()const{
+    return team;
 }
 
 
