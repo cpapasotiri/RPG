@@ -344,12 +344,12 @@ Team* Common::getTeam()const{
     return team;
 }
 
-void Common::afterBattle(vector<Monster*>monsters,int flag){              //flag=1 kerdisan oi iroes           //sto vector ipotithetai oti exo ta terata opou itan sth maxi
+void Common::afterBattle(int num,vector<Monster*>monsters,int flag){              //flag=1 kerdisan oi iroes           //sto vector ipotithetai oti exo ta terata opou itan sth maxi
 	Hero** b=team->getHeroes();
 	
 		for(int j=0; j<team->getCounter(); j++){
 			if(flag==1){ 
-				b[j]->victory(monsters.size());
+				b[j]->victory(num);
 			}
 			else{
 				b[j]->defeat();
@@ -357,8 +357,96 @@ void Common::afterBattle(vector<Monster*>monsters,int flag){              //flag
 			b[j]->levelUp();                                  //osoi exoun arketa exp anevenoun level , tsekaroi gia aftous me 0 health na paei 50
 		}
 		for(int j=0; j<monsters.size(); j++){
-			monsters.at(j)->changeHealth(100);                        //epanaferete i zoi ton teraton pou itan sth maxi sto 100
+			monsters.at(j)->changeHealth(100);
 		}
 	
 	
 }
+
+int Common::Battle(vector<Monster*>monsters){
+	int num=monsters.size();
+	cout << "A Battle has begun" << endl;
+	cout << "The enemy monsters are: " << endl;
+	for(int j=0; j<monsters.size(); j++){
+		cout << "Monster " << j+1 << endl;
+		monsters.at(j)->print();
+	}
+	Hero** heroes=team->getHeroes();
+	vector<Hero*> h;
+	for(int j=0; j<team->getCounter(); j++){
+		h.push_back(heroes[j]);
+		
+	}
+	string move;
+	int m;
+	int v1;
+	while(h.size()!=0 && monsters.size()!=0){
+	for(int j=0; j<h.size(); j++){
+		cout << "Choose hero's " << j+1 << " next move" << endl;
+		cin >> move ;
+		if(move=="attack"){
+			cout << "Which monster you want to attack?" << endl;
+			for(int j=0; j<monsters.size(); j++){
+				cout << "Monster " << j+1 << endl;
+				monsters.at(j)->print();
+			}
+			cin >> m;
+			while((m-1)>monsters.size()){
+				cout << "Give a correct number!" << endl;
+				cin >> m;
+			}
+			h.at(j)->attack(monsters.at(m-1));
+			if(monsters.at(m-1)->getHelthPower()<=0){                   //tsekaroume an pethane to teras 
+				monsters.at(m-1)->changeHealth(100);      // xanagemizei i zoi tou gia epomenes maxes
+				monsters.erase(monsters.begin()+(m-1));             // to diagrafoume apo to vector ton teraton
+			}
+			
+		}
+		else if(move=="castspell"){
+			cout << "rereererer" << endl;      
+		}
+		else if(move=="use"){
+			h.at(j)->usePotion();
+			
+		}
+		else if(move=="inventory"){
+			h.at(j)->checkInventory();
+			j--;
+		}
+		else{
+			cout << "Please give a correct instruction!" << endl;
+			j--;
+		}
+	}
+		for(int j=0; j<monsters.size(); j++){
+			v1=rand() % h.size();
+			h.at(v1)->defend(monsters.at(j)->getDamage());
+			if(h.at(v1)->getHelthPower()<=0){
+				h.erase(h.begin()+v1);
+			}
+		}
+		cout << "View heroes' and monsters' stats" << endl << endl;
+		for(int j=0; j<h.size(); j++){
+			h.at(j)->regen();
+			h.at(j)->print();
+		}
+		for(int j=0; j<monsters.size(); j++){
+			monsters.at(j)->regen();
+			monsters.at(j)->print();
+		}
+		// End of round
+		
+	
+}	
+	if(h.size()==0){
+		this->afterBattle(num,monsters,0);
+		return 0;
+	}
+	else
+	 {
+	 	this->afterBattle(num,monsters,1);
+		return 1;
+	}
+	
+}
+
