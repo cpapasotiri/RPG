@@ -227,3 +227,26 @@ void Lightingspell::cast(int dexterity,Monster* a){
 		Spell::cast(dexterity,a);
 		a->setMonster(a->getDamage(),a->getDefense(),(a->getAttack()-reduction));		//borei kai na ginei allios to skeftomai akoma
 }
+
+Icespell::Icespell(const Icespell &p2):
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
+{
+	cout << "A new Icespell has been created by coping" << endl;
+}
+
+Firespell::Firespell(const Firespell &p2):
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
+{
+	cout << "A new Firespell has been created by coping" << endl;
+}
+
+Lightingspell::Lightingspell(const Lightingspell &p2):
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
+{
+	cout << "A new Lightingspell has been created by coping" << endl;
+}
+
+int Spell::reduce(){
+	rounds--;
+	return rounds;
+}
