@@ -570,7 +570,7 @@ void Monster::print()
 }
 
 Dragon::Dragon(string n) 
-: Monster(n, 9, 5, 5){
+: Monster(n, 24, 2, 8){
     // cout << "A New Dragon has been created! " << endl;
 }
 
@@ -589,7 +589,7 @@ void Dragon::print(){
 }
 
 Exoskeleton::Exoskeleton(string n) 
-: Monster(n, 5, 9, 5){
+: Monster(n, 16, 10, 4){
     // cout << "A New Exoskeleton has been created!" << endl;
 }
 
@@ -608,7 +608,7 @@ void Exoskeleton::print(){
 }
 
 Spirit::Spirit(string n) 
-: Monster(n, 5, 5, 9){
+: Monster(n, 20, 6, 12){
     // cout << "A New Spirit has been created!" << endl;
 }
 
