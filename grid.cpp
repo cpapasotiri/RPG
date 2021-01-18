@@ -398,12 +398,29 @@ int Common::Battle(vector<Monster*>monsters){
 			h.at(j)->attack(monsters.at(m-1));
 			if(monsters.at(m-1)->getHelthPower()<=0){                   //tsekaroume an pethane to teras 
 				monsters.at(m-1)->changeHealth(100);      // xanagemizei i zoi tou gia epomenes maxes
+				monsters.at(m-1)->clear();
 				monsters.erase(monsters.begin()+(m-1));             // to diagrafoume apo to vector ton teraton
 			}
 			
 		}
 		else if(move=="castspell"){
-			cout << "rereererer" << endl;      
+			cout << "Which monster you want to attack?" << endl;
+			for(int j=0; j<monsters.size(); j++){
+				cout << "Monster " << j+1 << endl;
+				monsters.at(j)->print();
+			}
+			cin >> m;
+			while((m-1)>monsters.size()){
+				cout << "Give a correct number!" << endl;
+				cin >> m;
+			}
+			h.at(j)->castSpell(monsters.at(m-1));
+			if(monsters.at(m-1)->getHelthPower()<=0){                   //tsekaroume an pethane to teras 
+				monsters.at(m-1)->changeHealth(100);      // xanagemizei i zoi tou gia epomenes maxes
+				monsters.at(m-1)->clear();
+				monsters.erase(monsters.begin()+(m-1));             // to diagrafoume apo to vector ton teraton
+			}
+			
 		}
 		else if(move=="use"){
 			h.at(j)->usePotion();
@@ -420,7 +437,7 @@ int Common::Battle(vector<Monster*>monsters){
 	}
 		for(int j=0; j<monsters.size(); j++){
 			v1=rand() % h.size();
-			h.at(v1)->defend(monsters.at(j)->getDamage());
+			monsters.at(j)->destroy(h.at(v1));
 			if(h.at(v1)->getHelthPower()<=0){
 				h.erase(h.begin()+v1);
 			}
@@ -449,4 +466,3 @@ int Common::Battle(vector<Monster*>monsters){
 	}
 	
 }
-
