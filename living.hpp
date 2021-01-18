@@ -297,6 +297,7 @@ class Icespell: public Spell {
     ~Icespell();
     void print();
     void cast(int,Monster*);
+     Icespell(const Icespell &p2);
    
 };
 
@@ -307,6 +308,7 @@ class Firespell: public Spell {
     ~Firespell();
     void print();
     void cast(int,Monster*);
+    Firespell(const Firespell &p2);
    
 };
 
@@ -317,4 +319,5 @@ class Lightingspell: public Spell {
     ~Lightingspell();
     void print();
     void cast(int,Monster*);
+    Lightingspell(const Lightingspell &p2);
 };
