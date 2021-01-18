@@ -380,7 +380,7 @@ void Hero::victory(int num){
 }
 
 Warrior::Warrior(string n)
-: Hero(n, 8, 5, 7){
+: Hero(n, 25, 12, 10){
     // cout << "A New Warrior has been created! " << endl;
 }
 
@@ -425,7 +425,7 @@ void Warrior::levelUp(){
 
 
 Sorcerer::Sorcerer(string n)
-: Hero(n, 4, 7, 8){
+: Hero(n, 15, 25, 10){
     // cout << "A New Sorcerer has been created! " << endl;
 }
 
@@ -470,7 +470,7 @@ void Sorcerer::levelUp(){
 
 
 Paladin::Paladin(string n)
-: Hero(n, 7, 9, 3){
+: Hero(n, 20, 18, 5){
     // cout << "A New Paladin has been created! " << endl;
 }
 
@@ -547,6 +547,21 @@ void Monster::setMonster(int a,int b,int c){
 void Monster::regen(){
 	if(healthPower>0) healthPower=healthPower + 5;
 	if(healthPower>100) healthPower=100;
+	for(int j=0; j<i.size(); j++){
+		if(i.at(j)->reduce()==0) {
+			i.erase(i.begin() + j);
+		}
+	}
+	for(int j=0; j<f.size(); j++){
+		if(f.at(j)->reduce()==0) {
+			f.erase(f.begin() + j);
+		}
+	}
+	for(int j=0; j<l.size(); j++){
+		if(l.at(j)->reduce()==0) {
+			l.erase(l.begin() + j);
+		}
+	}
 }
 
 void Monster::print()
@@ -658,3 +673,109 @@ void Team::displayStats()const{
         heroes[j]->print();
     }
 }
+
+void Hero::equip(){
+	cout << "What do you want to equip?(weapon or armor)" << endl;
+	string s;
+	cin >> s;
+	if(s=="weapon"){
+		if(weapon.size()==0){
+			cout << "No available weapons!" << endl;
+			return;
+		}
+		cout << "Printing heros's weapons" << endl;
+		for(int j=0; j<weapon.size(); j++){
+			cout << "Weapon 1:" << endl;
+			weapon.at(j)->print();
+		}
+		cout << "Which weapon do you want to equip?(Give its number)" << endl;
+		int k;
+		cin >> k;
+		while(k>weapon.size()){
+			cout << "Please give a correct number!" << endl;
+			cin>> k;
+		}
+		cout << "Do you want to use it as a primary or secondary weapon?" << endl;
+		cin >> s;
+		if(s=="primary"){
+			this->equipWeapon(weapon.at(k-1));
+		}
+		else {
+			this->equipSecondaryWeapon(weapon.at(k-1));
+		}
+	}
+	else if(s=="armor"){
+		if(armor.size()==0){
+			cout << "No available armors!" << endl;
+			return;
+		}
+		cout << "Printing hero's armors" << endl;
+		for(int j=0; j<armor.size(); j++){
+			cout << "Armor 1:" << endl;
+			armor.at(j)->print();
+		}
+		cout << "Which armor do you want to equip?(Give its number)" << endl;
+		int k;
+		cin >> k;
+		while(k>armor.size()){
+			cout << "Please give a correct number!" << endl;
+			cin>> k;
+		}
+		this->equipArmor(armor.at(k-1));
+	}
+}
+
+void Monster::put(Icespell* a){
+	Icespell* w=new Icespell(*a);
+	i.push_back(w);
+}
+
+void Monster::put(Firespell* a){
+	Firespell* w=new Firespell(*a);
+	f.push_back(w);
+}
+
+void Monster::put(Lightingspell* a){
+	Lightingspell* w= new Lightingspell(*a);
+	l.push_back(w);
+}
+
+void Monster::clear(){
+	l.clear();
+	f.clear();
+	i.clear();
+}
+
+void Monster::destroy(Hero* a){
+	int temp=damage;
+	for(int j=0; j<i.size(); j++){
+		temp=temp - (i.at(j)->getReduction());
+	}
+	if(temp<0) temp=0;                     // nomizo prepei na elegxoume kai ayto 
+	a->defend(temp);
+}
+
+void Monster::defend(int damage){
+	int temp1=attack;
+	int temp2=defense;
+	for(int j=0; j<f.size(); j++){
+		temp2=temp2 - (f.at(j)->getReduction());
+	}
+	for(int j=0; j<l.size(); j++){
+		temp1=temp1 - (l.at(j)->getReduction());
+	}
+	int v1;
+	if(temp1<0) temp1=0;
+	if(temp2<0) temp2=0;
+	damage=damage - temp2;
+	if(damage<0) damage=0;
+	v1=rand() % 100;
+	if(temp1>v1){
+		cout << "The monster avoided the attack" << endl;
+		return;
+	}
+	else{
+		healthPower=healthPower - damage ;
+	}
+}
+
