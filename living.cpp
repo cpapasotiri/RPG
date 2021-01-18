@@ -331,7 +331,7 @@ void Hero::attack(Monster* a){              //kanoniki epithesi se teras
 	int dmg=strenght;
 	if(w1!=NULL) dmg=dmg + w1->getDamage();
 	if(w2!=NULL) dmg=dmg + w2 ->getDamage();
-	a->changeHealth(-(dmg-a->getDefense()));
+	a->defend(dmg);
 	
 }
 
