@@ -106,6 +106,7 @@ class Hero : public Living{
         void victory(int num);
         void defeat();
         int usePotion();
+        void equip();
 };
 
 
@@ -141,6 +142,9 @@ class Monster : public Living{
         int damage;     // damage it causes
         int defense;    // defense it has
         int attack;     // avoid attack
+         vector<Firespell*> f;
+        vector<Icespell*> i;
+        vector<Lightingspell*> l;
 
     public:
         Monster(string, int, int, int);
@@ -152,6 +156,12 @@ class Monster : public Living{
         void setMonster(int, int, int);
         virtual void print();
         void regen();
+        void put(Icespell* a);
+        void put(Firespell* a);
+        void put(Lightingspell* a);
+        void clear();
+        void destroy(Hero* a);
+        void defend(int damage);
 };
 
 
