@@ -34,3 +34,8 @@ spells.txt -> 30 spells (3*10) -> Ice, Fire, Light 1/level
 - Game
 - Grid
 - Move 
+
+## Πρέπει να διαγράψουμε 
+- test.cpp
+- test.txt 
+- directory test_file 
