@@ -11,12 +11,12 @@ g++ -c game.cpp
 g++ -o game living.o item_spell.o grid.o game.o main.o
 ./game 
 
-ή 
+ή
 
 γράφοντας στο terminal: make
  
 ## ΠΕΡΙΓΡΑΦΗ ΥΛΟΠΟΙΗΣΕΩΝ: (Role Playing Game)
-- Χριστίνα: 
+- Χριστίνα: Έστω ότι το πρόγραμμα κάνει compile. Φτιάχνω τα move και μετα θα βρω λύση για το πως θα διορθωθεί το πρόβλημα με τα includes.
 
 - Γιώργος:
 
@@ -31,8 +31,6 @@ potions.txt -> 66 elixirs (3*22) -> 3/level
 spells.txt -> 30 spells (3*10) -> Ice, Fire, Light 1/level
 
 ## Πρέπει να προσθέσουμε
-- Πρεπει να φτιάξουμε τα buy/sell του Hero
-- Common
+- Game
 - Grid
-- Game (κατι δεν παει καλα με το gameStart-> όταν κανεις new Team)
 - Move 

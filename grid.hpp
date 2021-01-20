@@ -1,8 +1,14 @@
+// #pragma once
+#ifndef __LIVING_HPP__
+#include "living.hpp"
+#endif
+
+#ifndef __GRID_HPP__
+#define __GRID_HPP__
+
 #include <iostream>
 #include <cstring>
 #include <vector>
-
-#include "living.hpp"
 
 using namespace std;
 
@@ -21,9 +27,7 @@ class Grid{
     public:
         Grid(vector<Hero*>, vector<Monster*>, vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>);
         ~Grid();
-
         void displayMap();
-
         Square*** getWorld()const; 
         vector<Hero*> getHeroes()const;
         vector<Monster*> getMonsters()const;
@@ -37,9 +41,7 @@ class Square{
     public:
         Square(int);
         ~Square();
-
         virtual void print()const=0;
-
         int getType()const;
 };
 
@@ -48,7 +50,6 @@ class NonAccessible : public Square{
     public:
         NonAccessible();
         ~NonAccessible();
-
         void print()const;
 };
 
@@ -72,10 +73,8 @@ class Market : public Square{
         void sell(Hero*, int);
         Hero* selectHero();
         void help();
-
         void enterTeam(Team*);  // set function
         void exitTeam();
-
         vector<Weapon*> getWeapons()const;
         vector<Armor*> getArmors()const;
         vector<Potion*> getPotions()const;
@@ -92,13 +91,13 @@ class Common : public Square{
     public:
         Common();
         ~Common();
-
         void print()const;
-
         void enterTeam(Team*);
         void exitTeam();
-
         Team* getTeam()const;
         void afterBattle(int num,vector<Monster*> monsters,int flag);
         int Battle(vector<Monster*> monsters);             // return 1 for victory and return 0 for defeat 
 };
+
+
+#endif

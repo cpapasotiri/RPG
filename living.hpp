@@ -1,8 +1,16 @@
-// #include <iostream>
+// #pragma once
+
+#ifndef __LIVING_HPP__
+#define __LIVING_HPP__
+
+#ifndef __GRID_HPP__
+#include "grid.hpp"
+#endif
+
+#include <iostream>
 #include <cstring>
 #include <vector>
 
-// #include "grid.hpp"
 
 using namespace std;
 
@@ -189,14 +197,14 @@ class Team {        // Team with 1-3 heroes
     private:
     Hero** heroes;
     int counter;
-    // Square* location;   // θα δειχνει σε μια θεση προκαθορισμενη μεσα στον κόσμο
+    Square* location;   // θα δειχνει σε μια θεση προκαθορισμενη μεσα στον κόσμο
 
     public:
     Team(int);
     ~Team();
     void print();
-    // void move(Square*);
-    // Square* getLocation()const;
+    void move(Square*);
+    Square* getLocation()const;
     Hero** getHeroes()const;
     int getCounter()const;
     void joinTeam(Hero*);
@@ -315,3 +323,6 @@ class Lightingspell: public Spell {
     void print();
     void cast(int,Monster*);
 };
+
+
+#endif

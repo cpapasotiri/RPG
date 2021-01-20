@@ -1,7 +1,10 @@
+// #pragma once
+
 #include <iostream>
 #include <cstring>
 #include <vector>
 
+#include "living.hpp"
 #include "grid.hpp"
 
 using namespace std;
@@ -32,7 +35,7 @@ class Game{
         Grid* getGrid()const;
 
         void play();        // κυρια συναρτηση λειτουργιας του παιχνιδιου
-        void move(string);        // συνάρτηση κινησης 
+        void move(string);  // συνάρτηση κινησης 
         void buy();         // αγορα item & αοποθηκευση του στο vector του ηρωα
         void sell();        // πωληση αντικειμένου που εχει αγοράσει ήδη ο ηρωας 
         void help();        // συνάρτηση εκτυπωσης συντομη ςπεριγραφήςε καθε εντολής που μπορει να δωσει ο παικτης
