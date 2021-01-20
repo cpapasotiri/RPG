@@ -203,9 +203,7 @@ void Game::help(){
     cout << "If you want to move right, please give: right" << endl;
     cout << "If you want to move left, please give: left" << endl;
     // cout << "WARNING: You can't move out of world" << endl;
-    
     cout << "If you want to stop playing the game, please give: stop" << endl;
-
 }
 
 void Game::startGame(){
