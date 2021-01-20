@@ -234,7 +234,7 @@ void Game::startGame(){
     string m;
     cout << "Please select where you want to move between up/down/right/left" << endl;
     cin >> m;
-    cout << "You selected:" << x << endl;
+    cout << "You selected:" << m << endl;
     while(m.compare("stop") != 0){
         if((m.compare("up") != 0) || (m.compare("down") != 0) || (m.compare("right") != 0) || (m.compare("left") != 0)){
             move(m);
@@ -244,7 +244,7 @@ void Game::startGame(){
         }
         cout << "Please select where you want to move" << endl;
         cin >> m;
-        cout << "You selected:" << x << endl;
+        cout << "You selected:" << m << endl;
     }
     stopGame();
 }

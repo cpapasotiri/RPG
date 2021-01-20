@@ -633,7 +633,7 @@ Team::Team(int num){
 	// cout << "A New team has been created" << endl;
     heroes = new Hero*[num];
     counter = 0;
-    location = NULL;
+    // location = NULL;
 }
 
 Team::~Team(){
@@ -649,13 +649,13 @@ void Team::print(){
     }
 }
 
-void Team::move(Square* square)const{
-	location = square;
-}
+// void Team::move(Square* square)const{
+// 	location = square;
+// }
 
-Square* Team::getLocation()const{
-	return location;
-}
+// Square* Team::getLocation()const{
+// 	return location;
+// }
 
 Hero** Team::getHeroes()const{
     return heroes;

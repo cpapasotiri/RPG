@@ -2,6 +2,8 @@
 #include <cstring>
 #include <vector>
 
+// #include "grid.hpp"
+
 using namespace std;
 
 // classes definitions
@@ -142,7 +144,7 @@ class Monster : public Living{
         int damage;     // damage it causes
         int defense;    // defense it has
         int attack;     // avoid attack
-         vector<Firespell*> f;
+        vector<Firespell*> f;
         vector<Icespell*> i;
         vector<Lightingspell*> l;
 
@@ -194,7 +196,7 @@ class Team {        // Team with 1-3 heroes
     private:
     Hero** heroes;
     int counter;
-    Square* location;   // θα δειχνει σε μια θεση προκαθορισμενη μεσα στον κόσμο
+    // Square* location;   // θα δειχνει σε μια θεση προκαθορισμενη μεσα στον κόσμο
 
     public:
     Team(int);
@@ -202,8 +204,8 @@ class Team {        // Team with 1-3 heroes
 
     void print();
     
-    void move(Square*);
-    Square* getLocation()const;
+    // void move(Square*);
+    // Square* getLocation()const;
 
     Hero** getHeroes()const;
     int getCounter()const;
@@ -286,6 +288,7 @@ class Spell: public Item {
     int getMin()const;
     int getReduction()const;
     int getRounds()const;
+    int reduce();
     virtual void print();
     virtual void cast(int,Monster*);
 };
