@@ -197,14 +197,6 @@ void Game::move(string m){
     }
 }
 
-void Game::buy(){
-    
-}
-
-void Game::sell(){
-
-}
-
 void Game::help(){
     cout << "If you want to move up, please give: up" << endl;
     cout << "If you want to move down, please give: down" << endl;
