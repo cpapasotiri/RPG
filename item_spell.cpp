@@ -150,6 +150,11 @@ int Spell::getRounds()const{
     return rounds;
 }
 
+int Spell::reduce(){
+	rounds--;
+	return rounds;
+}
+
 void Spell::print(){
     cout << "Spell: " << name <<endl;
     cout << "Price: " << price << endl;
@@ -161,7 +166,9 @@ void Spell::print(){
 
 void Spell::cast(int dexterity,Monster* a){
 	int dmg=dexterity + mindamage;
-	if(dmg>maxdamage) dmg=maxdamage;
+	if(dmg>maxdamage){
+        dmg=maxdamage;
+    }
 	a->changeHealth(-dmg);
 }
 
@@ -169,6 +176,12 @@ Icespell::Icespell(string name,int price,int leastlevel,int energy,int min,int m
 Spell(name,price,leastlevel,energy,min,max,a,b)
 {
     // cout << "A new icespell has been created" << endl;
+}
+
+Icespell::Icespell(const Icespell &p2):
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
+{
+	cout << "A new Icespell has been created by coping" << endl;
 }
 
 Icespell::~Icespell(){
@@ -192,6 +205,12 @@ Spell(name,price,leastlevel,energy,min,max,a,b)
     // cout << "A new icespell has been created" << endl;
 }
 
+Firespell::Firespell(const Firespell &p2):
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
+{
+	cout << "A new Firespell has been created by coping" << endl;
+}
+
 Firespell::~Firespell(){
     cout << "An icespell to be destroyed" << endl;
 }
@@ -213,6 +232,12 @@ Spell(name,price,leastlevel,energy,min,max,a,b)
     // cout << "A new Lightingspell has been created" << endl;
 }
 
+Lightingspell::Lightingspell(const Lightingspell &p2):
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
+{
+	cout << "A new Lightingspell has been created by coping" << endl;
+}
+
 Lightingspell::~Lightingspell(){
     cout << "An Lightingspell to be destroyed" << endl;
 }
@@ -226,27 +251,4 @@ void Lightingspell::print(){
 void Lightingspell::cast(int dexterity,Monster* a){
 		Spell::cast(dexterity,a);
 		a->setMonster(a->getDamage(),a->getDefense(),(a->getAttack()-reduction));		//borei kai na ginei allios to skeftomai akoma
-}
-
-Icespell::Icespell(const Icespell &p2):
-Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
-{
-	cout << "A new Icespell has been created by coping" << endl;
-}
-
-Firespell::Firespell(const Firespell &p2):
-Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
-{
-	cout << "A new Firespell has been created by coping" << endl;
-}
-
-Lightingspell::Lightingspell(const Lightingspell &p2):
-Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
-{
-	cout << "A new Lightingspell has been created by coping" << endl;
-}
-
-int Spell::reduce(){
-	rounds--;
-	return rounds;
 }

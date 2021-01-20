@@ -48,9 +48,12 @@ bool Living::checkHealth(){
 
 void Living::changeHealth(int x){
     healthPower += x;
-	if(healthPower<0) healthPower=0;    //nomizo prepei na tsekaroume kai afto edo
-	if(healthPower>100) healthPower=100;  // kai afto
-	
+	if(healthPower<0){ 
+		healthPower=0;    //nomizo prepei na tsekaroume kai afto edo
+	}
+	if(healthPower>100){ 
+		healthPower=100;  // kai afto
+	}	
 }
 
 
@@ -137,12 +140,12 @@ void Hero::checkInventory()const{
         weapon.at(j)->print();
     }
     for(int j=0; j<armor.size(); j++){
-         counter++;
+        counter++;
         cout << "Item " << counter << ":" << endl;
         armor.at(j)->print();
     }
     for(int j=0; j<potion.size(); j++){
-         counter++;
+        counter++;
         cout << "Item " << counter << ":" << endl;
         potion.at(j)->print();
     }
@@ -173,30 +176,36 @@ void Hero::checkInventory()const{
 	else{
 		cout << "None" << endl;
 	}
-
-
 }
 
 void Hero::buy(Weapon* a){
-    if(money<(a->getPrice())) return;
-     weapon.push_back(a);
-     money=money - (a->getPrice());
+    if(money<(a->getPrice())){
+		return;
+	}
+    weapon.push_back(a);
+    money=money - (a->getPrice());
 }
 
 void Hero::buy(Armor* a){
-    if(money<(a->getPrice())) return;
+    if(money<(a->getPrice())){
+		return;
+	}
     armor.push_back(a);
-     money=money - (a->getPrice());
+    money=money - (a->getPrice());
 }
 
 void Hero::buy(Potion* a){
-     if(money<(a->getPrice())) return;
-    potion.push_back(a);
-     money=money - (a->getPrice());
+    if(money<(a->getPrice())){ 
+		return;
+	}
+	potion.push_back(a);
+    money=money - (a->getPrice());
 }
 
 void Hero::buy(Spell* a){
-    if(money<(a->getPrice())) return;
+    if(money<(a->getPrice())){
+		return;
+	}
     spell.push_back(a);
     money=money - (a->getPrice());
 }
@@ -204,50 +213,46 @@ void Hero::buy(Spell* a){
 void Hero::sell(Weapon* a){
     int j=0;
     for(j=0; j<weapon.size(); j++){
-            if(weapon.at(j)==a) {
-		 weapon.erase(weapon.begin()+j);
-   		 money=money + (a->getPrice()/2);        //poleite sti misi timi
-		 break;
+		if(weapon.at(j)==a) {
+			weapon.erase(weapon.begin()+j);
+   			money=money + (a->getPrice()/2);        //poleite sti misi timi
+			break;
 	    }
     }
-   
 }
 
 void Hero::sell(Armor* a){
     int j=0;
     for(j=0; j<armor.size(); j++){
-            if(armor.at(j)==a) {
-		armor.erase(armor.begin()+j);
+        if(armor.at(j)==a) {
+			armor.erase(armor.begin()+j);
     		money=money + (a->getPrice()/2);        //poleite sti misi timi
-		break;
+			break;
 	    }
-		 
     }
-   
 }
 
 void Hero::sell(Potion* a){
     int j=0;
     for(j=0; j<potion.size(); j++){
-            if(potion.at(j)==a) {
-		potion.erase(potion.begin()+j);
+        if(potion.at(j)==a) {
+			potion.erase(potion.begin()+j);
     		money=money + (a->getPrice()/2);        //poleite sti misi timi
-		break;
+			break;
 	    }
 	}
-    }
+}
    
 
 void Hero::sell(Spell* a){
     int j=0;
     for(j=0; j<spell.size(); j++){
-            if(spell.at(j)==a){
-		 spell.erase(spell.begin()+j);
-   		 money=money + (a->getPrice()/2);        //poleite sti misi timi
-		 break;
+		if(spell.at(j)==a){
+			spell.erase(spell.begin()+j);
+   			money=money + (a->getPrice()/2);        //poleite sti misi timi
+			break;
 	    }
     }
-   
 }
 
 void Hero::use(Potion* a){
@@ -265,20 +270,25 @@ void Hero::use(Potion* a){
     }
     int j=0;
     for(j=0; j<potion.size(); j++){
-            if(potion.at(j)==a) break;
+        if(potion.at(j)==a){
+			break;
+		}
     }
     potion.erase(potion.begin()+j);
-
 }
 
 
 void Hero::regen(){
 	if(healthPower>0){
-	healthPower=healthPower + 5;
-	magicPower=magicPower + 5;
-	if(magicPower>50) magicPower=50;        
-	if(healthPower>100) healthPower=100;
-}
+		healthPower=healthPower + 5;
+		magicPower=magicPower + 5;
+		if(magicPower>50){
+			magicPower=50;
+		}        
+		if(healthPower>100){
+			healthPower=100;
+		}
+	}
 }
 
 void Hero::equipArmor(Armor* a){
@@ -322,19 +332,24 @@ void Hero::defend(int damage){                 //otan dexetai epithsei apo teras
 	if(v1<agility){                              //analoga me to agility borei na apofigei kapoia epithesi
 		cout << "Hero " << name << " avoided the attack" << endl;
 	}
-	else {
+	else{
 		int temp=0;
-		if(arm!=NULL) temp=arm->getDefence();
+		if(arm!=NULL){
+			temp=arm->getDefence();
+		}
 		healthPower= healthPower - (damage - temp);
 	}
 }
 
 void Hero::attack(Monster* a){              //kanoniki epithesi se teras
 	int dmg=strenght;
-	if(w1!=NULL) dmg=dmg + w1->getDamage();
-	if(w2!=NULL) dmg=dmg + w2 ->getDamage();
+	if(w1!=NULL){
+		dmg=dmg + w1->getDamage();
+	}
+	if(w2!=NULL){
+		dmg=dmg + w2 ->getDamage();
+	}
 	a->defend(dmg);
-	
 }
 
 void Hero::castSpell(Monster* a){
@@ -349,7 +364,6 @@ void Hero::castSpell(Monster* a){
 	Spell* ptr=spell[w-1];
 	if(ptr->getEnergy()<magicPower){
 		ptr->cast(dexterity,a);
-		
 	}
 	else {
 		cout << "Not enough magic power" << endl;    //prepei na doume ti tha kanoume se afti ti periptosi
@@ -372,14 +386,66 @@ int Hero::usePotion(){                  //epistrefei 0 an o iroas den exei kanen
 	return 1;
 }
 
-void Hero::defeat(){
-	money=money/2;
-}
-
 void Hero::victory(int num){
 	money=money + (10*level*num);
 	experience=experience + (20*level*num);             //endeiktika noumera an thes allazoun
 }
+
+void Hero::defeat(){
+	money=money/2;
+}
+
+void Hero::equip(){
+	cout << "What do you want to equip?(weapon or armor)" << endl;
+	string s;
+	cin >> s;
+	if(s=="weapon"){
+		if(weapon.size()==0){
+			cout << "No available weapons!" << endl;
+			return;
+		}
+		cout << "Printing heros's weapons" << endl;
+		for(int j=0; j<weapon.size(); j++){
+			cout << "Weapon 1:" << endl;
+			weapon.at(j)->print();
+		}
+		cout << "Which weapon do you want to equip?(Give its number)" << endl;
+		int k;
+		cin >> k;
+		while(k>weapon.size()){
+			cout << "Please give a correct number!" << endl;
+			cin>> k;
+		}
+		cout << "Do you want to use it as a primary or secondary weapon?" << endl;
+		cin >> s;
+		if(s=="primary"){
+			this->equipWeapon(weapon.at(k-1));
+		}
+		else {
+			this->equipSecondaryWeapon(weapon.at(k-1));
+		}
+	}
+	else if(s=="armor"){
+		if(armor.size()==0){
+			cout << "No available armors!" << endl;
+			return;
+		}
+		cout << "Printing hero's armors" << endl;
+		for(int j=0; j<armor.size(); j++){
+			cout << "Armor 1:" << endl;
+			armor.at(j)->print();
+		}
+		cout << "Which armor do you want to equip?(Give its number)" << endl;
+		int k;
+		cin >> k;
+		while(k>armor.size()){
+			cout << "Please give a correct number!" << endl;
+			cin>> k;
+		}
+		this->equipArmor(armor.at(k-1));
+	}
+}
+
 
 Warrior::Warrior(string n)
 : Hero(n, 25, 12, 10){
@@ -392,15 +458,15 @@ Warrior::~Warrior(){
 
 void Warrior::print(){
 	cout << "Category: Warrior" << endl;
-	cout << "Name= " << Living::name << endl
-         << "level = " << Living::level << endl
-         << "healthPower = " << Living::getHelthPower() << endl
-         << "magicPower = " << magicPower << endl 
-         << "strenght = " << strenght << endl
-         << "dexterity = " << dexterity << endl
-         << "agility = " << agility << endl
-         << "money = " << money << endl
-         << "experience = " << experience << endl;
+	cout << "Name= " << Living::name << endl;
+    cout << "level = " << Living::level << endl;
+    cout << "healthPower = " << Living::getHelthPower() << endl;
+    cout << "magicPower = " << magicPower << endl ;
+    cout << "strenght = " << strenght << endl;
+    cout << "dexterity = " << dexterity << endl;
+    cout << "agility = " << agility << endl;
+    cout << "money = " << money << endl;
+    cout << "experience = " << experience << endl;
 } 
 
 void Warrior::levelUp(){
@@ -422,7 +488,9 @@ void Warrior::levelUp(){
 	else {
 		cout << "Hero " << name << " is at max level" << endl;
 	}
-	if(healthPower==0) healthPower=50;
+	if(healthPower==0){
+		healthPower=50;
+	}
 }
 
 
@@ -437,15 +505,15 @@ Sorcerer::~Sorcerer(){
 
 void Sorcerer::print(){
 	cout << "Category: Sorcerer" << endl;
-	cout << "Name= " << Living::getName() << endl
-         << "level = " << Living::getLevel() << endl
-         << "healthPower = " << Living::getHelthPower() << endl
-         << "magicPower = " << magicPower << endl 
-         << "strenght = " << strenght << endl
-         << "dexterity = " << dexterity << endl
-         << "agility = " << agility << endl
-         << "money = " << money << endl
-         << "experience = " << experience << endl;
+	cout << "Name= " << Living::getName() << endl;
+	cout << "level = " << Living::getLevel() << endl;
+	cout << "healthPower = " << Living::getHelthPower() << endl;
+	cout << "magicPower = " << magicPower << endl ;
+	cout << "strenght = " << strenght << endl;
+	cout << "dexterity = " << dexterity << endl;
+	cout << "agility = " << agility << endl;
+	cout << "money = " << money << endl;
+	cout << "experience = " << experience << endl;
 }
 
 void Sorcerer::levelUp(){
@@ -467,7 +535,9 @@ void Sorcerer::levelUp(){
 	else {
 		cout << "Hero " << name << " is at max level" << endl;
 	}
-	if(healthPower==0) healthPower=50;
+	if(healthPower==0){
+		healthPower=50;
+	}
 }
 
 
@@ -482,15 +552,15 @@ Paladin::~Paladin(){
 
 void Paladin::print(){
 	cout << "Category: Paladin" << endl;
-	cout << "Name= " << Living::getName() << endl
-         << "level = " << Living::getLevel() << endl
-         << "healthPower = " << Living::getHelthPower() << endl
-         << "magicPower = " << magicPower << endl 
-         << "strenght = " << strenght << endl
-         << "dexterity = " << dexterity << endl
-         << "agility = " << agility << endl
-         << "money = " << money << endl
-         << "experience = " << experience << endl;
+	cout << "Name= " << Living::getName() << endl;
+    cout << "level = " << Living::getLevel() << endl;
+    cout << "healthPower = " << Living::getHelthPower() << endl;
+	cout << "magicPower = " << magicPower << endl ;
+	cout << "strenght = " << strenght << endl;
+	cout << "dexterity = " << dexterity << endl;
+	cout << "agility = " << agility << endl;
+	cout << "money = " << money << endl;
+	cout << "experience = " << experience << endl;
 }
 
 void Paladin::levelUp(){
@@ -512,7 +582,9 @@ void Paladin::levelUp(){
 	else {
 		cout << "Hero " << name << " is at max level" << endl;
 	}
-	if(healthPower==0) healthPower=50;
+	if(healthPower==0){
+		healthPower=50;
+	}
 }
 
 
@@ -547,8 +619,12 @@ void Monster::setMonster(int a,int b,int c){
 }
 
 void Monster::regen(){
-	if(healthPower>0) healthPower=healthPower + 5;
-	if(healthPower>100) healthPower=100;
+	if(healthPower>0){
+		healthPower=healthPower + 5;
+	}
+	if(healthPower>100){
+		healthPower=100;
+	}
 	for(int j=0; j<i.size(); j++){
 		if(i.at(j)->reduce()==0) {
 			i.erase(i.begin() + j);
@@ -563,6 +639,68 @@ void Monster::regen(){
 		if(l.at(j)->reduce()==0) {
 			l.erase(l.begin() + j);
 		}
+	}
+}
+
+void Monster::put(Icespell* a){
+	Icespell* w=new Icespell(*a);
+	i.push_back(w);
+}
+
+void Monster::put(Firespell* a){
+	Firespell* w=new Firespell(*a);
+	f.push_back(w);
+}
+
+void Monster::put(Lightingspell* a){
+	Lightingspell* w= new Lightingspell(*a);
+	l.push_back(w);
+}
+
+void Monster::clear(){
+	l.clear();
+	f.clear();
+	i.clear();
+}
+
+void Monster::destroy(Hero* a){
+	int temp=damage;
+	for(int j=0; j<i.size(); j++){
+		temp=temp - (i.at(j)->getReduction());
+	}
+	if(temp<0){
+		temp=0;                     // nomizo prepei na elegxoume kai ayto 
+	}
+	a->defend(temp);
+}
+
+void Monster::defend(int damage){
+	int temp1=attack;
+	int temp2=defense;
+	for(int j=0; j<f.size(); j++){
+		temp2=temp2 - (f.at(j)->getReduction());
+	}
+	for(int j=0; j<l.size(); j++){
+		temp1=temp1 - (l.at(j)->getReduction());
+	}
+	int v1;
+	if(temp1<0){
+		temp1=0;
+	}
+	if(temp2<0){
+		temp2=0;
+	}
+	damage=damage - temp2;
+	if(damage<0){
+		damage=0;
+	}
+	v1=rand() % 100;
+	if(temp1>v1){
+		cout << "The monster avoided the attack" << endl;
+		return;
+	}
+	else{
+		healthPower=healthPower - damage ;
 	}
 }
 
@@ -675,109 +813,3 @@ void Team::displayStats()const{
         heroes[j]->print();
     }
 }
-
-void Hero::equip(){
-	cout << "What do you want to equip?(weapon or armor)" << endl;
-	string s;
-	cin >> s;
-	if(s=="weapon"){
-		if(weapon.size()==0){
-			cout << "No available weapons!" << endl;
-			return;
-		}
-		cout << "Printing heros's weapons" << endl;
-		for(int j=0; j<weapon.size(); j++){
-			cout << "Weapon 1:" << endl;
-			weapon.at(j)->print();
-		}
-		cout << "Which weapon do you want to equip?(Give its number)" << endl;
-		int k;
-		cin >> k;
-		while(k>weapon.size()){
-			cout << "Please give a correct number!" << endl;
-			cin>> k;
-		}
-		cout << "Do you want to use it as a primary or secondary weapon?" << endl;
-		cin >> s;
-		if(s=="primary"){
-			this->equipWeapon(weapon.at(k-1));
-		}
-		else {
-			this->equipSecondaryWeapon(weapon.at(k-1));
-		}
-	}
-	else if(s=="armor"){
-		if(armor.size()==0){
-			cout << "No available armors!" << endl;
-			return;
-		}
-		cout << "Printing hero's armors" << endl;
-		for(int j=0; j<armor.size(); j++){
-			cout << "Armor 1:" << endl;
-			armor.at(j)->print();
-		}
-		cout << "Which armor do you want to equip?(Give its number)" << endl;
-		int k;
-		cin >> k;
-		while(k>armor.size()){
-			cout << "Please give a correct number!" << endl;
-			cin>> k;
-		}
-		this->equipArmor(armor.at(k-1));
-	}
-}
-
-void Monster::put(Icespell* a){
-	Icespell* w=new Icespell(*a);
-	i.push_back(w);
-}
-
-void Monster::put(Firespell* a){
-	Firespell* w=new Firespell(*a);
-	f.push_back(w);
-}
-
-void Monster::put(Lightingspell* a){
-	Lightingspell* w= new Lightingspell(*a);
-	l.push_back(w);
-}
-
-void Monster::clear(){
-	l.clear();
-	f.clear();
-	i.clear();
-}
-
-void Monster::destroy(Hero* a){
-	int temp=damage;
-	for(int j=0; j<i.size(); j++){
-		temp=temp - (i.at(j)->getReduction());
-	}
-	if(temp<0) temp=0;                     // nomizo prepei na elegxoume kai ayto 
-	a->defend(temp);
-}
-
-void Monster::defend(int damage){
-	int temp1=attack;
-	int temp2=defense;
-	for(int j=0; j<f.size(); j++){
-		temp2=temp2 - (f.at(j)->getReduction());
-	}
-	for(int j=0; j<l.size(); j++){
-		temp1=temp1 - (l.at(j)->getReduction());
-	}
-	int v1;
-	if(temp1<0) temp1=0;
-	if(temp2<0) temp2=0;
-	damage=damage - temp2;
-	if(damage<0) damage=0;
-	v1=rand() % 100;
-	if(temp1>v1){
-		cout << "The monster avoided the attack" << endl;
-		return;
-	}
-	else{
-		healthPower=healthPower - damage ;
-	}
-}
-
