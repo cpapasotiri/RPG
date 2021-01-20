@@ -1,16 +1,30 @@
-// #pragma once
-#ifndef __LIVING_HPP__
+#ifndef GRID_HPP
+#define GRID_HPP
 #include "living.hpp"
-#endif
-
-#ifndef __GRID_HPP__
-#define __GRID_HPP__
-
-#include <iostream>
-#include <cstring>
+#include "item_spell.hpp"
 #include <vector>
 
 using namespace std;
+class Living;
+class Hero;
+class Warrior;
+class Sorcerer;
+class Paladin;
+class Monster;
+class Dragon;
+class Exoskeleton;
+class Spirit;
+class Team;
+
+class Item;
+class Weapon;	
+class Armor;	
+class Potion;	 
+class Spell;	
+class Icespell;	
+class Firespell;	
+class Lightingspell;
+
 
 class Grid;
 class Square;

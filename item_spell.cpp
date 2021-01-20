@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 
-#include "living.hpp"
+#include "item_spell.hpp"
 
 using namespace std;
 

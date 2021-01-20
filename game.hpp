@@ -1,10 +1,8 @@
-// #pragma once
-
 #include <iostream>
 #include <cstring>
 #include <vector>
-
 #include "living.hpp"
+#include "item_spell.hpp"
 #include "grid.hpp"
 
 using namespace std;

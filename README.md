@@ -16,7 +16,7 @@ g++ -o game living.o item_spell.o grid.o game.o main.o
 γράφοντας στο terminal: make
  
 ## ΠΕΡΙΓΡΑΦΗ ΥΛΟΠΟΙΗΣΕΩΝ: (Role Playing Game)
-- Χριστίνα: Έστω ότι το πρόγραμμα κάνει compile. Φτιάχνω τα move και μετα θα βρω λύση για το πως θα διορθωθεί το πρόβλημα με τα includes.
+- Χριστίνα:
 
 - Γιώργος:
 
