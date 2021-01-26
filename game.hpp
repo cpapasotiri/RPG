@@ -7,7 +7,7 @@
 
 using namespace std;
 
-// classes definitions
+// class definition
 class Game;
 
 class Game{
@@ -19,6 +19,7 @@ class Game{
         vector<Potion*> potions;
         vector<Spell*> spells; 
         Grid* grid;
+        Team* team;
 
     public:
         Game(vector<string>, vector<string>, vector<string>, vector<string>, vector<string>);
@@ -31,10 +32,11 @@ class Game{
         vector<Potion*> getPotions()const;
         vector<Spell*> getSpells()const;
         Grid* getGrid()const;
+        Team* getTeam()const;
 
         void play();        // κυρια συναρτηση λειτουργιας του παιχνιδιου
-        void move(string);  // συνάρτηση κινησης 
-        void help();        // συνάρτηση εκτυπωσης συντομη ςπεριγραφήςε καθε εντολής που μπορει να δωσει ο παικτης
+        void move(string);
+        void help();        // συνάρτηση εκτυπωσης συντομης περιγραφής καθε εντολής που μπορει να δωσει ο παικτης
         void startGame();
         void stopGame();
         void printHeroes();

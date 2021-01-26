@@ -204,7 +204,7 @@ class Team {        // Team with 1-3 heroes
     Team(int);
     ~Team();
     void print();
-    void move(Square*);
+    void setLocation(Square*);
     Square* getLocation()const;
     Hero** getHeroes()const;
     int getCounter()const;

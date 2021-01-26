@@ -787,13 +787,13 @@ void Team::print(){
     }
 }
 
-// void Team::move(Square* square)const{
-// 	location = square;
-// }
+void Team::setLocation(Square* square){
+	location = square;
+}
 
-// Square* Team::getLocation()const{
-// 	return location;
-// }
+Square* Team::getLocation()const{
+	return location;
+}
 
 Hero** Team::getHeroes()const{
     return heroes;

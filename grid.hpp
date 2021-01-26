@@ -5,6 +5,7 @@
 #include <vector>
 
 using namespace std;
+
 class Living;
 class Hero;
 class Warrior;
@@ -39,10 +40,12 @@ class Grid{
         vector<Monster*> monsters;
 
     public:
-        Grid(vector<Hero*>, vector<Monster*>, vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>);
+        Grid(vector<Hero*>, vector<Monster*>, vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>, Team*);
         ~Grid();
         void displayMap();
-        Square*** getWorld()const; 
+        void move(Team*, string);
+        Square*** getWorld()const;
+        Square* getSquare(int, int)const;
         vector<Hero*> getHeroes()const;
         vector<Monster*> getMonsters()const;
 };
@@ -51,18 +54,22 @@ class Grid{
 class Square{
     private:
         int type;
+        int i;
+        int j;
 
     public:
-        Square(int);
+        Square(int, int, int);
         ~Square();
         virtual void print()const=0;
         int getType()const;
+        int getI()const;
+        int getJ()const;
 };
 
 
 class NonAccessible : public Square{
     public:
-        NonAccessible();
+        NonAccessible(int, int);
         ~NonAccessible();
         void print()const;
 };
@@ -78,7 +85,7 @@ class Market : public Square{
         int items;
 
     public:
-        Market(vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>);
+        Market(vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>, int, int);
         ~Market();
 
         void print()const;
@@ -103,7 +110,7 @@ class Common : public Square{
         Team* team;
 
     public:
-        Common();
+        Common(int, int);
         ~Common();
         void print()const;
         void enterTeam(Team*);

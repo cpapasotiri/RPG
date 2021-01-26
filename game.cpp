@@ -178,23 +178,16 @@ Grid* Game::getGrid()const{
     return grid;
 }
 
+Team* Game::getTeam()const{
+    return team;
+}
+
 void Game::play(){
 
 }
 
 void Game::move(string m){
-    if(m.compare("up") != 0){
-
-    }
-    else if(m.compare("down") != 0){
-
-    }
-    else if(m.compare("right") != 0){
-
-    }
-    else if(m.compare("left") != 0){
-
-    }
+    grid->move(m);
 }
 
 void Game::help(){
@@ -210,7 +203,7 @@ void Game::startGame(){
 	cout<< "How many heroes do you want ? (1-3)" << endl;
 	int num = 0;
 	cin >> num;
-	Team* team = new Team(num);
+	team = new Team(num);
 	int k;
 	this->printHeroes();
 	for(int j=0; j<num; j++){       // j<num πρεπει να ειναι ???
