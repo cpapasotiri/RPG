@@ -60,32 +60,42 @@ void Grid::displayMap(){
 }
 
 void Grid::move(Team* team, string m){
-    if(m.compare("up") != 0){
-        Square* s;
-        if(team->getLocation()->getType() != 0){
-            s = world->getSquare(team->getLocation()->getI(), team->getLocation()->getJ());
-        }
-        else{
-            cout << "You can't move int a Non Accessible Square" << endl; 
-        }
-    }
-    else if(m.compare("down") != 0){
+    Square* curr = team->getLocation();
+    int i = curr->getI();
+    int j = curr->getJ();
 
+    Square* move;
+    int move_type;
+    if(m.compare("up") == 0){
+        move = world[i][j-1];
+        move_type = move->getType();
     }
-    else if(m.compare("right") != 0){
-
+    else if(m.compare("down") == 0){
+        move = world[i][j+1];
+        move_type = move->getType();
     }
-    else if(m.compare("left") != 0){
+    else if(m.compare("right") == 0){
+        move = world[i+1][j];
+        move_type = move->getType();
+    }
+    else if(m.compare("left") == 0){
+        move = world[i-1][j];
+        move_type = move->getType();
+    }
 
+    if(move_type != 0){                
+        curr->exitTeam();
+        team->setLocation(move);
+        move->enterTeam(team);
+        move->start();
+    }
+    else{
+        cout << "You can't move into a Non Accessible Square" << endl; 
     }
 }
 
 Square*** Grid::getWorld()const{
     return world;
-}
-
-Square* getSquare(int i, int j)const{
-    return world[i][j];
 }
 
 vector<Hero*> Grid::getHeroes()const{
@@ -134,6 +144,13 @@ void NonAccessible::print()const{
     // cout << "A Non Accessible square!" << endl;
     cout << 0;
 }
+
+void NonAccessible::enterTeam(Team* t){}
+
+void NonAccessible::exitTeam(){}
+
+void NonAccessible::start(){}
+
 
 
 Market::Market(vector<Weapon*> w, vector<Armor*> a, vector<Potion*> p, vector<Spell*> s, int x, int y)
@@ -325,6 +342,10 @@ void Market::exitTeam(){
     team = NULL;
 }
 
+void Market::start(){
+    menu();
+}
+
 vector<Weapon*> Market::getWeapons()const{
     return weapons;
 }
@@ -374,6 +395,10 @@ void Common::enterTeam(Team* t){
 
 void Common::exitTeam(){
     team = NULL;
+}
+
+void Common::start(){
+    // start fight
 }
 
 Team* Common::getTeam()const{

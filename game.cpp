@@ -187,7 +187,7 @@ void Game::play(){
 }
 
 void Game::move(string m){
-    grid->move(m);
+    grid->move(team, m);
 }
 
 void Game::help(){
