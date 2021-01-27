@@ -34,7 +34,6 @@ class Game{
         Grid* getGrid()const;
         Team* getTeam()const;
 
-        void play();        // κυρια συναρτηση λειτουργιας του παιχνιδιου
         void move(string);
         void help();        // συνάρτηση εκτυπωσης συντομης περιγραφής καθε εντολής που μπορει να δωσει ο παικτης
         void startGame();

@@ -182,10 +182,6 @@ Team* Game::getTeam()const{
     return team;
 }
 
-void Game::play(){
-
-}
-
 void Game::move(string m){
     grid->move(team, m);
 }

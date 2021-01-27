@@ -32,8 +32,8 @@ spells.txt -> 30 spells (3*10) -> Ice, Fire, Light 1/level
 
 ## Πρέπει να προσθέσουμε
 - Game
-- Grid
-- Move 
+- start common function
+- αλλαγη στα νουμερα οπου υπαρχουν σχολια
 
 ## Πρέπει να διαγράψουμε 
 - test.cpp
