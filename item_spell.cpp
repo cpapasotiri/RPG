@@ -31,8 +31,7 @@ int Item::getLeastlevel()const{
 
 
 Weapon::Weapon(string name,int price,int leastlevel,int dmg,int i):
-Item(name,price,leastlevel)
-{
+Item(name,price,leastlevel){
     damage=dmg;
     hands=i;
     // cout<< "A new Weapon has been created" << endl;
@@ -55,13 +54,12 @@ void Weapon::print(){
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
     cout << "Damage: " << damage << endl;
-    cout << "Hands: " << hands << endl;
+    cout << "Hands: " << hands << endl << endl;
 }
 
 
 Armor::Armor(string name,int price, int leastlevel,int defence):
-Item(name,price,leastlevel)
-{   
+Item(name,price,leastlevel){   
     this->defence=defence;
     // cout << "A new armor has been created" << endl;
 }
@@ -78,13 +76,12 @@ void Armor::print(){
     cout << "Armor: " << name <<endl;
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
-    cout << "Defemce: " << defence << endl;
+    cout << "Defemce: " << defence << endl << endl;
 }
 
 
 Potion::Potion(string name,int price,int leastlevel,string abil,int amount):
-Item(name,price,leastlevel)
-{
+Item(name,price,leastlevel){
     ability=abil;
     this->amount=amount;
     flag=0;
@@ -116,8 +113,7 @@ void Potion::print(){
 
 
 Spell::Spell(string name,int price,int leastlevel,int en,int min,int max,int a,int b):
-Item(name,price,leastlevel)
-{
+Item(name,price,leastlevel){
     energy=en;
     maxdamage=max;
     mindamage=min;
@@ -160,7 +156,7 @@ void Spell::print(){
     cout << "Price: " << price << endl;
     cout << "Minimum level: " << leastlevel << endl;
     cout << "Energy needed: " << energy << endl;
-    cout << "Range of damage: " << mindamage << "-" << maxdamage << endl;
+    cout << "Range of damage: " << mindamage << "-" << maxdamage << endl << endl;
     
 }
 
@@ -173,14 +169,12 @@ void Spell::cast(int dexterity,Monster* a){
 }
 
 Icespell::Icespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
-Spell(name,price,leastlevel,energy,min,max,a,b)
-{
+Spell(name,price,leastlevel,energy,min,max,a,b){
     // cout << "A new icespell has been created" << endl;
 }
 
 Icespell::Icespell(const Icespell &p2):
-Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
-{
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1){
 	cout << "A new Icespell has been created by coping" << endl;
 }
 
@@ -191,7 +185,7 @@ Icespell::~Icespell(){
 void Icespell::print(){
     Spell::print();
     cout << "Category: Ice spell "<< endl;
-    cout << "Spell effect: " << "It reduces enemy's damage by " << reduction << " for " << rounds << " rounds" << endl;
+    cout << "Spell effect: " << "It reduces enemy's damage by " << reduction << " for " << rounds << " rounds" << endl << endl;
 }
 
 void Icespell::cast(int dexterity,Monster* a){
@@ -200,14 +194,12 @@ void Icespell::cast(int dexterity,Monster* a){
 }
 
 Firespell::Firespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
-Spell(name,price,leastlevel,energy,min,max,a,b)
-{
+Spell(name,price,leastlevel,energy,min,max,a,b){
     // cout << "A new icespell has been created" << endl;
 }
 
 Firespell::Firespell(const Firespell &p2):
-Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
-{
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1){
 	cout << "A new Firespell has been created by coping" << endl;
 }
 
@@ -218,7 +210,7 @@ Firespell::~Firespell(){
 void Firespell::print(){
     Spell::print();
     cout << "Category: Fire spell "<< endl;
-    cout << "Spell effect: " << "It reduces enemy's defence by " << reduction << " for " << rounds << " rounds" << endl;
+    cout << "Spell effect: " << "It reduces enemy's defence by " << reduction << " for " << rounds << " rounds" << endl << endl;
 }
 
 void Firespell::cast(int dexterity,Monster* a){
@@ -227,14 +219,12 @@ void Firespell::cast(int dexterity,Monster* a){
 }
 
 Lightingspell::Lightingspell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
-Spell(name,price,leastlevel,energy,min,max,a,b)
-{
+Spell(name,price,leastlevel,energy,min,max,a,b){
     // cout << "A new Lightingspell has been created" << endl;
 }
 
 Lightingspell::Lightingspell(const Lightingspell &p2):
-Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1)
-{
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1){
 	cout << "A new Lightingspell has been created by coping" << endl;
 }
 
@@ -249,6 +239,6 @@ void Lightingspell::print(){
 }
 
 void Lightingspell::cast(int dexterity,Monster* a){
-		Spell::cast(dexterity,a);
-		a->setMonster(a->getDamage(),a->getDefense(),(a->getAttack()-reduction));		//borei kai na ginei allios to skeftomai akoma
+	Spell::cast(dexterity,a);
+	a->setMonster(a->getDamage(),a->getDefense(),(a->getAttack()-reduction));		//borei kai na ginei allios to skeftomai akoma
 }

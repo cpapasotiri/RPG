@@ -458,15 +458,15 @@ Warrior::~Warrior(){
 
 void Warrior::print(){
 	cout << "Category: Warrior" << endl;
-	cout << "Name= " << Living::name << endl;
-    cout << "level = " << Living::level << endl;
-    cout << "healthPower = " << Living::getHelthPower() << endl;
-    cout << "magicPower = " << magicPower << endl ;
-    cout << "strenght = " << strenght << endl;
-    cout << "dexterity = " << dexterity << endl;
-    cout << "agility = " << agility << endl;
-    cout << "money = " << money << endl;
-    cout << "experience = " << experience << endl;
+	cout << "Name: " << Living::name << endl;
+    cout << "level: " << Living::level << endl;
+    cout << "healthPower: " << Living::getHelthPower() << endl;
+    cout << "magicPower: " << magicPower << endl ;
+    cout << "strenght: " << strenght << endl;
+    cout << "dexterity: " << dexterity << endl;
+    cout << "agility: " << agility << endl;
+    cout << "money: " << money << endl;
+    cout << "experience: " << experience << endl << endl;
 } 
 
 void Warrior::levelUp(){
@@ -505,15 +505,15 @@ Sorcerer::~Sorcerer(){
 
 void Sorcerer::print(){
 	cout << "Category: Sorcerer" << endl;
-	cout << "Name= " << Living::getName() << endl;
-	cout << "level = " << Living::getLevel() << endl;
-	cout << "healthPower = " << Living::getHelthPower() << endl;
-	cout << "magicPower = " << magicPower << endl ;
-	cout << "strenght = " << strenght << endl;
-	cout << "dexterity = " << dexterity << endl;
-	cout << "agility = " << agility << endl;
-	cout << "money = " << money << endl;
-	cout << "experience = " << experience << endl;
+	cout << "Name: " << Living::getName() << endl;
+	cout << "level: " << Living::getLevel() << endl;
+	cout << "healthPower: " << Living::getHelthPower() << endl;
+	cout << "magicPower: " << magicPower << endl ;
+	cout << "strenght: " << strenght << endl;
+	cout << "dexterity: " << dexterity << endl;
+	cout << "agility: " << agility << endl;
+	cout << "money: " << money << endl;
+	cout << "experience: " << experience << endl << endl;
 }
 
 void Sorcerer::levelUp(){
@@ -552,15 +552,15 @@ Paladin::~Paladin(){
 
 void Paladin::print(){
 	cout << "Category: Paladin" << endl;
-	cout << "Name= " << Living::getName() << endl;
-    cout << "level = " << Living::getLevel() << endl;
-    cout << "healthPower = " << Living::getHelthPower() << endl;
-	cout << "magicPower = " << magicPower << endl ;
-	cout << "strenght = " << strenght << endl;
-	cout << "dexterity = " << dexterity << endl;
-	cout << "agility = " << agility << endl;
-	cout << "money = " << money << endl;
-	cout << "experience = " << experience << endl;
+	cout << "Name: " << Living::getName() << endl;
+    cout << "level: " << Living::getLevel() << endl;
+    cout << "healthPower: " << Living::getHelthPower() << endl;
+	cout << "magicPower: " << magicPower << endl ;
+	cout << "strenght: " << strenght << endl;
+	cout << "dexterity: " << dexterity << endl;
+	cout << "agility: " << agility << endl;
+	cout << "money: " << money << endl;
+	cout << "experience: " << experience << endl << endl;
 }
 
 void Paladin::levelUp(){
@@ -704,8 +704,7 @@ void Monster::defend(int damage){
 	}
 }
 
-void Monster::print()
-{
+void Monster::print(){
 	cout <<"Printing monster...." << endl;
 }
 
@@ -725,7 +724,7 @@ void Dragon::print(){
 	cout << "Health: " << healthPower << endl;
 	cout << "Damage: " << Monster::getDamage() << endl;
 	cout << "Defense: " << Monster::getDefense() << endl;
-	cout << "Agility: " << Monster::getAttack() << endl;
+	cout << "Agility: " << Monster::getAttack() << endl << endl;
 }
 
 Exoskeleton::Exoskeleton(string n) 
@@ -744,7 +743,7 @@ void Exoskeleton::print(){
 	cout << "Health: " << healthPower << endl;
 	cout << "Damage: " << Monster::getDamage() << endl;
 	cout << "Defense: " << Monster::getDefense() << endl;
-	cout << "Agility: " << Monster::getAttack() << endl;
+	cout << "Agility: " << Monster::getAttack() << endl << endl;
 }
 
 Spirit::Spirit(string n) 
@@ -763,7 +762,7 @@ void Spirit::print(){
 	cout << "Health: " << healthPower << endl;
 	cout << "Damage: " << Monster::getDamage() << endl;
 	cout << "Defense: " << Monster::getDefense() << endl;
-	cout << "Agility: " << Monster::getAttack() << endl;
+	cout << "Agility: " << Monster::getAttack() << endl << endl;
 }
 
 

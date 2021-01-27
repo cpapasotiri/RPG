@@ -51,10 +51,9 @@ int main(int argc, char* argv[]){
         }
     }
     file5.close();
-    
+
     Game* game = new Game(livingNames, weaponNames, armorNames, potionNames, spellNames);
-
-
+    game->start();
 
 
     livingNames.clear();

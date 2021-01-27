@@ -33,10 +33,10 @@ class Game{
         vector<Spell*> getSpells()const;
         Grid* getGrid()const;
         Team* getTeam()const;
-
+        void setTeam();
+        void start();
+        bool stop();
         void move(string);
-        void help();        // συνάρτηση εκτυπωσης συντομης περιγραφής καθε εντολής που μπορει να δωσει ο παικτης
-        void startGame();
-        void stopGame();
+        void help();
         void printHeroes();
 };

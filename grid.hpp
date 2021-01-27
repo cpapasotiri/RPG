@@ -44,6 +44,7 @@ class Grid{
         ~Grid();
         void displayMap();
         void move(Team*, string);
+        void setTeam(Team*);
         Square*** getWorld()const;
         vector<Hero*> getHeroes()const;
         vector<Monster*> getMonsters()const;
@@ -55,17 +56,19 @@ class Square{
         int type;
         int i;
         int j;
+        Team* team;
 
     public:
         Square(int, int, int);
         ~Square();
         virtual void print()const=0;
-        virtual void enterTeam(Team*)=0;
-        virtual void exitTeam()=0;
         virtual void start()=0;
+        void enterTeam(Team*);
+        void exitTeam();
         int getType()const;
         int getI()const;
         int getJ()const;
+        Team* getTeam()const;
 };
 
 
@@ -74,8 +77,6 @@ class NonAccessible : public Square{
         NonAccessible(int, int);
         ~NonAccessible();
         void print()const;
-        void enterTeam(Team*);
-        void exitTeam();
         void start();
 };
 
@@ -86,7 +87,6 @@ class Market : public Square{
         vector<Armor*> armors;
         vector<Potion*> potions;
         vector<Spell*> spells;
-        Team* team;
         int items;
 
     public:
@@ -99,30 +99,21 @@ class Market : public Square{
         void sell(Hero*, int);
         Hero* selectHero();
         void help();
-        void enterTeam(Team*);
-        void exitTeam();
         void start();
         vector<Weapon*> getWeapons()const;
         vector<Armor*> getArmors()const;
         vector<Potion*> getPotions()const;
         vector<Spell*> getSpells()const;
         int getItems()const;
-        Team* getTeam()const;
 };
 
 
 class Common : public Square{
-    private:
-        Team* team;
-
     public:
         Common(int, int);
         ~Common();
         void print()const;
-        void enterTeam(Team*);
-        void exitTeam();
         void start();
-        Team* getTeam()const;
         void afterBattle(int num,vector<Monster*> monsters,int flag);
         int Battle(vector<Monster*> monsters);             // return 1 for victory and return 0 for defeat 
 };

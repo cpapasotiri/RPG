@@ -186,16 +186,7 @@ void Game::move(string m){
     grid->move(team, m);
 }
 
-void Game::help(){
-    cout << "If you want to move up, please give: up" << endl;
-    cout << "If you want to move down, please give: down" << endl;
-    cout << "If you want to move right, please give: right" << endl;
-    cout << "If you want to move left, please give: left" << endl;
-    // cout << "WARNING: You can't move out of world" << endl;
-    cout << "If you want to stop playing the game, please give: stop" << endl;
-}
-
-void Game::startGame(){
+void Game::start(){
 	cout<< "How many heroes do you want ? (1-3)" << endl;
 	int num = 0;
 	cin >> num;
@@ -207,29 +198,53 @@ void Game::startGame(){
 		cin >> k;
 		team->joinTeam(heroes.at(k-1));
 	}
-	cout <<"Your team is ready" << endl;
+	cout <<"Your team is ready:" << endl;
 	team->displayStats();
-
+    grid->setTeam(team);
+    grid->displayMap(); // 
     string m;
     cout << "Please select where you want to move between up/down/right/left" << endl;
     cin >> m;
     cout << "You selected:" << m << endl;
-    while(m.compare("stop") != 0){
-        if((m.compare("up") != 0) || (m.compare("down") != 0) || (m.compare("right") != 0) || (m.compare("left") != 0)){
+    while(true){
+        if((m.compare("up") == 0) || (m.compare("down") == 0) || (m.compare("right") == 0) || (m.compare("left") == 0)){
             move(m);
+        }
+        else if(m.compare("stop") == 0){
+            bool s = stop();
+            if (s == true){
+                break;
+            }
         }
         else{
             help();
         }
+        grid->displayMap();
         cout << "Please select where you want to move" << endl;
         cin >> m;
         cout << "You selected:" << m << endl;
     }
-    stopGame();
 }
 
-void Game::stopGame(){
+bool Game::stop(){
+    cout << "You selected: stop." << endl;
+    cout << "If you are sure you want to stop playing write OK else CANCEL.";
+    string s;
+    cin >> s;
+    if(s.compare("OK") == 0){
+        return true;
+    }
+    return false;
+}
 
+void Game::help(){
+    cout << "HELP" << endl;
+    cout << "If you want to move up, please give: up" << endl;
+    cout << "If you want to move down, please give: down" << endl;
+    cout << "If you want to move right, please give: right" << endl;
+    cout << "If you want to move left, please give: left" << endl;
+    // cout << "WARNING: You can't move out of world" << endl;
+    cout << "If you want to stop playing the game, please give: stop" << endl;
 }
 
 void Game::printHeroes(){

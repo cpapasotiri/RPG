@@ -52,7 +52,12 @@ Grid::~Grid(){
 void Grid::displayMap(){
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++){
-            world[i][j]->print();
+            if(world[i][j]->getTeam() == NULL){
+                world[i][j]->print();
+            }
+            else{
+                cout << "✳";
+            }
             cout << " ";
         }
         cout << endl;
@@ -67,19 +72,19 @@ void Grid::move(Team* team, string m){
     Square* move;
     int move_type;
     if(m.compare("up") == 0){
-        move = world[i][j-1];
+        move = world[i-1][j];
         move_type = move->getType();
     }
     else if(m.compare("down") == 0){
-        move = world[i][j+1];
-        move_type = move->getType();
-    }
-    else if(m.compare("right") == 0){
         move = world[i+1][j];
         move_type = move->getType();
     }
+    else if(m.compare("right") == 0){
+        move = world[i][j+1];
+        move_type = move->getType();
+    }
     else if(m.compare("left") == 0){
-        move = world[i-1][j];
+        move = world[i][j-1];
         move_type = move->getType();
     }
 
@@ -92,6 +97,11 @@ void Grid::move(Team* team, string m){
     else{
         cout << "You can't move into a Non Accessible Square" << endl; 
     }
+}
+
+void Grid::setTeam(Team* t){
+    world[6][4]->enterTeam(t);
+    t->setLocation(world[6][4]);
 }
 
 Square*** Grid::getWorld()const{
@@ -112,10 +122,19 @@ Square::Square(int t, int x, int y){
     type = t;
     i = x;
     j = y;
+    team = NULL;
 }
 
 Square::~Square(){
     cout << "A Square to be destroyed!" << endl;
+}
+
+void Square::enterTeam(Team* t){
+    team = t;
+}
+
+void Square::exitTeam(){
+    team = NULL;
 }
 
 int Square::getType()const{
@@ -128,6 +147,10 @@ int Square::getI()const{
 
 int Square::getJ()const{
     return j;
+}
+
+Team* Square::getTeam()const{
+    return team;
 }
 
 
@@ -145,10 +168,6 @@ void NonAccessible::print()const{
     cout << 0;
 }
 
-void NonAccessible::enterTeam(Team* t){}
-
-void NonAccessible::exitTeam(){}
-
 void NonAccessible::start(){}
 
 
@@ -160,7 +179,6 @@ Market::Market(vector<Weapon*> w, vector<Armor*> a, vector<Potion*> p, vector<Sp
     armors = a;
     potions = p;
     spells = s;
-    team = NULL;
     items = weapons.size() + armors.size() + potions.size() + spells.size();
 }
 
@@ -175,14 +193,14 @@ Market::~Market(){
 void Market::print()const{
     // cout << "A Market square!" << endl;
     cout << 1;
-    if(team != NULL){
-        team->print();
+    if(Square::getTeam() != NULL){
+        Square::getTeam()->print();
     }
 }
 
 void Market::menu(){
     // print Menu
-    cout << endl <<"Menu: " << endl << endl;
+    cout << endl <<"MENU: " << endl << endl;
     int index = 0;
     vector<Weapon*> :: iterator w;
     for(w = weapons.begin(); w != weapons.end(); w++){
@@ -300,8 +318,8 @@ void Market::sell(Hero* hero, int i){
 
 Hero* Market::selectHero(){
     Hero* hero = NULL;
-    Hero** heroes = team->getHeroes();
-    int counter = team->getCounter();
+    Hero** heroes = Square::getTeam()->getHeroes();
+    int counter = Square::getTeam()->getCounter();
     cout << "Heroes:" << endl;
     for(int j = 0; j < counter; j++){
         cout << "Hero " << j+1 << ":" << endl;
@@ -334,14 +352,6 @@ void Market::help(){
     cout << "If you want to exit from menu, please give: exit" << endl;
 }
 
-void Market::enterTeam(Team* t){
-    team = t;
-}
-
-void Market::exitTeam(){
-    team = NULL;
-}
-
 void Market::start(){
     menu();
 }
@@ -366,15 +376,10 @@ int Market::getItems()const{
     return items;
 }
 
-Team* Market::getTeam()const{
-    return team;
-}
-
 
 Common::Common(int x, int y)
 : Square(2, x, y){
     // cout << "A New Common has been created!" << endl;
-    team = NULL;
 }
 
 Common::~Common(){
@@ -384,31 +389,20 @@ Common::~Common(){
 void Common::print()const{
     // cout << "A Common square!" << endl;
     cout << 2;
-    if(team != NULL){
-        team->print();
+    if(Square::getTeam() != NULL){
+        Square::getTeam()->print();
     }
 }
 
-void Common::enterTeam(Team* t){
-    team = t;
-}
-
-void Common::exitTeam(){
-    team = NULL;
-}
 
 void Common::start(){
     // start fight
 }
 
-Team* Common::getTeam()const{
-    return team;
-}
-
 void Common::afterBattle(int num,vector<Monster*>monsters,int flag){              //flag=1 kerdisan oi iroes           //sto vector ipotithetai oti exo ta terata opou itan sth maxi
-	Hero** b=team->getHeroes();
+	Hero** b=Square::getTeam()->getHeroes();
 	
-		for(int j=0; j<team->getCounter(); j++){
+		for(int j=0; j<Square::getTeam()->getCounter(); j++){
 			if(flag==1){ 
 				b[j]->victory(num);
 			}
@@ -420,8 +414,6 @@ void Common::afterBattle(int num,vector<Monster*>monsters,int flag){            
 		for(int j=0; j<monsters.size(); j++){
 			monsters.at(j)->changeHealth(100);
 		}
-	
-	
 }
 
 int Common::Battle(vector<Monster*>monsters){
@@ -432,9 +424,9 @@ int Common::Battle(vector<Monster*>monsters){
 		cout << "Monster " << j+1 << endl;
 		monsters.at(j)->print();
 	}
-	Hero** heroes=team->getHeroes();
+	Hero** heroes=Square::getTeam()->getHeroes();
 	vector<Hero*> h;
-	for(int j=0; j<team->getCounter(); j++){
+	for(int j=0; j<Square::getTeam()->getCounter(); j++){
 		h.push_back(heroes[j]);
 		
 	}
