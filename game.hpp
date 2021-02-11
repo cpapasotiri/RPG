@@ -39,4 +39,5 @@ class Game{
         void move(string);
         void help();
         void printHeroes();
+        vector<Monster*> prepare();
 };
