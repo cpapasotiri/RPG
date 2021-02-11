@@ -187,13 +187,15 @@ void Game::move(string m){
 }
 
 void Game::start(){
+	int flag=0;
+	vector<Monster* > mon;
 	cout<< "How many heroes do you want ? (1-3)" << endl;
 	int num = 0;
 	cin >> num;
 	team = new Team(num);
 	int k;
 	this->printHeroes();
-	for(int j=0; j<num; j++){       // j<num πρεπει να ειναι ???
+	for(int j=0; j<num; j++){       // j<num p?epe? ?a e??a? ???
 		cout << "Choose Hero number" << j+1 << endl;
 		cin >> k;
 		team->joinTeam(heroes.at(k-1));
@@ -218,11 +220,20 @@ void Game::start(){
         }
         else{
             help();
+            flag=1;
         }
+        if(flag!=1){
+        if(team->getLocation()->getType()==2){
+        mon=this->prepare();
+		team->getLocation()->operate(mon);
+		}
+	}
+		flag=0;
         grid->displayMap();
         cout << "Please select where you want to move" << endl;
         cin >> m;
         cout << "You selected:" << m << endl;
+        mon.clear();
     }
 }
 
@@ -252,4 +263,36 @@ void Game::printHeroes(){
 		cout << "Hero " << j+1 << ":" << endl;
 		heroes.at(j)->print();
 	}
+}
+
+vector<Monster*> Game::prepare(){
+	int amount;
+	int v3;
+	amount= rand() % (team->getCounter()+3);
+	while(amount<team->getCounter()){
+		amount=rand() % (team->getCounter()+2);
+	}
+	vector<Monster*> k;
+	for(int j=0; j<amount; j++){
+		v3=rand() % monsters.size();
+		if(v3<=5){
+		Monster* m=new Dragon(monsters.at(v3)->getName());
+		k.push_back(m);
+		}
+		else if(v3<=10){
+			Monster* m=new Exoskeleton(monsters.at(v3)->getName());
+			k.push_back(m);
+		}
+		else{
+			Monster* m=new Spirit(monsters.at(v3)->getName());
+			k.push_back(m);
+		}
+	
+}
+	for(int j=1; j<team->getLevel(); j++){
+		for(int i=0; i<k.size(); i++){
+			k.at(i)->levelUp();
+		}
+	}
+	return k;
 }
