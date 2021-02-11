@@ -322,22 +322,24 @@ Hero* Market::selectHero(){
     int counter = Square::getTeam()->getCounter();
     cout << "Heroes:" << endl;
     for(int j = 0; j < counter; j++){
-        cout << "Hero " << j+1 << ":" << endl;
-        heroes[j]->getName();
+        cout << "Hero " << j+1 << ":" ;
+        cout << heroes[j]->getName() << endl;  // nomizo kalitera etsi
     }  
     string name;
-    cout << "Please select a hero:" << endl;
-    cin >> name;
-    cout << "You selected: " << name << endl;
     while(hero == NULL){
+    	cout << "Please select a hero:" << endl;
+    	cin >> name;
+    	cout << "You selected: " << name << endl;
         for(int j = 0; j < counter; j++){
             if(heroes[j]->getName().compare(name) == 0){
                 hero = heroes[j];
+                break;                      //nomizo kalytera etsi 
             }
         }
-        cout << "Please select a hero:" << endl;
-        cin >> name;
-        cout << "You selected: " << name << endl;
+    
+     //   cout << "Please select a hero:" << endl;
+      //  cin >> name;
+       // cout << "You selected: " << name << endl;
     }
     return hero;
 }
@@ -418,11 +420,12 @@ void Common::afterBattle(int num,vector<Monster*>monsters,int flag){            
 
 int Common::Battle(vector<Monster*>monsters){
 	int num=monsters.size();
-	cout << "A Battle has begun" << endl;
+	cout << "A Battle has begun" << endl << endl;
 	cout << "The enemy monsters are: " << endl;
 	for(int j=0; j<monsters.size(); j++){
 		cout << "Monster " << j+1 << endl;
 		monsters.at(j)->print();
+		cout << endl;
 	}
 	Hero** heroes=Square::getTeam()->getHeroes();
 	vector<Hero*> h;
@@ -435,22 +438,24 @@ int Common::Battle(vector<Monster*>monsters){
 	int v1;
 	while(h.size()!=0 && monsters.size()!=0){
 	    for(int j=0; j<h.size(); j++){
+	    	if(monsters.size()==0) break;
 		    cout << "Choose hero's " << j+1 << " next move" << endl;
     		cin >> move ;
 	    	if(move=="attack"){
-		    	cout << "Which monster you want to attack?" << endl;
+		    	cout << "Which monster you want to attack?(Give its number)" << endl;
 			    for(int j=0; j<monsters.size(); j++){
-				    cout << "Monster " << j+1 << endl;
+				    cout << "Monster " << j+1 <<": " << endl;
 				    monsters.at(j)->print();
+				    cout << endl;
     			}
 	    		cin >> m;
-		    	while((m-1)>monsters.size()){
+		    	while((m-1)>monsters.size() || (m-1)<0){
 			    	cout << "Give a correct number!" << endl;
 				    cin >> m;
 			    }
 			    h.at(j)->attack(monsters.at(m-1));
     			if(monsters.at(m-1)->getHelthPower()<=0){                   //tsekaroume an pethane to teras 
-	    			monsters.at(m-1)->changeHealth(100);      // xanagemizei i zoi tou gia epomenes maxes
+	    		//	monsters.at(m-1)->changeHealth(100);      // xanagemizei i zoi tou gia epomenes maxes
 		    		monsters.at(m-1)->clear();
 			    	monsters.erase(monsters.begin()+(m-1));             // to diagrafoume apo to vector ton teraton
     			}
@@ -458,7 +463,7 @@ int Common::Battle(vector<Monster*>monsters){
 	    	else if(move=="castspell"){
 		    	cout << "Which monster you want to attack?" << endl;
 			    for(int j=0; j<monsters.size(); j++){
-				    cout << "Monster " << j+1 << endl;
+				   cout << "Monster " << j+1 <<": " << endl;
 				    monsters.at(j)->print();
     			}
 	    		cin >> m;
@@ -468,7 +473,7 @@ int Common::Battle(vector<Monster*>monsters){
 			    }
 			    h.at(j)->castSpell(monsters.at(m-1));
     			if(monsters.at(m-1)->getHelthPower()<=0){                   //tsekaroume an pethane to teras 
-	    			monsters.at(m-1)->changeHealth(100);      // xanagemizei i zoi tou gia epomenes maxes
+	    		//	monsters.at(m-1)->changeHealth(100);      // xanagemizei i zoi tou gia epomenes maxes
 		    		monsters.at(m-1)->clear();
 			    	monsters.erase(monsters.begin()+(m-1));             // to diagrafoume apo to vector ton teraton
 			    }		
@@ -480,35 +485,62 @@ int Common::Battle(vector<Monster*>monsters){
 	    		h.at(j)->checkInventory();
     			j--;
 		    }
+		    else if(move=="equip"){
+		    	h.at(j)->equip();
+		    	j-1;
+			}
 		    else{
 		    	cout << "Please give a correct instruction!" << endl;
 	    		j--;
     	    }
 	    }
 		for(int j=0; j<monsters.size(); j++){
+			if(h.size()==0) break;
 			v1=rand() % h.size();
 			monsters.at(j)->destroy(h.at(v1));
 			if(h.at(v1)->getHelthPower()<=0){
 				h.erase(h.begin()+v1);
 			}
+			
 		}
-		cout << "View heroes' and monsters' stats" << endl << endl;
+	
+		cout << "View heroes' and monsters' stats..." << endl << endl;
 		for(int j=0; j<h.size(); j++){
 			h.at(j)->regen();
+			cout << "Hero " << j+1 << ":" << endl;
 			h.at(j)->print();
 		}
+		cout << endl;
 		for(int j=0; j<monsters.size(); j++){
 			monsters.at(j)->regen();
+			cout << "Monster " << j+1 << ":" << endl;
 			monsters.at(j)->print();
 		}
 		// End of round
+	
     }	
 	if(h.size()==0){
+		cout << "Monsters won!" << endl << endl;
 		this->afterBattle(num,monsters,0);
 		return 0;
 	}
 	else{
+		cout << "Heroes won" << endl << endl;
 	 	this->afterBattle(num,monsters,1);
 		return 1;
 	}
+}
+
+
+void Common::operate(vector <Monster*> k){
+	this->Battle(k);
+	
+}
+
+void Market::operate(vector <Monster*> k){
+	
+}
+
+void NonAccessible::operate(vector <Monster*> k){
+	
 }
