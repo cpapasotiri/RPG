@@ -112,6 +112,8 @@ class Hero : public Living{
         void victory(int num);
         void defeat();
         void equip();
+        Weapon* printWeapons();
+        Armor* printArmor();
 };
 
 
@@ -143,7 +145,7 @@ class Paladin : public Hero{
 
 
 class Monster : public Living{
-    private:
+    protected:
         int damage;     // damage it causes
         int defense;    // defense it has
         int attack;     // avoid attack
@@ -166,6 +168,7 @@ class Monster : public Living{
         void destroy(Hero*);
         void defend(int);
         virtual void print();
+        virtual void levelUp()=0;
 };
 
 
@@ -174,6 +177,7 @@ class Dragon : public Monster{
         Dragon(string);
         ~Dragon();
         void print();
+        void levelUp();
 };
 
 
@@ -182,6 +186,7 @@ class Exoskeleton : public Monster{
         Exoskeleton(string);
         ~Exoskeleton();
         void print();
+        void levelUp();
 };
 
 
@@ -190,6 +195,7 @@ class Spirit : public Monster{
         Spirit(string);
         ~Spirit();
         void print();
+        void levelUp();
 };
 
 
@@ -198,7 +204,7 @@ class Team {        // Team with 1-3 heroes
     private:
     Hero** heroes;
     int counter;
-    Square* location;   // θα δειχνει σε μια θεση προκαθορισμενη μεσα στον κόσμο
+    Square* location;   // ?a de???e? se µ?a ?es? p???a????sµe?? µesa st?? ??sµ?
 
     public:
     Team(int);
@@ -210,7 +216,10 @@ class Team {        // Team with 1-3 heroes
     int getCounter()const;
     void joinTeam(Hero*);
     void displayStats()const;
+    int getLevel();
 };
 
 
 #endif
+
+
