@@ -4,7 +4,6 @@
 #include <time.h>
 
 #include "game.hpp"
-
 using namespace std;
 
 Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string> armorNames, vector<string> potionNames, vector<string> spellNames){
@@ -43,68 +42,87 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
 
     // create items & spells
     j = 0;
-    int price = 5;
+    int price = 10;
     int level = 1;
-    int damage = 4;
+    int damage = 10;
     int hands = 1;
+    int dmg=3;
+    int prc=8;
+    int w;
     // create weapons
     for(i = weaponNames.begin(); i != weaponNames.end(); i++){
-        Weapon* weapon = new Weapon((*i), price, level, damage, hands);
+        Weapon* weapon = new Weapon((*i), prc, level, dmg, hands);
         weapons.push_back(weapon);
         j++;
-        if(j%2 == 0){
-            hands = 2;
-            level++;
-            damage += 4;
-        }
-        else{
-            hands = 1;
-            damage += 2;
-        }
-        price += 6;
+        if(j==11){
+        	level++;
+        	if(level>10) level--;
+        	j=0;
+        	price=level*10;
+        	
+		}
+		hands= 1 + rand() % 2;
+		if(hands==2){
+		dmg= (level*5) + rand() % (level*5);
+		prc=price + rand() % 10;
+		}
+		else {
+		dmg= (level*5)/2 + rand() % (level*3);
+		prc=price + rand() % 10;
+		}
+		
     }
     // create armors
     price = 10;
     level = 1;
-    int defence = 4;
+    int defence = 8;
+    int mindef=2;
+    int def=3;
+    prc=7;
+    j=0;
     for(i = armorNames.begin(); i != armorNames.end(); i++){
-        Armor* armor = new Armor((*i), price, level, defence);
+        Armor* armor = new Armor((*i), prc, level, def);
         armors.push_back(armor);
-        price += 20;
-        level++;
-        defence += 11;
+        j++;
+        if(j==7) {
+        	level++;
+        	if(level>10) level--;
+        	j=0;
+        	price=level*10;
+        	mindef=defence;
+        	defence=defence+4;
+        
+		}
+		def=mindef + rand() % 5;
+		prc= price + rand() % 10;
+		
+		
+       	
     }
     // create potions
-    j = 0;
-    price = 5;
-    level = 1;
-    vector<string> ability;
-    ability.push_back("strenght");
-    ability.push_back("dexterity");
-    ability.push_back("agility");
-    srand(time(NULL));
-    int amount = 7;
-    for(i = potionNames.begin(); i != potionNames.end(); i++){
-        j++;
-        int a = rand() % 3;     // 0-2
-        Potion* potion = new Potion((*i), price, level, ability[a], amount);
-        potions.push_back(potion);
-        price += 20;
-        if(j%3 == 0){
-            level++;
-            amount += 2;
-        }
-    }
-    ability.clear();
+    
+
+    Potion* potion=new Potion("Health Potion",20,2,"healthPower",10);
+    potions.push_back(potion);
+    potion=new Potion("Mana Potion",40,3,"magicPower",10);
+    potions.push_back(potion);
+    potion=new Potion("Mega Mana Potion",40,6,"magicPower",50);
+    potions.push_back(potion);
+    potion=new Potion("Mega Health Potion",40,6,"healthPower",100);
+    potions.push_back(potion);
+    potion=new Potion("Dexterity Potion",40,8,"dexterity",1);
+    potions.push_back(potion);
+    potion=new Potion("Strength Potion",40,8,"strength",1);
+    potions.push_back(potion);
     // create spells
     j = 0;
     price = 5;
     level = 1;
     int energy = 6;
-    int min = 0;     // ??? τι να βαλω εδω ???
-    int max = 0;     // ??? τι να βαλω εδω ???
-    int a = 0;       // ??? τι να βαλω εδω ???
-    int b = 0;       // ??? τι να βαλω εδω ???
+    int min = 0;     // ??? t? ?a ßa?? ed? ???
+    int max = 0;     // ??? t? ?a ßa?? ed? ???
+    int a = 0;       // ??? t? ?a ßa?? ed? ???
+    int b = 0;       // ??? t? ?a ßa?? ed? ???
     for(i = spellNames.begin(); i != spellNames.end(); i++){
         j++;
         if(j <= 10){
