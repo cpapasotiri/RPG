@@ -179,6 +179,10 @@ void Hero::checkInventory()const{
 }
 
 void Hero::buy(Weapon* a){
+	if(searchWeapon(a)==1){
+		cout << "Already bought" << endl;
+		return;
+	}
     if(money<(a->getPrice())){
     	cout << this->name << " cannot afford this item" << endl;
 		return;
@@ -192,6 +196,10 @@ void Hero::buy(Weapon* a){
 }
 
 void Hero::buy(Armor* a){
+	if(searchArmor(a)==1){
+		cout << "Already bought" << endl;
+		return;
+	}
     if(money<(a->getPrice())){
     	cout << this->name << " cannot afford this item" << endl;
 		return;
@@ -213,9 +221,10 @@ void Hero::buy(Potion* a){
     	cout << this->name << " cannot afford this item" << endl;
 		return;
 	}
-	potion.push_back(a);
+	Potion* ptr= new Potion(a->getName(),a->getPrice(),a->getLeastlevel(),a->getAbility(),a->getAmount());
+	potion.push_back(ptr);
     money=money - (a->getPrice());
-}
+} 
 
 void Hero::buy(Spell* a){
 		if(this->level< a->getLeastlevel()){
@@ -241,6 +250,90 @@ void Hero::sell(Weapon* a){
     }
 }
 
+void Hero::sellItem(){
+	cout << "What do you want to sell?" << endl;
+	string item;
+	cin>>item;
+	int k;
+	if(item=="weapon"){
+		if(weapon.size()==0){
+			cout << "No available weapons for sale!!" << endl;
+			return;
+		}
+		for(int j=0; j<weapon.size(); j++){
+			cout << endl;
+			cout << "Weapon " << j+1 << " :" << endl;
+			weapon.at(j)->print();
+			cout << endl;
+		}
+		cout << "Choose by giving its number(give 0 if you want to exit)" << endl;
+		cin >> k;
+		if(k<=0) return;
+		if(w1==weapon.at(k-1)){
+			w1=NULL;
+		}
+		if(w2==weapon.at(k-1)){
+			w2=NULL;
+		}
+		sell(weapon.at(k-1));
+		
+	}
+	else if(item=="armor"){
+		if(armor.size()==0){
+			cout << "No available armors for sale!!" << endl;
+			return;
+		}
+		for(int j=0; j<armor.size(); j++){
+			cout << endl;
+			cout << "Armor " << j+1 << " :" << endl;
+			armor.at(j)->print();
+			cout << endl;
+		}
+		cout << "Choose by giving its number(give 0 if you want to exit)" << endl;
+		cin >> k;
+		if(k<=0) return;
+		if(arm==armor.at(k-1)){
+			arm=NULL;
+		}
+		sell(armor.at(k-1));
+	}
+	else if(item=="potion"){
+		if(potion.size()==0){
+			cout << "No available potions for sale!!" << endl;
+			return;
+		}
+		for(int j=0; j<potion.size(); j++){
+			cout << endl;
+			cout << "Potion " << j+1 << " :" << endl;
+			potion.at(j)->print();
+			cout << endl;
+		}
+		cout << "Choose by giving its number(give 0 if you want to exit)" << endl;
+		cin >> k;
+		if(k<=0) return;
+		sell(potion.at(k-1));
+	}
+	else if(item=="spell"){
+		if(spell.size()==0){
+			cout << "No available spells for sale!!" << endl;
+			return;
+		}
+	for(int j=0; j<spell.size(); j++){
+			cout << endl;
+			cout << "Spell " << j+1 << " :" << endl;
+			spell.at(j)->print();
+			cout << endl;
+		}
+		cout << "Choose by giving its number(give 0 if you want to exit)" << endl;
+		cin >> k;
+		if(k<=0) return;
+		sell(spell.at(k-1));
+	}
+	else {
+		cout << "Wrong instruction!" << endl;
+	}
+}
+
 void Hero::sell(Armor* a){
     int j=0;
     for(j=0; j<armor.size(); j++){
@@ -254,13 +347,16 @@ void Hero::sell(Armor* a){
 
 void Hero::sell(Potion* a){
     int j=0;
+    Potion* ptr;
     for(j=0; j<potion.size(); j++){
         if(potion.at(j)==a) {
+        	ptr=potion.at(j);
 			potion.erase(potion.begin()+j);
     		money=money + (a->getPrice()/2);        //poleite sti misi timi
 			break;
 	    }
 	}
+	delete ptr;
 }
    
 
@@ -276,32 +372,39 @@ void Hero::sell(Spell* a){
 }
 
 void Hero::use(Potion* a){
-    if(a->getAbility()=="magicPower"){
+	if(a->getAbility()=="healthPower"){
+		this->healthPower=healthPower + a->getAmount();
+		if(healthPower>100) healthPower=100;
+	}
+    else if(a->getAbility()=="magicPower"){
         magicPower=magicPower + (a->getAmount());
+        if(magicPower>50) magicPower=50;
     }
-    if(a->getAbility()=="strength"){
+    else if(a->getAbility()=="strength"){
         strenght=strenght + (a->getAmount());
     }
-    if(a->getAbility()=="dexterity"){
+    else {
         dexterity=dexterity + (a->getAmount());
     }
-    if(a->getAbility()=="agility"){
-        agility=agility + (a->getAmount());
-    }
+   // else(a->getAbility()=="agility"){
+    //    agility=agility + (a->getAmount());
+   // }
     int j=0;
     for(j=0; j<potion.size(); j++){
         if(potion.at(j)==a){
 			break;
 		}
     }
+    Potion* ptr=potion.at(j);
     potion.erase(potion.begin()+j);
+    delete ptr;
 }
 
 
 void Hero::regen(){
 	if(healthPower>0){
-		healthPower=healthPower + 5;
-		magicPower=magicPower + 5;
+		healthPower=healthPower + 4;
+		magicPower=magicPower + 2;
 		if(magicPower>50){
 			magicPower=50;
 		}        
@@ -316,8 +419,13 @@ void Hero::equipArmor(Armor* a){
 }
 
 void Hero::equipWeapon(Weapon* a){
-	if(w1==a || w2==a) {
+	if(w1==a ) {
 		cout <<"Already equipped" << endl << endl;
+		return;
+	}
+	if(w2==a){
+		w2=NULL;
+		w1=a;
 		return;
 	}
 	if(w2!=NULL){
@@ -335,9 +443,13 @@ void Hero::equipWeapon(Weapon* a){
 }
 
 void Hero::equipSecondaryWeapon(Weapon* a){
-	if(w1==a || w2==a){
+	if(w2==a){
 		cout <<"Already equipped" << endl << endl;
 		return;
+	}
+	if(w1==a){
+		w1=NULL;
+		w2=a;
 	}
 	if(a->getHands()==1 ){
 		if(w1!=NULL){
@@ -397,8 +509,11 @@ void Hero::equip(){
 			if(temp2=="primary"){
 				equipWeapon(ptr);
 			}
-			else{
+			else if(temp2=="secondary"){
 				this->equipSecondaryWeapon(ptr);
+			}
+			else {
+				cout << "Wrong instruction" << endl;
 			}
 		}
 		
@@ -478,7 +593,7 @@ int Hero::usePotion(){                  //epistrefei 0 an o iroas den exei kanen
 }
 
 void Hero::victory(int num){
-	money=money + (10*level*num);
+	money=money + (10*level*num*2);
 	experience=experience + (20*level*num);             //endeiktika noumera an thes allazoun
 }
 
@@ -486,60 +601,25 @@ void Hero::defeat(){
 	money=money/2;
 }
 
-/*void Hero::equip(){
-	cout << "What do you want to equip?(weapon or armor)" << endl;
-	string s;
-	cin >> s;
-	if(s=="weapon"){
-		if(weapon.size()==0){
-			cout << "No available weapons!" << endl;
-			return;
-		}
-		cout << "Printing heros's weapons" << endl;
-		for(int j=0; j<weapon.size(); j++){
-			cout << "Weapon 1:" << endl;
-			weapon.at(j)->print();
-		}
-		cout << "Which weapon do you want to equip?(Give its number)" << endl;
-		int k;
-		cin >> k;
-		while(k>weapon.size()){
-			cout << "Please give a correct number!" << endl;
-			cin>> k;
-		}
-		cout << "Do you want to use it as a primary or secondary weapon?" << endl;
-		cin >> s;
-		if(s=="primary"){
-			this->equipWeapon(weapon.at(k-1));
-		}
-		else {
-			this->equipSecondaryWeapon(weapon.at(k-1));
-		}
+int Hero::searchWeapon(Weapon* a){       //return 1 an iparxei sto inventory
+	for(int j=0; j<weapon.size(); j++){
+		if(weapon.at(j)==a) return 1;
 	}
-	else if(s=="armor"){
-		if(armor.size()==0){
-			cout << "No available armors!" << endl;
-			return;
-		}
-		cout << "Printing hero's armors" << endl;
-		for(int j=0; j<armor.size(); j++){
-			cout << "Armor 1:" << endl;
-			armor.at(j)->print();
-		}
-		cout << "Which armor do you want to equip?(Give its number)" << endl;
-		int k;
-		cin >> k;
-		while(k>armor.size()){
-			cout << "Please give a correct number!" << endl;
-			cin>> k;
-		}
-		this->equipArmor(armor.at(k-1));
+	return 0;
+}
+
+int Hero::searchArmor(Armor* a){        //return 1 an iparxei sto inventory
+	for(int j=0; j<armor.size(); j++){
+		if(armor.at(j)==a) return 1;
 	}
-}*/
+	return 0;
+}
+
+
 
 
 Warrior::Warrior(string n)
-: Hero(n, 47, 12, 15){
+: Hero(n, 47, 30, 15){
     // cout << "A New Warrior has been created! " << endl;
 }
 
@@ -587,7 +667,7 @@ void Warrior::levelUp(){
 
 
 Sorcerer::Sorcerer(string n)
-: Hero(n, 40, 25, 15){
+: Hero(n, 40, 38, 15){
     // cout << "A New Sorcerer has been created! " << endl;
 }
 
@@ -635,7 +715,7 @@ void Sorcerer::levelUp(){
 
 
 Paladin::Paladin(string n)
-: Hero(n, 45, 18, 8){
+: Hero(n, 45, 35, 8){
     // cout << "A New Paladin has been created! " << endl;
 }
 
