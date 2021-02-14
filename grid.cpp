@@ -56,7 +56,7 @@ void Grid::displayMap(){
                 world[i][j]->print();
             }
             else{
-                cout << "✳";
+                cout << "?";
             }
             cout << " ";
         }
@@ -240,7 +240,7 @@ void Market::menu(){
         }
         else if(item.compare("sell") == 0){
             hero = selectHero();
-            sell(hero, index);
+            sell(hero);
         }
         else if(item.compare("help") == 0){
             help();
@@ -263,20 +263,20 @@ void Market::buy(Hero* hero, int i){
         if(x == 0){                         // exit
             break;
         }
-        else if(x >= 1 || x <= 120){        // weapon
+        else if(x >= 1 && x <= 120){        // weapon
             x -= 1;
             hero->buy(weapons[x]);
         }
-        else if(x >= 121 || x <= 200){      // armor
+        else if(x >= 121 && x <= 200){      // armor
             x -= 121;
             hero->buy(armors[x]);
         }
-        else if(x >= 201 || x <= 266){      // potion
+        else if(x >= 201 && x <= 207){      // potion
             x -= 201;
             hero->buy(potions[x]);
         }
         else{                               // spell
-            x -= 267;
+            x -= 207;
             hero->buy(spells[x]);
         }
         cout << "Please select an item to buy between 0-" << i << endl;
@@ -285,35 +285,8 @@ void Market::buy(Hero* hero, int i){
     }
 }
 
-void Market::sell(Hero* hero, int i){
-    int x;
-    cout << "Please select an item to sell between 0-" << i << endl;
-    cin >> x;
-    cout << "You selected:" << x << endl;
-    while(x >= 0){
-        if(x == 0){                         // exit
-            break;
-        }
-        else if(x >= 1 || x <= 120){        // weapon
-            x -= 1;
-            hero->sell(weapons[x]);
-        }
-        else if(x >= 121 || x <= 200){      // armor
-            x -= 121;
-            hero->sell(armors[x]);
-        }
-        else if(x >= 201 || x <= 266){      // potion
-            x -= 201;
-            hero->sell(potions[x]);
-        }
-        else{                               // spell
-            x -= 267;
-            hero->sell(spells[x]);
-        }
-        cout << "Please select an item to sell between 0-" << i << endl;
-        cin >> x;
-        cout << "You selected:" << x << endl;
-    }
+void Market::sell(Hero* hero){
+	hero->sellItem();
 }
 
 Hero* Market::selectHero(){
@@ -398,7 +371,7 @@ void Common::print()const{
 
 
 void Common::start(){
-    // start fight
+    
 }
 
 void Common::afterBattle(int num,vector<Monster*>monsters,int flag){              //flag=1 kerdisan oi iroes           //sto vector ipotithetai oti exo ta terata opou itan sth maxi
@@ -409,13 +382,13 @@ void Common::afterBattle(int num,vector<Monster*>monsters,int flag){            
 				b[j]->victory(num);
 			}
 			else{
+				
 				b[j]->defeat();
 			}
 			b[j]->levelUp();                                  //osoi exoun arketa exp anevenoun level , tsekaroi gia aftous me 0 health na paei 50
 		}
-		for(int j=0; j<monsters.size(); j++){
-			monsters.at(j)->changeHealth(100);
-		}
+	
+	
 }
 
 int Common::Battle(vector<Monster*>monsters){
@@ -487,7 +460,24 @@ int Common::Battle(vector<Monster*>monsters){
 		    }
 		    else if(move=="equip"){
 		    	h.at(j)->equip();
-		    	j-1;
+		    	j--;
+			}
+			else if(move=="displayStats"){
+				cout << "View heroes' and monsters' stats..." << endl;
+				for(int j=0; j<this->getTeam()->getCounter(); j++){
+					cout << endl;
+					cout << "Hero " << j+1 << ":" << endl;
+					heroes[j]->print();
+					cout << endl;
+				}
+				
+			for(int j=0; j<monsters.size(); j++){
+				cout << endl;
+				cout << "Monster " << j+1 << ":" << endl;
+				monsters.at(j)->print();
+				cout << endl;
+			}
+			j--;
 			}
 		    else{
 		    	cout << "Please give a correct instruction!" << endl;
