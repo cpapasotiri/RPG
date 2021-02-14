@@ -114,6 +114,9 @@ class Hero : public Living{
         void equip();
         Weapon* printWeapons();
         Armor* printArmor();
+        int searchWeapon(Weapon* a);
+        int searchArmor(Armor* a);
+        void sellItem();
 };
 
 
@@ -221,5 +224,8 @@ class Team {        // Team with 1-3 heroes
 
 
 #endif
+
+
+
 
 
