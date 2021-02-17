@@ -55,6 +55,7 @@ int main(int argc, char* argv[]){
     weaponNames.clear();
     armorNames.clear();
     spellNames.clear();
-
+    delete game;
+    
     return 0;
 }
