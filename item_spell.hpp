@@ -54,7 +54,7 @@ class Item{
 class Weapon: public Item{
     private:
         int damage;
-        int hands;                       //when hands=1 one hand is needed , when hands=2 two hands are needed to use the weapon
+        int hands;          //when hands=1 one hand is needed , when hands=2 two hands are needed to use the weapon
 
     public:
         Weapon(string,int,int,int,int);
@@ -122,27 +122,26 @@ class Icespell: public Spell {
         ~Icespell();
         void print();
         void cast(int,Monster*);
-   
 };
 
 
 class Firespell: public Spell {
     public:
-    Firespell(string,int,int,int,int,int,int,int);
-    Firespell(const Firespell &p2);    
-    ~Firespell();
-    void print();
-    void cast(int,Monster*);   
+        Firespell(string,int,int,int,int,int,int,int);
+        Firespell(const Firespell &p2);    
+        ~Firespell();
+        void print();
+        void cast(int,Monster*);   
 };
 
 
 class Lightingspell: public Spell {
     public:
-    Lightingspell(string,int,int,int,int,int,int,int);
-    Lightingspell(const Lightingspell &p2);
-    ~Lightingspell();
-    void print();
-    void cast(int,Monster*);
+        Lightingspell(string,int,int,int,int,int,int,int);
+        Lightingspell(const Lightingspell &p2);
+        ~Lightingspell();
+        void print();
+        void cast(int,Monster*);
 };
 
 

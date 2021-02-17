@@ -70,7 +70,6 @@ class Square{
         int getJ()const;
         Team* getTeam()const;
         virtual void operate(vector <Monster*> k)=0;
-        
 };
 
 
@@ -95,15 +94,17 @@ class Market : public Square{
     public:
         Market(vector<Weapon*>, vector<Armor*>, vector<Potion*>, vector<Spell*>, int, int);
         ~Market();
-        void operate(vector <Monster*> k);
 
         void print()const;
+        int printMenu(string);
         void menu();
-        void buy(Hero*, int);
-        void sell(Hero*, int);
+        void buy(Hero*, string, int);
+        void sell(Hero*);
         Hero* selectHero();
+        string selectCategory();
         void help();
         void start();
+        void operate(vector <Monster*> k);
         vector<Weapon*> getWeapons()const;
         vector<Armor*> getArmors()const;
         vector<Potion*> getPotions()const;
@@ -118,10 +119,9 @@ class Common : public Square{
         ~Common();
         void print()const;
         void start();
+        void operate(vector <Monster*> k);
         void afterBattle(int num,vector<Monster*> monsters,int flag);
         int Battle(vector<Monster*> monsters);             // return 1 for victory and return 0 for defeat 
-        void operate(vector <Monster*> k);
-       
 };
 
 

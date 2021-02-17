@@ -19,6 +19,7 @@ int main(int argc, char* argv[]){
         }
     }
     file1.close();
+
     vector<string> weaponNames;
     ifstream file2 ("weapons.txt");
     if (file2.is_open()){
@@ -27,6 +28,7 @@ int main(int argc, char* argv[]){
         }
     }
     file2.close();
+
     vector<string> armorNames;
     ifstream file3 ("armors.txt");
     if (file3.is_open()){
@@ -35,31 +37,23 @@ int main(int argc, char* argv[]){
         }
     }
     file3.close();
-    vector<string> potionNames;
-    ifstream file4 ("potions.txt");
+
+    vector<string> spellNames;
+    ifstream file4 ("spells.txt");
     if (file4.is_open()){
         while(getline(file4, name)){
-            potionNames.push_back(name);
-        }
-    }
-    file4.close();
-    vector<string> spellNames;
-    ifstream file5 ("spells.txt");
-    if (file5.is_open()){
-        while(getline(file5, name)){
             spellNames.push_back(name);
         }
     }
-    file5.close();
+    file4.close();
 
-    Game* game = new Game(livingNames, weaponNames, armorNames, potionNames, spellNames);
+    Game* game = new Game(livingNames, weaponNames, armorNames, spellNames);
     game->start();
 
 
     livingNames.clear();
     weaponNames.clear();
     armorNames.clear();
-    potionNames.clear();
     spellNames.clear();
 
     return 0;

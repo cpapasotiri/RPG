@@ -3,13 +3,12 @@ SOURCE = living.cpp item_spell.cpp grid.cpp main.cpp game.cpp
 ITEM = game
 
 run : compile
-	./$(ITEM)
+	valgrind ./$(ITEM)
 
 debug : $(ITEM)
 	gdb $(ITEM)
 
 compile : $(SOURCE)
-	#gcc $(FLAGS) $(ITEM) $(SOURCE)
 	g++ $(FLAGS) $(ITEM) $(SOURCE)
 
 clean :

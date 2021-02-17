@@ -99,9 +99,10 @@ class Hero : public Living{
         void sell(Armor*);
         void sell(Potion*);
         void sell(Spell*);
+        void sellItem();
         void use(Potion*);
-        void attack(Monster* a);
         void defend(int damage);
+        void attack(Monster* a);
         void regen();
         void equipArmor(Armor* a);
         void equipWeapon(Weapon* a);
@@ -116,7 +117,6 @@ class Hero : public Living{
         Armor* printArmor();
         int searchWeapon(Weapon* a);
         int searchArmor(Armor* a);
-        void sellItem();
 };
 
 
@@ -205,27 +205,22 @@ class Spirit : public Monster{
 
 class Team {        // Team with 1-3 heroes 
     private:
-    Hero** heroes;
-    int counter;
-    Square* location;   // ?a de???e? se µ?a ?es? p???a????sµe?? µesa st?? ??sµ?
+        Hero** heroes;
+        int counter;
+        Square* location;   // θα δειχνει σε μια θεση προκαθορισμενη μεσα στον κόσμο
 
     public:
-    Team(int);
-    ~Team();
-    void print();
-    void setLocation(Square*);
-    Square* getLocation()const;
-    Hero** getHeroes()const;
-    int getCounter()const;
-    void joinTeam(Hero*);
-    void displayStats()const;
-    int getLevel();
+        Team(int);
+        ~Team();
+        void print();
+        void setLocation(Square*);
+        Square* getLocation()const;
+        Hero** getHeroes()const;
+        int getCounter()const;
+        int getLevel()const;
+        void joinTeam(Hero*);
+        void displayStats()const;
 };
 
 
 #endif
-
-
-
-
-

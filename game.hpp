@@ -22,7 +22,7 @@ class Game{
         Team* team;
 
     public:
-        Game(vector<string>, vector<string>, vector<string>, vector<string>, vector<string>);
+        Game(vector<string>, vector<string>, vector<string>, vector<string>);
         ~Game();
 
         vector<Hero*> getHeroes()const;
@@ -31,6 +31,7 @@ class Game{
         vector<Armor*> getArmors()const;
         vector<Potion*> getPotions()const;
         vector<Spell*> getSpells()const;
+        vector<Monster*> prepare();
         Grid* getGrid()const;
         Team* getTeam()const;
         void setTeam();
@@ -39,5 +40,4 @@ class Game{
         void move(string);
         void help();
         void printHeroes();
-        vector<Monster*> prepare();
 };

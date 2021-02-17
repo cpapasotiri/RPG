@@ -4,12 +4,11 @@
 #include <time.h>
 
 #include "game.hpp"
+
 using namespace std;
 
-Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string> armorNames, vector<string> potionNames, vector<string> spellNames){
-    // cout << "A New Game has been created!" << endl;
-
-    // create livings(heroes & monsters)
+Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string> armorNames, vector<string> spellNames){
+    // Create livings(heroes & monsters)
     int j = 0;
     vector<string> :: iterator i;
     for(i = livingNames.begin(); i != livingNames.end(); i++){
@@ -40,7 +39,7 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
         }
     }
 
-    // create items & spells
+    // Create items & spells
     j = 0;
     int price = 10;
     int level = 1;
@@ -94,14 +93,9 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
         
 		}
 		def=mindef + rand() % 5;
-		prc= price + rand() % 10;
-		
-		
-       	
+		prc= price + rand() % 10;  	
     }
     // create potions
-    
-
     Potion* potion=new Potion("Health Potion",20,2,"healthPower",10);
     potions.push_back(potion);
     potion=new Potion("Mana Potion",40,3,"magicPower",10);
@@ -110,47 +104,44 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
     potions.push_back(potion);
     potion=new Potion("Mega Health Potion",40,6,"healthPower",100);
     potions.push_back(potion);
-    potion=new Potion("Dexterity Potion",40,8,"dexterity",1);
+    potion=new Potion("Dexterity Potion",140,8,"dexterity",1);
     potions.push_back(potion);
-    potion=new Potion("Strength Potion",40,8,"strength",1);
+    potion=new Potion("Strength Potion",140,8,"strength",1);
     potions.push_back(potion);
     // create spells
     j = 0;
     price = 5;
     level = 1;
-    int energy = 6;
-    int min = 0;     // ??? t? ?a ßa?? ed? ???
-    int max = 0;     // ??? t? ?a ßa?? ed? ???
-    int a = 0;       // ??? t? ?a ßa?? ed? ???
-    int b = 0;       // ??? t? ?a ßa?? ed? ???
+    int energy = 5;
+    int min = 20;     
+    int max = 50;     
+    int a = 1;       
+    int b = 1;       
     for(i = spellNames.begin(); i != spellNames.end(); i++){
         j++;
         if(j <= 10){
+        	a=1+level + rand() % 5;
             Icespell* ispell = new Icespell((*i), price, level, energy, min, max, a, b);
             spells.push_back(ispell);    
+            
         }
         else if(j <= 20){
+        	a= 1+level/2 + rand() % 5;
             Firespell* fspell = new Firespell((*i), price, level, energy, min, max, a, b);
             spells.push_back(fspell);
         }
         else{
+        	a= 1+level/2 + rand() % 5;
             Lightingspell* lspell = new Lightingspell((*i), price, level, energy, min, max, a, b);
             spells.push_back(lspell); 
         }
-        level++;
-        energy += 6;
-        min++;          // ??? ??? 
-        max++;          // ??? ??? 
-        a++;            // ??? ??? 
-        b++;            // ??? ??? 
-        if(j%10 == 0){
-            level = 1;
-            energy = 6;
-            min = 0;    // ??? ???          
-            max = 0;    // ??? ???          
-            a = 0;      // ??? ???      
-            b = 0;      // ??? ???      
-        }
+       
+        level= 1 +rand() % 10;
+        min=20 + (10*(level-1));
+        max=50 + (21*(level-1));
+        energy=5*level;
+        b= 1 + rand() %3;
+        a=2;        
     }
 
     grid = new Grid(heroes, monsters, weapons, armors, potions, spells);
@@ -158,13 +149,43 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
 }
 
 Game::~Game(){
-    cout << "A Grid to be destroyed!" << endl;
+    Monster* ptr1;
+    Item* ptr;
+    for(int j=0; j<heroes.size(); j++){
+   	    delete heroes[j];
+    }
     heroes.clear();
+
+    for(int j=0; j<monsters.size(); j++){
+    	ptr1=monsters[j];
+        delete ptr1;
+	}
     monsters.clear();
+
+    for(int j=0; j<weapons.size(); j++){
+   	    ptr=weapons[j];
+        delete ptr;
+	}
     weapons.clear();
+
+    for(int j=0; j<armors.size(); j++){
+    	ptr=armors[j];
+        delete ptr;
+	}
     armors.clear();
+
+    for(int j=0; j<potions.size(); j++){
+   	    ptr=potions[j];
+        delete ptr;
+	}
     potions.clear();
-    spells.clear(); 
+
+    for(int j=0; j<spells.size(); j++){
+    	ptr=spells[j];
+        delete ptr;
+	}
+    spells.clear();
+
     delete grid;
 }
 
@@ -192,6 +213,36 @@ vector<Spell*>Game:: getSpells()const{
     return spells;
 }
 
+vector<Monster*> Game::prepare(){
+	int amount;
+	int v3;
+	amount= 1+ rand() % (team->getCounter()+1);
+
+	vector<Monster*> k;
+	for(int j=0; j<amount; j++){
+		v3=rand() % monsters.size();
+		if(v3<=5){
+		    Monster* m=new Dragon(monsters.at(v3)->getName());
+		    k.push_back(m);
+		}
+		else if(v3<=10){
+			Monster* m=new Exoskeleton(monsters.at(v3)->getName());
+			k.push_back(m);
+		}
+		else{
+			Monster* m=new Spirit(monsters.at(v3)->getName());
+			k.push_back(m);
+		}
+	
+    }
+	for(int j=1; j<team->getLevel(); j++){
+		for(int i=0; i<k.size(); i++){
+			k.at(i)->levelUp();
+		}
+	}
+	return k;
+}
+
 Grid* Game::getGrid()const{
     return grid;
 }
@@ -213,7 +264,7 @@ void Game::start(){
 	team = new Team(num);
 	int k;
 	this->printHeroes();
-	for(int j=0; j<num; j++){       // j<num p?epe? ?a e??a? ???
+	for(int j=0; j<num; j++){
 		cout << "Choose Hero number" << j+1 << endl;
 		cin >> k;
 		team->joinTeam(heroes.at(k-1));
@@ -221,7 +272,8 @@ void Game::start(){
 	cout <<"Your team is ready:" << endl;
 	team->displayStats();
     grid->setTeam(team);
-    grid->displayMap(); // 
+    grid->displayMap(); 
+
     string m;
     cout << "Please select where you want to move between up/down/right/left" << endl;
     cin >> m;
@@ -241,11 +293,11 @@ void Game::start(){
             flag=1;
         }
         if(flag!=1){
-        if(team->getLocation()->getType()==2){
-        mon=this->prepare();
-		team->getLocation()->operate(mon);
-		}
-	}
+            if(team->getLocation()->getType()==2){
+                mon=this->prepare();
+		        team->getLocation()->operate(mon);
+		    }
+	    }
 		flag=0;
         grid->displayMap();
         cout << "Please select where you want to move" << endl;
@@ -281,36 +333,4 @@ void Game::printHeroes(){
 		cout << "Hero " << j+1 << ":" << endl;
 		heroes.at(j)->print();
 	}
-}
-
-vector<Monster*> Game::prepare(){
-	int amount;
-	int v3;
-	amount= rand() % (team->getCounter()+3);
-	while(amount<team->getCounter()){
-		amount=rand() % (team->getCounter()+2);
-	}
-	vector<Monster*> k;
-	for(int j=0; j<amount; j++){
-		v3=rand() % monsters.size();
-		if(v3<=5){
-		Monster* m=new Dragon(monsters.at(v3)->getName());
-		k.push_back(m);
-		}
-		else if(v3<=10){
-			Monster* m=new Exoskeleton(monsters.at(v3)->getName());
-			k.push_back(m);
-		}
-		else{
-			Monster* m=new Spirit(monsters.at(v3)->getName());
-			k.push_back(m);
-		}
-	
-}
-	for(int j=1; j<team->getLevel(); j++){
-		for(int i=0; i<k.size(); i++){
-			k.at(i)->levelUp();
-		}
-	}
-	return k;
 }

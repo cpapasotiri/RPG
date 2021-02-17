@@ -27,11 +27,11 @@ names.txt -> 27 livings
     18 -> (3*6) ->  Monster(Dragon, Exoskeleton, Spirit)
 weapons.txt -> 120 weapons (2*60) -> 2/level:
 armors.txt -> 80 shields (1*80) -> 1/level
-potions.txt -> 66 elixirs (3*22) -> 3/level
 spells.txt -> 30 spells (3*10) -> Ice, Fire, Light 1/level
 
 ## διευκρυνήσεις
 - όταν εμφανίζεται ο κόσμος η ομάδα αναπαρίσταται γραφικά ως ✳
+- η γραφική αναπαράσταση του κόσμου υπάρχει και στο αρχείο Grid.pdf
 
 ## Πρέπει να προσθέσουμε
 - Game
