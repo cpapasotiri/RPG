@@ -43,7 +43,7 @@ class Item{
 
     public:
         Item(string name,int price, int leastlevel);
-        ~Item();
+        virtual ~Item();
         string getName()const;
         int getPrice()const;
         int getLeastlevel()const;
@@ -81,14 +81,12 @@ class Potion: public Item {
     private:
         string ability; //the ability of the hero that the potion increase
         int amount;     // the amount of the raise
-        int flag;       //flag=0 not used , flag=1 used
 
     public:
         Potion(string,int,int,string,int);
         ~Potion();
         string getAbility()const;
         int getAmount()const;
-        int getFlag()const;
         void print();
 };
 
@@ -103,7 +101,7 @@ class Spell: public Item {
 
     public:
         Spell(string,int,int,int,int,int,int,int);
-        ~Spell();
+        virtual ~Spell();
         int getEnergy()const;
         int getMax()const;
         int getMin()const;

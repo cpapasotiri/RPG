@@ -48,6 +48,7 @@ class Grid{
         Square*** getWorld()const;
         vector<Hero*> getHeroes()const;
         vector<Monster*> getMonsters()const;
+        vector<Monster*> prepare(int lvl,int ctr);
 };
 
 
@@ -60,16 +61,16 @@ class Square{
 
     public:
         Square(int, int, int);
-        ~Square();
+        virtual ~Square();
         virtual void print()const=0;
-        virtual void start()=0;
+        virtual void start(vector<Monster*>)=0;
+        virtual void operate(vector <Monster*>)=0;
         void enterTeam(Team*);
         void exitTeam();
         int getType()const;
         int getI()const;
         int getJ()const;
         Team* getTeam()const;
-        virtual void operate(vector <Monster*> k)=0;
 };
 
 
@@ -78,8 +79,8 @@ class NonAccessible : public Square{
         NonAccessible(int, int);
         ~NonAccessible();
         void print()const;
-        void start();
-        void operate(vector <Monster*> k);
+        void start(vector<Monster*>);
+        void operate(vector <Monster*>);
 };
 
 
@@ -103,8 +104,8 @@ class Market : public Square{
         Hero* selectHero();
         string selectCategory();
         void help();
-        void start();
-        void operate(vector <Monster*> k);
+        void start(vector<Monster*>);
+        void operate(vector <Monster*>);
         vector<Weapon*> getWeapons()const;
         vector<Armor*> getArmors()const;
         vector<Potion*> getPotions()const;
@@ -118,10 +119,10 @@ class Common : public Square{
         Common(int, int);
         ~Common();
         void print()const;
-        void start();
-        void operate(vector <Monster*> k);
-        void afterBattle(int num,vector<Monster*> monsters,int flag);
-        int Battle(vector<Monster*> monsters);             // return 1 for victory and return 0 for defeat 
+        void start(vector<Monster*>);
+        void operate(vector <Monster*>);
+        void afterBattle(int,vector<Monster*>,int);
+        int Battle(vector<Monster*>);             // return 1 for victory and return 0 for defeat 
 };
 
 

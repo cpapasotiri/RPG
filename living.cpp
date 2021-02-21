@@ -14,8 +14,7 @@ Living::Living(string n){
     faint = false;
 }
 
-Living::~Living(){
-}
+Living::~Living(){}
 
 string Living::getName()const{
     return name;
@@ -46,10 +45,10 @@ bool Living::checkHealth(){
 void Living::changeHealth(int x){
     healthPower += x;
 	if(healthPower<0){ 
-		healthPower=0;    //nomizo prepei na tsekaroume kai afto edo
+		healthPower=0;
 	}
 	if(healthPower>100){ 
-		healthPower=100;  // kai afto
+		healthPower=100;
 	}	
 }
 
@@ -68,10 +67,8 @@ Hero::Hero(string n, int s, int d, int a)
 }
 
 Hero::~Hero(){
-	Potion* ptr;
     for(int j=0; j<potion.size(); j++){
-    	ptr=potion[j];
-		delete ptr;
+    	potion[j];
 	}
     weapon.clear();
     armor.clear();
@@ -200,6 +197,7 @@ void Hero::buy(Weapon* a){
 }
 
 void Hero::buy(Armor* a){
+	cout << money << "--" << a->getPrice() << endl;
     if(searchArmor(a)==1){
 		cout << "Already bought" << endl;
 		return;
@@ -637,11 +635,9 @@ int Hero::searchArmor(Armor* a){        //return 1 an iparxei sto inventory
 
 
 Warrior::Warrior(string n)
-: Hero(n, 50, 20, 10){
-}
+: Hero(n, 50, 20, 10){}
 
-Warrior::~Warrior(){
-}
+Warrior::~Warrior(){}
 
 void Warrior::print(){
 	cout << "Category: Warrior" << endl;
@@ -681,11 +677,9 @@ void Warrior::levelUp(){
 
 
 Sorcerer::Sorcerer(string n)
-: Hero(n, 30, 40, 10){
-}
+: Hero(n, 30, 40, 10){}
 
-Sorcerer::~Sorcerer(){
-}
+Sorcerer::~Sorcerer(){}
 
 void Sorcerer::print(){
 	cout << "Category: Sorcerer" << endl;
@@ -724,11 +718,9 @@ void Sorcerer::levelUp(){
 
 
 Paladin::Paladin(string n)
-: Hero(n, 42, 38, 5){
-}
+: Hero(n, 42, 38, 5){}
 
-Paladin::~Paladin(){
-}
+Paladin::~Paladin(){}
 
 void Paladin::print(){
 	cout << "Category: Paladin" << endl;
@@ -864,7 +856,7 @@ void Monster::destroy(Hero* a){
 		temp=temp - (i.at(j)->getReduction());
 	}
 	if(temp<0){
-		temp=0;                     // nomizo prepei na elegxoume kai ayto 
+		temp=0;
 	}
 	a->defend(temp);
 }
@@ -903,12 +895,11 @@ void Monster::print(){
 	cout <<"Printing monster...." << endl;
 }
 
-Dragon::Dragon(string n) 
-: Monster(n, 32, 3, 6){
-}
 
-Dragon::~Dragon(){
-}
+Dragon::Dragon(string n) 
+: Monster(n, 32, 3, 6){}
+
+Dragon::~Dragon(){}
 
 void Dragon::print(){
 	cout << "Monster type: Dragon" << endl;
@@ -928,11 +919,9 @@ void Dragon::levelUp(){
 }
 
 Exoskeleton::Exoskeleton(string n) 
-: Monster(n, 20, 12, 5){
-}
+: Monster(n, 20, 12, 5){}
 
-Exoskeleton::~Exoskeleton(){
-}
+Exoskeleton::~Exoskeleton(){}
 
 void Exoskeleton::print(){ 
 	cout << "Monster type: Exoskeleton" << endl;
@@ -952,11 +941,9 @@ void Exoskeleton::levelUp(){
 }
 
 Spirit::Spirit(string n) 
-: Monster(n, 25, 5, 12){
-}
+: Monster(n, 25, 5, 12){}
 
-Spirit::~Spirit(){
-}
+Spirit::~Spirit(){}
 
 void Spirit::print(){
 	cout << "Monster type: Spirit" << endl;
@@ -984,10 +971,6 @@ Team::Team(int num){
 
 Team::~Team(){
 	Hero* ptr;
-	//	for(int j=0; j<this->counter; j++){
-	//		ptr=heroes[j];
-	//		delete ptr;
-	//	}
     delete[] heroes;
 }
 

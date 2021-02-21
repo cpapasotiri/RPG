@@ -101,22 +101,22 @@ class Hero : public Living{
         void sell(Spell*);
         void sellItem();
         void use(Potion*);
-        void defend(int damage);
-        void attack(Monster* a);
+        void defend(int);
+        void attack(Monster*);
         void regen();
-        void equipArmor(Armor* a);
-        void equipWeapon(Weapon* a);
-        void equipSecondaryWeapon(Weapon* a);
+        void equipArmor(Armor*);
+        void equipWeapon(Weapon*);
+        void equipSecondaryWeapon(Weapon*);
         virtual void levelUp()=0;
-        void castSpell(Monster* a);
+        void castSpell(Monster*);
         int usePotion();
-        void victory(int num);
+        void victory(int);
         void defeat();
         void equip();
         Weapon* printWeapons();
         Armor* printArmor();
-        int searchWeapon(Weapon* a);
-        int searchArmor(Armor* a);
+        int searchWeapon(Weapon*);
+        int searchArmor(Armor*);
 };
 
 
@@ -207,7 +207,7 @@ class Team {        // Team with 1-3 heroes
     private:
         Hero** heroes;
         int counter;
-        Square* location;   // θα δειχνει σε μια θεση προκαθορισμενη μεσα στον κόσμο
+        Square* location;   // prokAthorismeni thesi ston kosmo
 
     public:
         Team(int);

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
+#include <stdlib.h>
+#include <time.h>
 #include "living.hpp"
 #include "item_spell.hpp"
 #include "grid.hpp"
@@ -31,7 +33,6 @@ class Game{
         vector<Armor*> getArmors()const;
         vector<Potion*> getPotions()const;
         vector<Spell*> getSpells()const;
-        vector<Monster*> prepare();
         Grid* getGrid()const;
         Team* getTeam()const;
         void setTeam();

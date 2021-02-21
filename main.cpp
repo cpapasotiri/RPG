@@ -49,13 +49,12 @@ int main(int argc, char* argv[]){
 
     Game* game = new Game(livingNames, weaponNames, armorNames, spellNames);
     game->start();
-
-
+    delete game;
+    
     livingNames.clear();
     weaponNames.clear();
     armorNames.clear();
     spellNames.clear();
-    delete game;
     
     return 0;
 }

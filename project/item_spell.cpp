@@ -12,7 +12,8 @@ Item::Item(string name,int price,int leastlevel){
     this->leastlevel=leastlevel;
 }
 
-Item::~Item(){}
+Item::~Item(){
+}
 
 string Item::getName()const{
     return name;
@@ -33,7 +34,9 @@ Item(name,price,leastlevel){
     hands=i;
 }
 
-Weapon::~Weapon(){}
+Weapon::~Weapon(){
+	//cout << "weapon deleted" << endl;
+}
 
 int Weapon::getDamage()const{
     return damage;
@@ -57,7 +60,9 @@ Item(name,price,leastlevel){
     this->defence=defence;
 }
 
-Armor::~Armor(){}
+Armor::~Armor(){
+//	cout << "armor deleted" << endl;
+}
 
 int Armor::getDefence()const{
     return defence;
@@ -75,9 +80,12 @@ Potion::Potion(string name,int price,int leastlevel,string abil,int amount):
 Item(name,price,leastlevel){
     ability=abil;
     this->amount=amount;
+   
 }
 
-Potion::~Potion(){}
+Potion::~Potion(){
+	//cout << "potion deleted" << endl;
+}
 
 string Potion::getAbility()const{
     return ability;
@@ -86,6 +94,8 @@ string Potion::getAbility()const{
 int Potion::getAmount()const{
     return amount;
 }
+
+
 
 void Potion::print(){
     cout << "Potion: " << name <<endl;
@@ -104,7 +114,9 @@ Item(name,price,leastlevel){
     rounds=b;
 }
 
-Spell::~Spell(){} 
+Spell::~Spell(){
+//	cout << "Spell deleted" << endl;
+} 
 
 int Spell::getEnergy()const{
     return energy;
@@ -152,12 +164,16 @@ void Spell::cast(int dexterity,Monster* a){
 }
 
 Icespell::Icespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
-Spell(name,price,leastlevel,energy,min,max,a,b){}
+Spell(name,price,leastlevel,energy,min,max,a,b){
+}
 
 Icespell::Icespell(const Icespell &p2):
-Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1){}
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1){
+}
 
-Icespell::~Icespell(){}
+Icespell::~Icespell(){
+//	cout << "Icespell deleted" << endl;
+}
 
 void Icespell::print(){
     Spell::print();
@@ -171,12 +187,16 @@ void Icespell::cast(int dexterity,Monster* a){
 }
 
 Firespell::Firespell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
-Spell(name,price,leastlevel,energy,min,max,a,b){}
+Spell(name,price,leastlevel,energy,min,max,a,b){
+}
 
 Firespell::Firespell(const Firespell &p2):
-Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1){}
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1){
+}
 
-Firespell::~Firespell(){}
+Firespell::~Firespell(){
+	//	cout << "Firespell deleted" << endl;
+}
 
 void Firespell::print(){
     Spell::print();
@@ -190,12 +210,16 @@ void Firespell::cast(int dexterity,Monster* a){
 }
 
 Lightingspell::Lightingspell(string name,int price,int leastlevel,int energy,int min,int max, int a, int b):
-Spell(name,price,leastlevel,energy,min,max,a,b){}
+Spell(name,price,leastlevel,energy,min,max,a,b){
+}
 
 Lightingspell::Lightingspell(const Lightingspell &p2):
-Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1){}
+Spell(p2.name,p2.price,p2.leastlevel,p2.energy,p2.mindamage,p2.maxdamage,p2.reduction,p2.rounds+1){
+}
 
-Lightingspell::~Lightingspell(){}
+Lightingspell::~Lightingspell(){
+	//	cout << "Lightningspell deleted" << endl;
+}
 
 void Lightingspell::print(){
     Spell::print();

@@ -54,7 +54,7 @@ void Grid::displayMap(){
                 world[i][j]->print();
             }
             else{
-                cout << "✳";
+                cout << "T";
             }
             cout << " ";
         }
@@ -66,7 +66,7 @@ void Grid::move(Team* team, string m){
     Square* curr = team->getLocation();
     int i = curr->getI();
     int j = curr->getJ();
-
+	vector<Monster*> mon;
     Square* move;
     int move_type;
     if(m.compare("up") == 0){
@@ -86,15 +86,24 @@ void Grid::move(Team* team, string m){
         move_type = move->getType();
     }
 
-    if(move_type != 0){                
+    if(move_type == 1){                
         curr->exitTeam();
         team->setLocation(move);
         move->enterTeam(team);
-        move->start();
+        move->start(mon);
+        
     }
+    else if(move_type==2){
+    	curr->exitTeam();
+        team->setLocation(move);
+        move->enterTeam(team);
+        mon=prepare(team->getLevel(),team->getCounter());
+        move->start(mon);
+	}
     else{
         cout << "You can't move into a Non Accessible Square" << endl; 
     }
+    mon.clear();
 }
 
 void Grid::setTeam(Team* t){
@@ -114,6 +123,36 @@ vector<Monster*> Grid::getMonsters()const{
     return monsters;
 }
 
+vector<Monster*> Grid::prepare(int lvl,int ctr){
+	int amount;
+	int v3;
+	amount= 1+ rand() % (ctr+1);
+
+	vector<Monster*> k;
+	for(int j=0; j<amount; j++){
+		v3=rand() % monsters.size();
+		if(v3<=5){
+		    Monster* m=new Dragon(monsters.at(v3)->getName());
+		    k.push_back(m);
+		}
+		else if(v3<=10){
+			Monster* m=new Exoskeleton(monsters.at(v3)->getName());
+			k.push_back(m);
+		}
+		else{
+			Monster* m=new Spirit(monsters.at(v3)->getName());
+			k.push_back(m);
+		}
+	
+    }
+	for(int j=1; j<lvl; j++){
+		for(int i=0; i<k.size(); i++){
+			k.at(i)->levelUp();
+		}
+	}
+	return k;
+}
+
 
 Square::Square(int t, int x, int y){
     type = t;
@@ -123,7 +162,7 @@ Square::Square(int t, int x, int y){
 }
 
 Square::~Square(){
-    delete team;
+    // delete team;
 }
 
 void Square::enterTeam(Team* t){
@@ -162,7 +201,7 @@ void NonAccessible::print()const{
     cout << 0;
 }
 
-void NonAccessible::start(){}
+void NonAccessible::start(vector <Monster*> k){}
 
 void NonAccessible::operate(vector <Monster*> k){}
 
@@ -191,7 +230,6 @@ void Market::print()const{
 }
 
 int Market::printMenu(string s){
-    // print Menu
     cout << endl <<"MENU: " << endl << endl;
     int index = 0;
     if(s.compare("weapon") == 0){
@@ -245,8 +283,6 @@ void Market::menu(){
             buy(hero, category, index);
         }
         else if(item.compare("sell") == 0){
-            string category = selectCategory();
-            int index = printMenu(category);
             hero = selectHero();
             sell(hero);
         }
@@ -273,16 +309,16 @@ void Market::buy(Hero* hero, string s, int i){
             break;
         }
         else if(s.compare("weapon") == 0){      // weapon
-            hero->buy(weapons[x]);
+            hero->buy(weapons[x-1]);
         }
         else if(s.compare("armor") == 0){       // armor
-            hero->buy(armors[x]);
+            hero->buy(armors[x-1]);
         }
         else if(s.compare("potion") == 0){      // potion
-            hero->buy(potions[x]);
+            hero->buy(potions[x-1]);
         }
         else{                                   // spell
-            hero->buy(spells[x]);
+            hero->buy(spells[x-1]);
         }
         cout << "Please select an item to buy between 1-" << i << endl;
         cout << "If you want to stop buying select 0" << endl;
@@ -311,13 +347,12 @@ Hero* Market::selectHero(){
     	while(temp<=0 || temp>counter){
     		cout << "Wrong input" << endl;
     		cout << "Please select a hero: (by giving its number)" << endl;
-    		cin>> temp;
+    		cin >> temp;
 		}
     	string name=heroes[temp-1]->getName();
     	cout << "You selected: " << name << endl;
        	hero=heroes[temp-1];
     }
-
     return hero;
 }
 
@@ -331,7 +366,6 @@ string Market::selectCategory(){
         cin >> type;
         cout << "You selected:" << type << endl;
     }
-
     return type;
 }
 
@@ -345,7 +379,7 @@ void Market::help(){
     cout << "If you want to exit from menu, please give: exit" << endl;
 }
 
-void Market::start(){
+void Market::start(vector <Monster*> k){
     menu();
 }
 
@@ -373,11 +407,9 @@ int Market::getItems()const{
 
 
 Common::Common(int x, int y)
-: Square(2, x, y){
-}
+: Square(2, x, y){}
 
-Common::~Common(){
-}
+Common::~Common(){}
 
 void Common::print()const{
     cout << 2;
@@ -387,8 +419,8 @@ void Common::print()const{
 }
 
 
-void Common::start(){
-    // start fight
+void Common::start(vector <Monster*> k){
+    this->Battle(k);
 }
 
 void Common::operate(vector <Monster*> k){
@@ -402,7 +434,6 @@ void Common::afterBattle(int num,vector<Monster*>monsters,int flag){            
 			b[j]->victory(num);
 		}
 		else{
-			
 			b[j]->defeat();
 		}
 		b[j]->levelUp();                                  //osoi exoun arketa exp anevenoun level , tsekarei gia aftous me 0 health na paei 50
@@ -434,6 +465,7 @@ int Common::Battle(vector<Monster*> monsters){
 	    	if(monsters.size()==0) 
                 break;
 		    cout << "Choose hero's " << j+1 << " next move" << endl;
+            cout << "Please give: attack/castspell/use/inventory/equip/displayStats" << endl;
     		cin >> move;
 	    	if(move=="attack"){
 		    	cout << "Which monster you want to attack?(Give its number)" << endl;
@@ -505,7 +537,7 @@ int Common::Battle(vector<Monster*> monsters){
 			}
 		    else{
 		    	cout << "Please give a correct instruction!" << endl;
-                cout << "Give: attack/castspell/use/inventory/equip/displayStats" << endl;
+                cout << "Please give: attack/castspell/use/inventory/equip/displayStats" << endl;
 	    		j--;
     	    }
 	    }

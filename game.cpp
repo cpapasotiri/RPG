@@ -55,19 +55,20 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
         j++;
         if(j==11){
         	level++;
-        	if(level>10) level--;
+        	if(level>10) 
+                level--;
         	j=0;
         	price=level*10;
         	
 		}
 		hands= 1 + rand() % 2;
 		if(hands==2){
-		dmg= (level*5) + rand() % (level*5);
-		prc=price + rand() % 10;
+		    dmg= (level*5) + rand() % (level*5);
+		    prc=price + rand() % 10;
 		}
 		else {
-		dmg= (level*5)/2 + rand() % (level*3);
-		prc=price + rand() % 10;
+		    dmg= (level*5)/2 + rand() % (level*3);
+		    prc=price + rand() % 10;
 		}
 		
     }
@@ -90,7 +91,6 @@ Game::Game(vector<string> livingNames, vector<string> weaponNames, vector<string
         	price=level*10;
         	mindef=defence;
         	defence=defence+4;
-        
 		}
 		def=mindef + rand() % 5;
 		prc= price + rand() % 10;  	
@@ -213,35 +213,6 @@ vector<Spell*>Game:: getSpells()const{
     return spells;
 }
 
-vector<Monster*> Game::prepare(){
-	int amount;
-	int v3;
-	amount= 1+ rand() % (team->getCounter()+1);
-
-	vector<Monster*> k;
-	for(int j=0; j<amount; j++){
-		v3=rand() % monsters.size();
-		if(v3<=5){
-		    Monster* m=new Dragon(monsters.at(v3)->getName());
-		    k.push_back(m);
-		}
-		else if(v3<=10){
-			Monster* m=new Exoskeleton(monsters.at(v3)->getName());
-			k.push_back(m);
-		}
-		else{
-			Monster* m=new Spirit(monsters.at(v3)->getName());
-			k.push_back(m);
-		}
-	
-    }
-	for(int j=1; j<team->getLevel(); j++){
-		for(int i=0; i<k.size(); i++){
-			k.at(i)->levelUp();
-		}
-	}
-	return k;
-}
 
 Grid* Game::getGrid()const{
     return grid;
@@ -290,21 +261,13 @@ void Game::start(){
         }
         else{
             help();
-            flag=1;
         }
-        if(flag!=1){
-            if(team->getLocation()->getType()==2){
-                mon=this->prepare();
-		        team->getLocation()->operate(mon);
-		    }
-	    }
-		flag=0;
         grid->displayMap();
-        cout << "Please select where you want to move" << endl;
+        cout << "Please select where you want to move between up/down/right/left" << endl;
         cin >> m;
         cout << "You selected:" << m << endl;
-        mon.clear();
     }
+    delete team;
 }
 
 bool Game::stop(){
@@ -324,7 +287,6 @@ void Game::help(){
     cout << "If you want to move down, please give: down" << endl;
     cout << "If you want to move right, please give: right" << endl;
     cout << "If you want to move left, please give: left" << endl;
-    // cout << "WARNING: You can't move out of world" << endl;
     cout << "If you want to stop playing the game, please give: stop" << endl;
 }
 
