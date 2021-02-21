@@ -54,7 +54,7 @@ void Grid::displayMap(){
                 world[i][j]->print();
             }
             else{
-                cout << "?";
+                cout << "*";
             }
             cout << " ";
         }
