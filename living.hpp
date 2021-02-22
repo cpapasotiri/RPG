@@ -147,6 +147,27 @@ class Paladin : public Hero{
 };
 
 
+class Team {        // Team with 1-3 heroes 
+    private:
+        Hero** heroes;
+        int counter;
+        Square* location;   // prokAthorismeni thesi ston kosmo
+
+    public:
+        Team(int);
+        ~Team();
+        void print();
+        void setLocation(Square*);
+        Square* getLocation()const;
+        Hero** getHeroes()const;
+        int getCounter()const;
+        int getLevel()const;
+        void joinTeam(Hero*);
+        void displayStats()const;
+};
+
+
+
 class Monster : public Living{
     protected:
         int damage;     // damage it causes
@@ -199,27 +220,6 @@ class Spirit : public Monster{
         ~Spirit();
         void print();
         void levelUp();
-};
-
-
-
-class Team {        // Team with 1-3 heroes 
-    private:
-        Hero** heroes;
-        int counter;
-        Square* location;   // prokAthorismeni thesi ston kosmo
-
-    public:
-        Team(int);
-        ~Team();
-        void print();
-        void setLocation(Square*);
-        Square* getLocation()const;
-        Hero** getHeroes()const;
-        int getCounter()const;
-        int getLevel()const;
-        void joinTeam(Hero*);
-        void displayStats()const;
 };
 
 

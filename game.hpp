@@ -26,7 +26,6 @@ class Game{
     public:
         Game(vector<string>, vector<string>, vector<string>, vector<string>);
         ~Game();
-
         vector<Hero*> getHeroes()const;
         vector<Monster*> getMonsters()const;
         vector<Weapon*> getWeapons()const;
@@ -37,7 +36,7 @@ class Game{
         Team* getTeam()const;
         void setTeam();
         void start();
-        bool stop();
+        bool quitGame();
         void move(string);
         void help();
         void printHeroes();

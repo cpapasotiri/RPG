@@ -246,15 +246,15 @@ void Game::start(){
     grid->displayMap(); 
 
     string m;
-    cout << "Please select where you want to move between up/down/right/left" << endl;
+    cout << "Please select where you want to move between up/down/right/left/quitGame" << endl;
     cin >> m;
     cout << "You selected:" << m << endl;
     while(true){
         if((m.compare("up") == 0) || (m.compare("down") == 0) || (m.compare("right") == 0) || (m.compare("left") == 0)){
             move(m);
         }
-        else if(m.compare("stop") == 0){
-            bool s = stop();
+        else if(m.compare("quitGame") == 0){
+            bool s = quitGame();
             if (s == true){
                 break;
             }
@@ -263,15 +263,14 @@ void Game::start(){
             help();
         }
         grid->displayMap();
-        cout << "Please select where you want to move between up/down/right/left" << endl;
+        cout << "Please select where you want to move between up/down/right/left/quitGame" << endl;
         cin >> m;
-        cout << "You selected:" << m << endl;
+        cout << "You selected: " << m << endl;
     }
     delete team;
 }
 
-bool Game::stop(){
-    cout << "You selected: stop." << endl;
+bool Game::quitGame(){
     cout << "If you are sure you want to stop playing write OK else CANCEL.";
     string s;
     cin >> s;
@@ -287,7 +286,7 @@ void Game::help(){
     cout << "If you want to move down, please give: down" << endl;
     cout << "If you want to move right, please give: right" << endl;
     cout << "If you want to move left, please give: left" << endl;
-    cout << "If you want to stop playing the game, please give: stop" << endl;
+    cout << "If you want to stop playing the game, please give: quitGame" << endl;
 }
 
 void Game::printHeroes(){
