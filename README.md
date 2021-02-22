@@ -60,4 +60,5 @@ g++ -o game living.o item_spell.o grid.o game.o main.o
     120 weapons => 2/level
     80 armors => 1/level
     30 spells => Ice, Fire, Light => 1/level
+    6 potions => 2 * health, 2 * magicPower, dexterity, strength 
 - Κάθε αρχείο περιέχει κατάλληλες οδηγίες ifndef/define/endif προς τον προεπεξεργαστή για την αποφυγή πολλαπλών κλήσεων των ίδιων .hpp αρχείων. Για αυτό τον λόγο κάθε .hpp αρχείο περιέχει εκτός από τις δικές του forward declarations και όλες όσες θα χρησιμοποιήσει ή/και το χρησιμοποιούν.
