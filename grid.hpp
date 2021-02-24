@@ -64,7 +64,6 @@ class Square{
         virtual ~Square();
         virtual void print()const=0;
         virtual void start(vector<Monster*>)=0;
-        virtual void operate(vector <Monster*>)=0;
         void enterTeam(Team*);
         void exitTeam();
         int getType()const;
@@ -80,7 +79,7 @@ class NonAccessible : public Square{
         ~NonAccessible();
         void print()const;
         void start(vector<Monster*>);
-        void operate(vector <Monster*>);
+        
 };
 
 
@@ -105,7 +104,6 @@ class Market : public Square{
         string selectCategory();
         void help();
         void start(vector<Monster*>);
-        void operate(vector <Monster*>);
         vector<Weapon*> getWeapons()const;
         vector<Armor*> getArmors()const;
         vector<Potion*> getPotions()const;
@@ -120,7 +118,6 @@ class Common : public Square{
         ~Common();
         void print()const;
         void start(vector<Monster*>);
-        void operate(vector <Monster*>);
         void afterBattle(int,vector<Monster*>,int);
         int Battle(vector<Monster*>);             // return 1 for victory and return 0 for defeat 
 };
