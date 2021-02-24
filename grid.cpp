@@ -203,7 +203,7 @@ void NonAccessible::print()const{
 
 void NonAccessible::start(vector <Monster*> k){}
 
-void NonAccessible::operate(vector <Monster*> k){}
+
 
 
 Market::Market(vector<Weapon*> w, vector<Armor*> a, vector<Potion*> p, vector<Spell*> s, int x, int y)
@@ -383,7 +383,7 @@ void Market::start(vector <Monster*> k){
     menu();
 }
 
-void Market::operate(vector <Monster*> k){}
+
 
 vector<Weapon*> Market::getWeapons()const{
     return weapons;
@@ -423,9 +423,7 @@ void Common::start(vector <Monster*> k){
     this->Battle(k);
 }
 
-void Common::operate(vector <Monster*> k){
-	this->Battle(k);	
-}
+
 
 void Common::afterBattle(int num,vector<Monster*>monsters,int flag){              //flag=1 kerdisan oi iroes           //sto vector ipotithetai oti exo ta terata opou itan sth maxi
 	Hero** b=Square::getTeam()->getHeroes();
