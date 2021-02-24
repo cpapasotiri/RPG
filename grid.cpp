@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstring>
 #include <vector> 
+#include <time.h>
+#include <stdlib.h>
 
 #include "grid.hpp"
 
