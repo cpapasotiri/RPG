@@ -163,9 +163,7 @@ Square::Square(int t, int x, int y){
     team = NULL;
 }
 
-Square::~Square(){
-    // delete team;
-}
+Square::~Square(){}
 
 void Square::enterTeam(Team* t){
     team = t;
@@ -196,8 +194,7 @@ NonAccessible::NonAccessible(int x, int y)
 : Square(0, x, y){
 }
 
-NonAccessible::~NonAccessible(){
-}
+NonAccessible::~NonAccessible(){}
 
 void NonAccessible::print()const{
     cout << 0;
@@ -266,7 +263,6 @@ int Market::printMenu(string s){
             (*s)->print();
         }
     }
-    
     return index;
 }
 
