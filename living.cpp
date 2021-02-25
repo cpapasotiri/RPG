@@ -197,7 +197,7 @@ void Hero::buy(Weapon* a){
 }
 
 void Hero::buy(Armor* a){
-	cout << money << "--" << a->getPrice() << endl;
+	
     if(searchArmor(a)==1){
 		cout << "Already bought" << endl;
 		return;
