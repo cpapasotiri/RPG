@@ -2,8 +2,7 @@
 #include <fstream>
 #include <cstring>
 #include <time.h>
-
-#include "game.hpp"
+#include "../include/game.hpp"
 
 using namespace std;
 

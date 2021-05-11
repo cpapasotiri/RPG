@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstring>
-
-#include "item_spell.hpp"
+#include "../include/item_spell.hpp"
 
 using namespace std;
 
