@@ -1,6 +1,11 @@
+<p align="center"><img src="logo_en.png" alt="Logo NKUA DiT" width=35%/></p>
+
+# <center>Object Oriented Programming - Role Playing Game - Winter Semester 2020-2021</center>
+<center>Professor in charge: Izambo Karali</center><br>
+
 ## Team Personal Data:
-- Christina Papasotiri
-- George Mouratos
+- [George Mouratos](https://github.com/mouratos41)
+- [Christina Papasotiri](https://github.com/cpapasotiri)
 
 ## Role Playing Game
 ### World
@@ -27,8 +32,14 @@ The approach we followed to create this game was to start with the living beings
 - Each level of player interface gives appropriate instructions on how to handle the game. Help is also provided for each level. 
 - Every heroe can hold up to 2 guns (primary,secondary) provided that both of these 2 weapons require a hand to be used.
 
-### Περιγραγή διαδικασίες μάχης:  
-Πριν ξεκινήσει η μάχη επιλέγονται τυχαία κάποια τέρατα για να αντιμετωπίσουν οι ήρωες. Ο αριθμός των τεράτων παίρνει τιμές στο διάστημα [1,counter+1] όπου counter είναι το πλήθος των ηρώων. Για να ξεκινήσει η μάχη πρέπει τα τέρατα να είναι ίδιου επιπέδου με τους ήρωες, μόλις γίνει αυτό ξεκινάει η μάχη. Αρχικά τοποθετούμε ήρωες και τέρατα σε δυο διαφορετικά vectors. Όταν η ζωή κάποιου τέρατος η ήρωα γίνει 0 τον βγάζουμε απο το vector και η μάχη τελείωνει όταν κάποιο απο τα δύο vector αδειάσει δηλαδή όταν πεθάνουν όλα τα τέρατα ή όλοι οι ήρωες. Η μάχη διεξάγεται σε γύρους και σε κάθε γύρο παίζουν πρώτα οι ήρωες. Ο χρήστης επιλέγει την κίνηση κάθε ήρωα και αν επιλέξει να επιτεθεί σε κάποιο τέρας με ξόρκι ή χωρίς καλείται να διαλέξει και ποιο τέρας επιθυμεί να χτυπήσει. Όταν είναι ο γύρος των τεράτων κάθε τέρας χτυπάει έναν ήρωα που επιλέγεται τυχαία. Μετά τη μάχη και οι ήρωες παίρνουν τις ανταμοιβές τους δηλαδή αυξάνεται το experience και τα money τους αν κερδίσουν, ενώ αν χάσουν χάνουν τα μισά τους χρήματα. 
+### Battle:  
+Before the battle begins, some monsters are randomly selected for the heroes to face. The number of monsters takes value in the interval [1, counter+1] where counter is the number of heroes. <br>
+For the battle to start the monsters must be of the same level as the heroes, once this is done the battle starts. <br>
+Initially we place heroes and monsters in two diferrent vectors. <br>
+When the life counter of a monster or a heroe becomes 0 we remove it from the vector and the battle ends when one of the two vectors is empty i.e. when all monsters or all heroes die. <br>
+The battle takes place in rounds in each round the heroes plays first. <br>
+The user chooses the move of each hero and if he chooses to attack a monster with or without the a spell he is also asked to choose witch monster he wants to hit. <br>
+When its the monsters round each monster hits a heroe chosen at random. After the battle and the heroes get their rewards i.e. ther experience and money increases if they won, if they lost the lose half of their money.  
 
 ## Implementation Details
 ### living
@@ -66,24 +77,18 @@ The approach we followed to create this game was to start with the living beings
     Όταν η ομάδα μπαίνει στα τετράγωνα αυτού του είδους ο παίκτης πρέπει να διαλέξει τι θέλει να κάνει buy/sell ή help αν θέλει κάποια διευκρύνιση ή exit αν θέλει να σταματήσει να βλέπει πράγματα που αφορούν το Market για να συνεχίσει στην επόμενη του κίνηση. 
 
 ### game
-    Ορίσαμε την κλάση Game ως την διεπαφή του παιχνιδιού με: τον παίκτη, την main και το Grid. 
-    Από την main το Game παίρνει τα ονόματα για να φτιάξει τα όντα και τα αντικείμενα, ενώ από τον χρήστη παίρνει τις πληροφορίες που χρεάζεται για να φτιάξει την ομάδα του κόσμου. 
-- Περιγραφή λειτουργίας Game:
-    Το παιχίδι ξεκινάει αυτόματα εκτυπώνοντας στον παίκτη ποιοί είναι οι προσφερόμενοι Ήρωες που μπορεί να διαλέξει 1-3. Ο παίκτης γράφοντας τον πλήθος Ηρώων που θέλει στην ομάδα του έπειτα του ζητείται να επιλέξει και ποίοι ακριβώς θα είναι αυτοί. Μετά την δημιουρία της ομάδας του κόσμου ο παίκτης καλέιται να επιλέξει κάθε φορά που θέλει να κινηθεί η ομάδα μέσα στον κόσμο δίνοντας up/down/right/left ή help αν θέλει κάποια διευκρίνιση ή quitGame αν θέλει να σταματήσει το παιχνίδι και αν όντως επιθυμεί τον τερματισμό του πρέπει να επιλέξει το OK.
+We define the Game class as the game interface between player, main and Grid. From the main of Game gets the names to build the creatures and objects, while from user it gets the information needed to build the world team. <br>
+The game starts automatically by printing to the player which are the offered Heroes and he can choose 1-3. The player writes down the number of Heroes he wants in his team and is then asked to choose exactly who they will be. After the creation of the world team the player is asked to choose each time he wants the team to move through the world by giving up/down/right/left or help if he wants some clarification or quitGame if he wants to stop the game and if he really wants to end the game he has to choose OK.
 
 ### main.cpp 
-    Αποθηκεύει σε ξεχωριστά vectors τις ονομασίες που θα αναλυθούν παρακάτω και τις περνάει στο Game δημιουργώντας το.
+It stores in separate vectors the names that will be discussed below and passes them to the Game by creating it.
 
 ### txts files
-    Τα παρακάτω αρχεία περίεχουν τις ονομασίες οι οποίες διαβάζονται στη main του προγράμματος και περνόντας τα ως vector στο Game δημιουργούν αντίστοιχα οντότητες ή αντικείμενα του κόσμου. 
-    names.txt -> ονόματα ζωντανών όντων
-    weapons.txt -> ονομασίες όπλων
-    armors.txt -> ονομασίες πανοπλιών
-    spells.txt -> ονομασίες ξορκιών 
-
-
-
-
+The following files contain the names which are read in the main of the program and passed as vectors to the Game to create entities or objects of the world.<br>
+    names.txt -> names of living beings<br>
+    weapons.txt -> names of weapons<br>
+    armors.txt -> names of armors<br>
+    spells.txt -> names of spells<br>
 
 ## How to Use:
 inside of programs/

@@ -2,7 +2,7 @@ PROGRAMS_DIR = programs
 INCLUDE_DIR = include
 SOURCE = $(wildcard $(PROGRAMS_DIR)/*.cpp)
 FLAGS = -g -I$(INCLUDE_DIR) -o
-# INCLUDE_FLAGS = -I$(INCLUDE_DIR)
+
 ITEM = game
 
 run : compile
