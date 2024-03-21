@@ -1,9 +1,14 @@
-# INCLUDE = ../include
-FLAGS = -g -o
-SOURCE = living.cpp item_spell.cpp grid.cpp main.cpp game.cpp
+PROGRAMS_DIR = programs
+INCLUDE_DIR = include
+SOURCE = $(wildcard $(PROGRAMS_DIR)/*.cpp)
+FLAGS = -g -I$(INCLUDE_DIR) -o
+# INCLUDE_FLAGS = -I$(INCLUDE_DIR)
 ITEM = game
 
 run : compile
+	./$(ITEM)
+
+leaks: compile
 	valgrind ./$(ITEM)
 
 debug : $(ITEM)

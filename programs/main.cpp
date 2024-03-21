@@ -2,7 +2,7 @@
 #include <fstream>
 #include <cstring>
 #include <vector>
-#include "../include/game.hpp"
+#include "game.hpp"
 
 using namespace std;
 

@@ -3,7 +3,7 @@
 #include <vector> 
 #include <time.h>
 #include <stdlib.h>
-#include "../include/grid.hpp"
+#include "grid.hpp"
 
 using namespace std;
 

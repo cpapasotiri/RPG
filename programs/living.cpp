@@ -2,7 +2,7 @@
 #include <cstring>
 #include <time.h>
 #include <stdlib.h>
-#include "../include/living.hpp"
+#include "living.hpp"
 
 
 using namespace std;
