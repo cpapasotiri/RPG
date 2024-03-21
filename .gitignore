@@ -15,6 +15,7 @@
 !*.hpp
 !*.mk
 !*.pdf
+!*.png
 !*.txt
 !Makefile
 !.gitignore
