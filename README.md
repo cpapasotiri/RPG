@@ -1,37 +1,44 @@
-## ΠΡΟΣΩΠΙΚΑ ΣΤΟΙΧΕΙΑ:
+## Team Personal Data:
 - Χριστίνα Παπασωτήρη, AM: 1115201900151
 - Γιώργος Μουράτος, ΑΜ: 1115201900118
 
-## HOW TO COMPILE:
-γράφοντας στο terminal: make
+## Role Playing Game
+### World
+The game contains items, spells, heroes and monsters. <br>
+The heroes and monsters live in a world that represented by a grid. <br> 
+The heroes can engage in battles with monsters, where they can fight against the monsters, and the heroes can fight against each other. <br>
+Heroes can use items and spells to defeat the monsters, or they can buy items to help them on their adventure. <br>
+Every time the heroes defeat a monster, they collect some money and gain experience. When they gain enough experience, the heroes "level up" one level, which means they become stronger in their individual abilities.
 
-ή
+### Game Creation
+The approach we followed to create this game was to start with the living beings, objects and grid squares in order to connect them in such a way that the player, using simple words and numbers, could play this game.
 
-g++ -c living.cpp
-g++ -c item_spell.cpp
-g++ -c grid.cpp
-g++ -c main.cpp
-g++ -c game.cpp
-g++ -o game living.o item_spell.o grid.o game.o main.o
-./game 
- 
-## ΠΕΡΙΓΡΑΦΗ ΥΛΟΠΟΙΗΣΕΩΝ: (Role Playing Game)
-Η πορεία που ακολουθήσαμε κατά τη δημιουργία αυτού του παιχνιδιού, ήταν ξεκινώντας από τα ζωντανά όντα, τα αντικείμενα και τα τετράγωνα του πλέγματος να συνδέσουμε τα όντα, τα αντικείμενα και τον κόσμο με τρόπο έτσι ώστε ο παίκτης με τη χρήση απλών λέξεων και αριθμών να μπορεί να παίξει το παιχνίδι αυτό όπως περιγράφεται στην εκφώνηση.       
+### Objects and Living Beings in this world:
+27 livings: (9 Hero => 3 Warrior, 3 Sorcerer, 3 Paladin, 18 Monster => 6 Dragon, 6 Exoskeleton, 6 Spirit) <br>
+120 weapons => 2/level <br>
+80 armors => 1/level <br>
+30 spells => Ice, Fire, Light => 1/level <br>
+6 potions => 2 health, 2 magicPower, dexterity, strength <br> 
 
-## Χριστίνα:
-- living.cpp - living.hpp
+### We emphasize that:
+- When the world appears the team is represented graphically as * . 
+- The graphical representation of the world which is also displayed on the command line is also availiable in Grid.pdf file.
+- For the game to work properly the player must not choose the same hero more than once at the beginning.
+- Each level of player interface gives appropriate instructions on how to handle the game. Help is also provided for each level. 
+- Every heroe can hold up to 2 guns (primary,secondary) provided that both of these 2 weapons require a hand to be used.
+
+## Implementation Details
+### living
     Ορίσαμε ως superclass την κλάση Living η οποία αντιπροσωπεύει τις οντότητες Ήρωες και Τέρατα στην υλοποίηση μας. Η κλάση Living περιέχει το όνομα, το επίπεδο, την ζωή και το αν το τρέχον αντικείμενο είναι λιπόθημο ή όχι. 
     Η κλάση Living έχει ως subclasses τις κλάσεις:
     1) Hero, η οποία αντιπροσωπεύει τα είδη των Ηρώων.
     2) Monster, η οποία αντιπροσωπεύει τα είδη των Τεράτων.
-    Ορίσαμε ως superclass την κλάση Hero η οποία έχει ως subclasses:
-    1) Warrior
-    2) Sorcerer
-    3) Paladin
+    Ορίσαμε ως superclass την κλάση Hero η οποία έχει ως subclasses: (Warrior, Sorcerer, Paladin)
     Οι κλάσεις αυτές κληρονομούν όλα τα χαρακτηριστικά από το Hero και ουσιαστικά ξεχωρίζουν μεταξύ τους λόγω του ότι περιγράφουν διαφορετικό είδος Ήρωα ως αναφορά τα στατιστικά που τους αρχικοποιούν.    
     Ορίσαμε την κλάση Team η οποία αντιπροσωπεύει μια ομάδα που αποτελέιται από 1 έως 3 Ήρωες την οποία δημιουργεί ο παίκτης του παιχνιδιού κατά την έναρξή του.
     Κάθε Ήρωας μπορεί να αγοράσει, να πουλήσει και να χρησιμοποιήσει αντικέιμενα τα οποία αγοράζει από τα Market τετράγωνα του πλέγματος. Επίσης κάθε ήρωας σε κάθε γύρο μπορεί να επιτίθεται στα τέρατα με ή χωρίς ξόρκι ή να χρησιμοποιήσει κάποιο φίλτρο ή να αλλάξει πανοπλία.
-- grid.cpp - grid.hpp
+    - Ορίσαμε τη class Monster η οποία είναι υποκλάση της Living και κληρονομεί όλα τα στοιχεία της. Επιπλέον, κάθε τέρας έχει ένα ποσό ζημίας (int damage) ,ένα ποσό άμυνας(int defence) , ένα ποσό ευκινησίας (int attack) και 3 vectors για τα spell που επιδρούν πάνω του και το μειώνουν κάποιο στατιστικό για κάποιους γύρους(υπάρχει ένα vector για κάθε είδος spell και όταν περάσουν οι απαιτούμενοι γύροι το ξόρκι σταματά να έχει επίδραση στο τέρας και σβήνεται απο το vector). Επίσης ορίσαμε και 3 υποκλάσεις της class Monster για να διαχωρίσουμε τα 3 διαφορετικά είδη τεράτων που υπάρχουν(spirit,dragon,exoskeleton).
+### grid
     Ορίσαμε την κλάση Grid ως τον κόσμο του παιχνιδιού με διαστάσεις 8*8 (σκακιέρα- για γραφική παράσταση βλέπε Grid.pdf), ο οποίος κόσμος αναπαριστάται από 3 είδη Square. Η ομάδα μπορεί να μετακινηθεί στο πλέγμα από τετράγωνο σε τετράγωνο. Επίσης μπορεί να εκτυπωθεί γραφικά σαν πίνακας με 0,1,2, ανάλογα τον τύπο τετραγώνου που αναπαριστά κάθε ένα τετράγωνο. 
     Ορίσαμε ως superclass την κλάση Square η οποία έχει ως subclasses:
     1) NonAccessible, η οποία εκτυπώνεται ως 0, είναι τα τετράγωνα του Πλέγματος στα οποία δεν μπορεί να πάει κανένας Ήρωας.
@@ -42,14 +49,14 @@ g++ -o game living.o item_spell.o grid.o game.o main.o
     Ορίσαμε την κλάση Common ως το τετράγωνο τύπου 2, στο οποίο μπορεί να μπει η ομάδα, και όταν μπει ξεκινάει μια μάχη.     
 - Περιγραφή λειτoυργίας Market:
     Όταν η ομάδα μπαίνει στα τετράγωνα αυτού του είδους ο παίκτης πρέπει να διαλέξει τι θέλει να κάνει buy/sell ή help αν θέλει κάποια διευκρύνιση ή exit αν θέλει να σταματήσει να βλέπει πράγματα που αφορούν το Market για να συνεχίσει στην επόμενη του κίνηση. 
-- game.cpp - game.hpp
+### game
     Ορίσαμε την κλάση Game ως την διεπαφή του παιχνιδιού με: τον παίκτη, την main και το Grid. 
     Από την main το Game παίρνει τα ονόματα για να φτιάξει τα όντα και τα αντικείμενα, ενώ από τον χρήστη παίρνει τις πληροφορίες που χρεάζεται για να φτιάξει την ομάδα του κόσμου. 
 - Περιγραφή λειτουργίας Game:
     Το παιχίδι ξεκινάει αυτόματα εκτυπώνοντας στον παίκτη ποιοί είναι οι προσφερόμενοι Ήρωες που μπορεί να διαλέξει 1-3. Ο παίκτης γράφοντας τον πλήθος Ηρώων που θέλει στην ομάδα του έπειτα του ζητείται να επιλέξει και ποίοι ακριβώς θα είναι αυτοί. Μετά την δημιουρία της ομάδας του κόσμου ο παίκτης καλέιται να επιλέξει κάθε φορά που θέλει να κινηθεί η ομάδα μέσα στον κόσμο δίνοντας up/down/right/left ή help αν θέλει κάποια διευκρίνιση ή quitGame αν θέλει να σταματήσει το παιχνίδι και αν όντως επιθυμεί τον τερματισμό του πρέπει να επιλέξει το OK.
-- main.cpp 
+### main.cpp 
     Αποθηκεύει σε ξεχωριστά vectors τις ονομασίες που θα αναλυθούν παρακάτω και τις περνάει στο Game δημιουργώντας το.
-- txts files
+### txts files
     Τα παρακάτω αρχεία περίεχουν τις ονομασίες οι οποίες διαβάζονται στη main του προγράμματος και περνόντας τα ως vector στο Game δημιουργούν αντίστοιχα οντότητες ή αντικείμενα του κόσμου. 
     names.txt -> ονόματα ζωντανών όντων
     weapons.txt -> ονομασίες όπλων
@@ -57,9 +64,9 @@ g++ -o game living.o item_spell.o grid.o game.o main.o
     spells.txt -> ονομασίες ξορκιών 
 
 ## Γιώργος:
-- living.cpp - living.hpp
-    Ορίσαμε τη class Monster η οποία είναι υποκλάση της Living και κληρονομεί όλα τα στοιχεία της. Επιπλέον, κάθε τέρας έχει ένα ποσό ζημίας (int damage) ,ένα ποσό άμυνας(int defence) , ένα ποσό ευκινησίας (int attack) και 3 vectors για τα spell που επιδρούν πάνω του και το μειώνουν κάποιο στατιστικό για κάποιους γύρους(υπάρχει ένα vector για κάθε είδος spell και όταν περάσουν οι απαιτούμενοι γύροι το ξόρκι σταματά να έχει επίδραση στο τέρας και σβήνεται απο το vector). Επίσης ορίσαμε και 3 υποκλάσεις της class Monster για να διαχωρίσουμε τα 3 διαφορετικά είδη τεράτων που υπάρχουν(spirit,dragon,exoskeleton).
-- item_spell.cpp - item_spell.hpp
+
+
+### item_spell
     Ορίσαμε ως superclass την class Item η οποία αντιπροσωπεύει τα αντικείμενα και τα ξόρκια τα οποία χρησιμοποιούν οι ήρωες στο παιχνίδι μας. Η κλάση Item περιέχει το όνομα του αντικειμένου, την τιμή του και το ελάχιστο επίπεδο στο οποίο πρέπει να βρίσκεται ο ήρωας για να το χρησιμοποιήσει. Η κλάση Item έχει 4 υποκλάσεις:
     1) Την class Weapon η οποία αντιπροσωπεύει τα όπλα και περιέχει το damage κάθε όπλου και μια μεταβλητή int hands η οποία παίρνει τιμές 1 ή 2 ανάλογα το πόσα χέρια χρειάζεται ο ήρωας για να το χρησιμοποιήσει. 
     2) Την κλάση Αrmor η οποία αντιπροσωπεύει μια πανοπλία και περιέχει το ποσό άμυνας της πανοπλίας.
@@ -70,22 +77,21 @@ g++ -o game living.o item_spell.o grid.o game.o main.o
     2) class Lightingspell
     3) class Icespell
 
-- Περιγραγή διαδικασίες μάχης:  
+### Περιγραγή διαδικασίες μάχης:  
 Πριν ξεκινήσει η μάχη επιλέγονται τυχαία κάποια τέρατα για να αντιμετωπίσουν οι ήρωες. Ο αριθμός των τεράτων παίρνει τιμές στο διάστημα [1,counter+1] όπου counter είναι το πλήθος των ηρώων. Για να ξεκινήσει η μάχη πρέπει τα τέρατα να είναι ίδιου επιπέδου με τους ήρωες, μόλις γίνει αυτό ξεκινάει η μάχη. Αρχικά τοποθετούμε ήρωες και τέρατα σε δυο διαφορετικά vectors. Όταν η ζωή κάποιου τέρατος η ήρωα γίνει 0 τον βγάζουμε απο το vector και η μάχη τελείωνει όταν κάποιο απο τα δύο vector αδειάσει δηλαδή όταν πεθάνουν όλα τα τέρατα ή όλοι οι ήρωες. Η μάχη διεξάγεται σε γύρους και σε κάθε γύρο παίζουν πρώτα οι ήρωες. Ο χρήστης επιλέγει την κίνηση κάθε ήρωα και αν επιλέξει να επιτεθεί σε κάποιο τέρας με ξόρκι ή χωρίς καλείται να διαλέξει και ποιο τέρας επιθυμεί να χτυπήσει. Όταν είναι ο γύρος των τεράτων κάθε τέρας χτυπάει έναν ήρωα που επιλέγεται τυχαία. Μετά τη μάχη και οι ήρωες παίρνουν τις ανταμοιβές τους δηλαδή αυξάνεται το experience και τα money τους αν κερδίσουν, ενώ αν χάσουν χάνουν τα μισά τους χρήματα.
 
+## How to Use:
+inside of programs/
 
-## Τονίζουμε ότι:
-- Όταν εμφανίζεται ο κόσμος η ομάδα αναπαρίσταται γραφικά ως * .
-- Η γραφική αναπαράσταση του κόσμου η οποία εμφανίζεται και στη γραμμή εντολής υπάρχει και στο αρχείο Grid.pdf.
-- Κάθε επίπεδο διεπαφής με τον παίκτη δίνει κατάλληλες οδηγίες για τον τρόπο χειρισμού του παιχνιδιού. Άλλες φορές ως απλά μηνύματα, ενώ άλλες φορές ο παίκτης μπορεί να ζητήσει help για να του εμφανιστούν κατάλληλες οδηγίες διεπαφής για το συγκεκριμένο σημείο στο οποίο βρίσκεται.
-- Αντικείμενα και όντα του κόσμου:
-    27 livings:
-        9 Hero => 3 * Warrior, 3 * Sorcerer, 3 * Paladin,
-        18 Monster => 6 * Dragon, 6 * Exoskeleton, 6 * Spirit
-    120 weapons => 2/level
-    80 armors => 1/level
-    30 spells => Ice, Fire, Light => 1/level
-    6 potions => 2 * health, 2 * magicPower, dexterity, strength 
-- Κάθε αρχείο περιέχει κατάλληλες οδηγίες ifndef/define/endif προς τον προεπεξεργαστή για την αποφυγή πολλαπλών κλήσεων των ίδιων .hpp αρχείων. Για αυτό τον λόγο κάθε .hpp αρχείο περιέχει εκτός από τις δικές του forward declarations και όλες όσες θα χρησιμοποιήσει ή/και το χρησιμοποιούν.
-- Kάθε ήρωας μπορεί να κρατήσει ταυτόχρονα έως 2 όπλα (primary,secondary) με τη προϋπόθεση ότι και τα 2 αυτά όπλα απαιτούν ένα χέρι για να χρησιμοποιηθούν.
-- Για να λειτουργεί σωστά το παιχνίδι δεν πρεπει στην αρχή ο παίχτης να διαλέξει τον ίδιο ήρωα πάνω απο μία φορα.
+    make run
+
+or
+
+    g++ -c living.cpp
+    g++ -c item_spell.cpp
+    g++ -c grid.cpp
+    g++ -c main.cpp
+    g++ -c game.cpp
+    g++ -o game living.o item_spell.o grid.o game.o main.o
+    ./game 
+
