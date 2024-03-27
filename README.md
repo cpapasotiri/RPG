@@ -43,26 +43,42 @@ When its the monsters round each monster hits a heroe chosen at random. After th
 
 ## Implementation Details
 ### living
-    Ορίσαμε ως superclass την κλάση Living η οποία αντιπροσωπεύει τις οντότητες Ήρωες και Τέρατα στην υλοποίηση μας. Η κλάση Living περιέχει το όνομα, το επίπεδο, την ζωή και το αν το τρέχον αντικείμενο είναι λιπόθημο ή όχι. 
-    Η κλάση Living έχει ως subclasses τις κλάσεις:
-    1) Hero, η οποία αντιπροσωπεύει τα είδη των Ηρώων.
-    2) Monster, η οποία αντιπροσωπεύει τα είδη των Τεράτων.
-    Ορίσαμε ως superclass την κλάση Hero η οποία έχει ως subclasses: (Warrior, Sorcerer, Paladin)
-    Οι κλάσεις αυτές κληρονομούν όλα τα χαρακτηριστικά από το Hero και ουσιαστικά ξεχωρίζουν μεταξύ τους λόγω του ότι περιγράφουν διαφορετικό είδος Ήρωα ως αναφορά τα στατιστικά που τους αρχικοποιούν.    
-    Ορίσαμε την κλάση Team η οποία αντιπροσωπεύει μια ομάδα που αποτελέιται από 1 έως 3 Ήρωες την οποία δημιουργεί ο παίκτης του παιχνιδιού κατά την έναρξή του.
-    Κάθε Ήρωας μπορεί να αγοράσει, να πουλήσει και να χρησιμοποιήσει αντικέιμενα τα οποία αγοράζει από τα Market τετράγωνα του πλέγματος. Επίσης κάθε ήρωας σε κάθε γύρο μπορεί να επιτίθεται στα τέρατα με ή χωρίς ξόρκι ή να χρησιμοποιήσει κάποιο φίλτρο ή να αλλάξει πανοπλία.
-    - Ορίσαμε τη class Monster η οποία είναι υποκλάση της Living και κληρονομεί όλα τα στοιχεία της. Επιπλέον, κάθε τέρας έχει ένα ποσό ζημίας (int damage) ,ένα ποσό άμυνας(int defence) , ένα ποσό ευκινησίας (int attack) και 3 vectors για τα spell που επιδρούν πάνω του και το μειώνουν κάποιο στατιστικό για κάποιους γύρους(υπάρχει ένα vector για κάθε είδος spell και όταν περάσουν οι απαιτούμενοι γύροι το ξόρκι σταματά να έχει επίδραση στο τέρας και σβήνεται απο το vector). Επίσης ορίσαμε και 3 υποκλάσεις της class Monster για να διαχωρίσουμε τα 3 διαφορετικά είδη τεράτων που υπάρχουν(spirit,dragon,exoskeleton).
+We defined the class Living as superclass which represents the entities Heroes and Monsters in our implementation. The class Living contains the name, level, life, and whether the current object is fainted or not. 
+The class Living has the following subclasses:
+1. Hero, whitch represents the types of Heroes.
+2. Monster, whitch represents the types of Monsters.
+ 
+#### hero
+We defined the class Hero as a superclass, which has the following subclasses: (Warrior, Sorcerer, Paladin).
+These classes inherit all characteristics from Hero and essentially differentiate between them because they describe different types of Heroes based on the statistics that initialize them.
+
+Each Hero can buy, sell, and use items purchased from the Market squares of the grid. Also, each hero can attack monsters with or without spells each round, or use a potion, or change armor.
+
+#### team
+We defined the class Team, which represents a team consisting of 1 to 3 Heroes, created by the player at the beginning of the game.
+
+#### monster
+We defined the class Monster as a subclass of Living and it inherits all its elements. In addition, each monster has a damage amount, a defense amount, an attack amount, and 3 vectors for the spells affecting it, reducing some statistic for a certain number of rounds (there is one vector for each type of spell and when the required rounds pass, the spell stops affecting the monster and is removed from the vector).
+    
+We also defined 3 subclasses of the Monster class to distinguish the 3 different types of monsters that exist (Spirit, Dragon, Exoskeleton).
 
 ### items & spells
-    Ορίσαμε ως superclass την class Item η οποία αντιπροσωπεύει τα αντικείμενα και τα ξόρκια τα οποία χρησιμοποιούν οι ήρωες στο παιχνίδι μας. Η κλάση Item περιέχει το όνομα του αντικειμένου, την τιμή του και το ελάχιστο επίπεδο στο οποίο πρέπει να βρίσκεται ο ήρωας για να το χρησιμοποιήσει. Η κλάση Item έχει 4 υποκλάσεις:
-    1) Την class Weapon η οποία αντιπροσωπεύει τα όπλα και περιέχει το damage κάθε όπλου και μια μεταβλητή int hands η οποία παίρνει τιμές 1 ή 2 ανάλογα το πόσα χέρια χρειάζεται ο ήρωας για να το χρησιμοποιήσει. 
-    2) Την κλάση Αrmor η οποία αντιπροσωπεύει μια πανοπλία και περιέχει το ποσό άμυνας της πανοπλίας.
-    3) Την κλάση Potion η οποία αντιπροσωπεύει τα φίλτρα που μπορεί να χρησιμοποιήσει ο ήρωας για να αυξήσει κάποιο στατιστικό του (ζωή, magic power, dexterity, strength). Περιέχει το στατιστικό του ήρωα που θα αυξηθεί (string ability) και το ποσό της αύξησης (int amount).
-    4) Την κλάση Spell η οποία αντιπροσωπεύει τα ξόρκια και περιέχει το ποσό ενέργειας που απαιτείται να έχει ο ήρωας για να πραγματοποιήσει το συγκεκριμένο spell (int energy), το μέγιστο και το ελάχιστο damage που μπορεί να προκαλέσει(maxdamage,mindamage) δηλαδή ανάλογα με το dexterity του κάθε ήρωας κάνοντας ένα spell κάνει διαφορετικό damage το οποίο όμως ανήκει στο διάστημα [mindamage,maxdamage]. Επίσης, τα ξόρκια ανάλογα με τη κατηγορία τους μειώνουν κάποιο στατιστικό του αντίπαλου τέρατος κατα κάποιο ποσό(int reduction) για κάποιους γύρους της μάχης(int rounds).
-    H κλάση Spell έχει και αυτή 3 υποκλάσσεις 
-    1) class Firespell 
-    2) class Lightingspell
-    3) class Icespell
+#### item
+We defined the class Item as a superclass, which represents the items and spells used by the heroes in our game. 
+The class Item contains the name of the item, its value, and the minimum level required for the hero to use it. The class Item has 4 subclasses: Weapon, Armor, Potion, Spell 
+
+#### weapon
+The class Weapon, which represents weapons and contains the damage of each weapon and an integer variable hands which takes values 1 or 2 depending on how many hands the hero needs to use it.
+
+#### armor
+The class Armor, which represents armor and contains the defense amount of the armor.
+
+#### potion
+The class Potion, which represents potions that the hero can use to increase a specific statistic (life, magic power, dexterity, strength). It contains the statistic of the hero to be increased (string ability) and the amount of increase (int amount).
+
+#### spell
+The class Spell, which represents spells and contains the energy amount required by the hero to perform the specific spell (int energy), the maximum and minimum damage it can cause (maxdamage, mindamage). That is, depending on the hero's dexterity, casting a spell causes different damage, which, however, belongs to the interval [mindamage, maxdamage]. Also, depending on their category, spells reduce a statistic of the opponent monster by a certain amount (int reduction) for some rounds of the battle (int rounds). 
+The class Spell also has 3 subclasses: (Firespell, Lightingspell, Icespell)
 
 ### grid
     Ορίσαμε την κλάση Grid ως τον κόσμο του παιχνιδιού με διαστάσεις 8*8 (σκακιέρα- για γραφική παράσταση βλέπε Grid.pdf), ο οποίος κόσμος αναπαριστάται από 3 είδη Square. Η ομάδα μπορεί να μετακινηθεί στο πλέγμα από τετράγωνο σε τετράγωνο. Επίσης μπορεί να εκτυπωθεί γραφικά σαν πίνακας με 0,1,2, ανάλογα τον τύπο τετραγώνου που αναπαριστά κάθε ένα τετράγωνο. 
