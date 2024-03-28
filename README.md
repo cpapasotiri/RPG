@@ -1,7 +1,7 @@
 <p align="center"><img src="logo_en.png" alt="Logo NKUA DiT" width=35%/></p>
 
 # <center>Object Oriented Programming - Role Playing Game - Winter Semester 2020-2021</center>
-<center>Professor in charge: Izambo Karali</center><br>
+<center>Professor: Izambo Karali</center><br>
 
 ## Team Personal Data:
 - [George Mouratos](https://github.com/mouratos41)
@@ -18,21 +18,21 @@ Every time the heroes defeat a monster, they collect some money and gain experie
 ### Game Creation
 The approach we followed to create this game was to start with the living beings, objects and grid squares in order to connect them in such a way that the player, using simple words and numbers, could play this game.
 
-### Objects and Living Beings in this world:
+### Objects and Living Beings in this world
 27 livings: (9 Hero => 3 Warrior, 3 Sorcerer, 3 Paladin, 18 Monster => 6 Dragon, 6 Exoskeleton, 6 Spirit) <br>
 120 weapons => 2/level <br>
 80 armors => 1/level <br>
 30 spells => Ice, Fire, Light => 1/level <br>
 6 potions => 2 health, 2 magicPower, dexterity, strength <br> 
 
-### We emphasize that:
+### We emphasize that
 - When the world appears the team is represented graphically as * . 
 - The graphical representation of the world which is also displayed on the command line is also availiable in Grid.pdf file.
 - For the game to work properly the player must not choose the same hero more than once at the beginning.
 - Each level of player interface gives appropriate instructions on how to handle the game. Help is also provided for each level. 
 - Every heroe can hold up to 2 guns (primary,secondary) provided that both of these 2 weapons require a hand to be used.
 
-### Battle:  
+### Battle  
 Before the battle begins, some monsters are randomly selected for the heroes to face. The number of monsters takes value in the interval [1, counter+1] where counter is the number of heroes. <br>
 For the battle to start the monsters must be of the same level as the heroes, once this is done the battle starts. <br>
 Initially we place heroes and monsters in two diferrent vectors. <br>
